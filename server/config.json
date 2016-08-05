@@ -1,9 +1,0 @@
-{
-	"server": {
-		"url": "localhost"
-	},
-	"mongoDB": {
-		"url": "mongodb://localhost:27017/bluStore"
-	},
-	"secretKey": "spmek-alf56-RodE0-92134-46fsnv-woR4z"
-}

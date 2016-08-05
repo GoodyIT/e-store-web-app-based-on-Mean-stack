@@ -16,7 +16,7 @@ var models;
 before(function (done) {
 
 	// connnect to database
-	mongoose.connect(config.mongoDB.url);
+	mongoose.connect(config.MONGODB);
 	var db = mongoose.connection;
 
 	db.on('error', function (err) {

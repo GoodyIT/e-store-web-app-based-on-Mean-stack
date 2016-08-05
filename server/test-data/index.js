@@ -1,7 +1,7 @@
 'use strict';
 
 var mongoose = require('mongoose');
-var config = require('../config.json');
+var config = require('../config');
 var colors = require('colors/safe');
 mongoose.Promise = require('bluebird');
 var dataLoader = require('./data-Loader');
@@ -11,7 +11,7 @@ var arg = process.argv[2];
 var models;
 var Category;
 // connnect to database
-mongoose.connect(config.mongoDB.url);
+mongoose.connect(config.MONGODB);
 var db = mongoose.connection;
 
 db.on('error', function (err) {
