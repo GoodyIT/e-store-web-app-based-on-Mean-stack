@@ -1,0 +1,639 @@
+{
+	"categories": [
+		{
+			"_id": "57a221554e24b7081cdd029b",
+			"name": "Electronics",
+			"__v": 3,
+			"children": [
+				{
+					"_id": "57a221554e24b7081cdd029e",
+					"name": "Mobile Phone",
+					"parent": "57a221554e24b7081cdd029b",
+					"__v": 3,
+					"children": [
+						{
+							"_id": "57a221554e24b7081cdd02a3",
+							"name": "Sony",
+							"parent": "57a221554e24b7081cdd029e",
+							"__v": 0,
+							"children": [],
+							"ancestors": [
+								"57a221554e24b7081cdd029b",
+								"57a221554e24b7081cdd029e"
+							],
+							"slug": "sony"
+						},
+						{
+							"_id": "57a221554e24b7081cdd02a1",
+							"name": "iPhone",
+							"parent": "57a221554e24b7081cdd029e",
+							"__v": 3,
+							"children": [
+								{
+									"_id": "57a221554e24b7081cdd02a8",
+									"name": "iPhone 5S",
+									"parent": "57a221554e24b7081cdd02a1",
+									"__v": 0,
+									"children": [],
+									"ancestors": [
+										"57a221554e24b7081cdd029b",
+										"57a221554e24b7081cdd029e",
+										"57a221554e24b7081cdd02a1"
+									],
+									"slug": "iphone-5s"
+								},
+								{
+									"_id": "57a221554e24b7081cdd02a9",
+									"name": "iPhone 6S",
+									"parent": "57a221554e24b7081cdd02a1",
+									"__v": 0,
+									"children": [],
+									"ancestors": [
+										"57a221554e24b7081cdd029b",
+										"57a221554e24b7081cdd029e",
+										"57a221554e24b7081cdd02a1"
+									],
+									"slug": "iphone-6s"
+								},
+								{
+									"_id": "57a221554e24b7081cdd02ab",
+									"name": "iPhone 4S",
+									"parent": "57a221554e24b7081cdd02a1",
+									"__v": 0,
+									"children": [],
+									"ancestors": [
+										"57a221554e24b7081cdd029b",
+										"57a221554e24b7081cdd029e",
+										"57a221554e24b7081cdd02a1"
+									],
+									"slug": "iphone-4s"
+								}
+							],
+							"ancestors": [
+								"57a221554e24b7081cdd029b",
+								"57a221554e24b7081cdd029e"
+							],
+							"slug": "iphone"
+						},
+						{
+							"_id": "57a221554e24b7081cdd02a2",
+							"name": "Samsung",
+							"parent": "57a221554e24b7081cdd029e",
+							"__v": 2,
+							"children": [
+								{
+									"_id": "57a221554e24b7081cdd02aa",
+									"name": "Galaxy S6",
+									"parent": "57a221554e24b7081cdd02a2",
+									"__v": 0,
+									"children": [],
+									"ancestors": [
+										"57a221554e24b7081cdd029b",
+										"57a221554e24b7081cdd029e",
+										"57a221554e24b7081cdd02a2"
+									],
+									"slug": "galaxy-s6"
+								},
+								{
+									"_id": "57a221554e24b7081cdd02ac",
+									"name": "Galaxy S5",
+									"parent": "57a221554e24b7081cdd02a2",
+									"__v": 0,
+									"children": [],
+									"ancestors": [
+										"57a221554e24b7081cdd029b",
+										"57a221554e24b7081cdd029e",
+										"57a221554e24b7081cdd02a2"
+									],
+									"slug": "galaxy-s5"
+								}
+							],
+							"ancestors": [
+								"57a221554e24b7081cdd029b",
+								"57a221554e24b7081cdd029e"
+							],
+							"slug": "samsung"
+						}
+					],
+					"ancestors": [
+						"57a221554e24b7081cdd029b"
+					],
+					"slug": "mobile-phone"
+				},
+				{
+					"_id": "57a221554e24b7081cdd029f",
+					"name": "Computers",
+					"parent": "57a221554e24b7081cdd029b",
+					"__v": 3,
+					"children": [
+						{
+							"_id": "57a221554e24b7081cdd02a6",
+							"name": "Laptop",
+							"parent": "57a221554e24b7081cdd029f",
+							"__v": 0,
+							"children": [],
+							"ancestors": [
+								"57a221554e24b7081cdd029b",
+								"57a221554e24b7081cdd029f"
+							],
+							"slug": "laptop"
+						},
+						{
+							"_id": "57a221554e24b7081cdd02a4",
+							"name": "Hard Disk",
+							"parent": "57a221554e24b7081cdd029f",
+							"__v": 0,
+							"children": [],
+							"ancestors": [
+								"57a221554e24b7081cdd029b",
+								"57a221554e24b7081cdd029f"
+							],
+							"slug": "hard-disk"
+						},
+						{
+							"_id": "57a221554e24b7081cdd02a5",
+							"name": "Graphic Cards",
+							"parent": "57a221554e24b7081cdd029f",
+							"__v": 0,
+							"children": [],
+							"ancestors": [
+								"57a221554e24b7081cdd029b",
+								"57a221554e24b7081cdd029f"
+							],
+							"slug": "graphic-cards"
+						}
+					],
+					"ancestors": [
+						"57a221554e24b7081cdd029b"
+					],
+					"slug": "computers"
+				},
+				{
+					"_id": "57a221554e24b7081cdd02a0",
+					"name": "TV",
+					"parent": "57a221554e24b7081cdd029b",
+					"__v": 1,
+					"children": [
+						{
+							"_id": "57a221554e24b7081cdd02a7",
+							"name": "Toshiba",
+							"parent": "57a221554e24b7081cdd02a0",
+							"__v": 0,
+							"children": [],
+							"ancestors": [
+								"57a221554e24b7081cdd029b",
+								"57a221554e24b7081cdd02a0"
+							],
+							"slug": "toshiba"
+						}
+					],
+					"ancestors": [
+						"57a221554e24b7081cdd029b"
+					],
+					"slug": "tv"
+				}
+			],
+			"ancestors": [],
+			"slug": "electronics"
+		},
+		{
+			"_id": "57a221554e24b7081cdd029c",
+			"name": "Software",
+			"__v": 0,
+			"children": [],
+			"ancestors": [],
+			"slug": "software"
+		},
+		{
+			"_id": "57a221554e24b7081cdd029d",
+			"name": "Books",
+			"__v": 0,
+			"children": [],
+			"ancestors": [],
+			"slug": "books"
+		},
+		{
+			"_id": "57a221554e24b7081cdd029e",
+			"name": "Mobile Phone",
+			"parent": "57a221554e24b7081cdd029b",
+			"__v": 3,
+			"children": [
+				{
+					"_id": "57a221554e24b7081cdd02a3",
+					"name": "Sony",
+					"parent": "57a221554e24b7081cdd029e",
+					"__v": 0,
+					"children": [],
+					"ancestors": [
+						"57a221554e24b7081cdd029b",
+						"57a221554e24b7081cdd029e"
+					],
+					"slug": "sony"
+				},
+				{
+					"_id": "57a221554e24b7081cdd02a1",
+					"name": "iPhone",
+					"parent": "57a221554e24b7081cdd029e",
+					"__v": 3,
+					"children": [
+						{
+							"_id": "57a221554e24b7081cdd02a8",
+							"name": "iPhone 5S",
+							"parent": "57a221554e24b7081cdd02a1",
+							"__v": 0,
+							"children": [],
+							"ancestors": [
+								"57a221554e24b7081cdd029b",
+								"57a221554e24b7081cdd029e",
+								"57a221554e24b7081cdd02a1"
+							],
+							"slug": "iphone-5s"
+						},
+						{
+							"_id": "57a221554e24b7081cdd02a9",
+							"name": "iPhone 6S",
+							"parent": "57a221554e24b7081cdd02a1",
+							"__v": 0,
+							"children": [],
+							"ancestors": [
+								"57a221554e24b7081cdd029b",
+								"57a221554e24b7081cdd029e",
+								"57a221554e24b7081cdd02a1"
+							],
+							"slug": "iphone-6s"
+						},
+						{
+							"_id": "57a221554e24b7081cdd02ab",
+							"name": "iPhone 4S",
+							"parent": "57a221554e24b7081cdd02a1",
+							"__v": 0,
+							"children": [],
+							"ancestors": [
+								"57a221554e24b7081cdd029b",
+								"57a221554e24b7081cdd029e",
+								"57a221554e24b7081cdd02a1"
+							],
+							"slug": "iphone-4s"
+						}
+					],
+					"ancestors": [
+						"57a221554e24b7081cdd029b",
+						"57a221554e24b7081cdd029e"
+					],
+					"slug": "iphone"
+				},
+				{
+					"_id": "57a221554e24b7081cdd02a2",
+					"name": "Samsung",
+					"parent": "57a221554e24b7081cdd029e",
+					"__v": 2,
+					"children": [
+						{
+							"_id": "57a221554e24b7081cdd02aa",
+							"name": "Galaxy S6",
+							"parent": "57a221554e24b7081cdd02a2",
+							"__v": 0,
+							"children": [],
+							"ancestors": [
+								"57a221554e24b7081cdd029b",
+								"57a221554e24b7081cdd029e",
+								"57a221554e24b7081cdd02a2"
+							],
+							"slug": "galaxy-s6"
+						},
+						{
+							"_id": "57a221554e24b7081cdd02ac",
+							"name": "Galaxy S5",
+							"parent": "57a221554e24b7081cdd02a2",
+							"__v": 0,
+							"children": [],
+							"ancestors": [
+								"57a221554e24b7081cdd029b",
+								"57a221554e24b7081cdd029e",
+								"57a221554e24b7081cdd02a2"
+							],
+							"slug": "galaxy-s5"
+						}
+					],
+					"ancestors": [
+						"57a221554e24b7081cdd029b",
+						"57a221554e24b7081cdd029e"
+					],
+					"slug": "samsung"
+				}
+			],
+			"ancestors": [
+				"57a221554e24b7081cdd029b"
+			],
+			"slug": "mobile-phone"
+		},
+		{
+			"_id": "57a221554e24b7081cdd029f",
+			"name": "Computers",
+			"parent": "57a221554e24b7081cdd029b",
+			"__v": 3,
+			"children": [
+				{
+					"_id": "57a221554e24b7081cdd02a6",
+					"name": "Laptop",
+					"parent": "57a221554e24b7081cdd029f",
+					"__v": 0,
+					"children": [],
+					"ancestors": [
+						"57a221554e24b7081cdd029b",
+						"57a221554e24b7081cdd029f"
+					],
+					"slug": "laptop"
+				},
+				{
+					"_id": "57a221554e24b7081cdd02a4",
+					"name": "Hard Disk",
+					"parent": "57a221554e24b7081cdd029f",
+					"__v": 0,
+					"children": [],
+					"ancestors": [
+						"57a221554e24b7081cdd029b",
+						"57a221554e24b7081cdd029f"
+					],
+					"slug": "hard-disk"
+				},
+				{
+					"_id": "57a221554e24b7081cdd02a5",
+					"name": "Graphic Cards",
+					"parent": "57a221554e24b7081cdd029f",
+					"__v": 0,
+					"children": [],
+					"ancestors": [
+						"57a221554e24b7081cdd029b",
+						"57a221554e24b7081cdd029f"
+					],
+					"slug": "graphic-cards"
+				}
+			],
+			"ancestors": [
+				"57a221554e24b7081cdd029b"
+			],
+			"slug": "computers"
+		},
+		{
+			"_id": "57a221554e24b7081cdd02a0",
+			"name": "TV",
+			"parent": "57a221554e24b7081cdd029b",
+			"__v": 1,
+			"children": [
+				{
+					"_id": "57a221554e24b7081cdd02a7",
+					"name": "Toshiba",
+					"parent": "57a221554e24b7081cdd02a0",
+					"__v": 0,
+					"children": [],
+					"ancestors": [
+						"57a221554e24b7081cdd029b",
+						"57a221554e24b7081cdd02a0"
+					],
+					"slug": "toshiba"
+				}
+			],
+			"ancestors": [
+				"57a221554e24b7081cdd029b"
+			],
+			"slug": "tv"
+		},
+		{
+			"_id": "57a221554e24b7081cdd02a1",
+			"name": "iPhone",
+			"parent": "57a221554e24b7081cdd029e",
+			"__v": 3,
+			"children": [
+				{
+					"_id": "57a221554e24b7081cdd02a8",
+					"name": "iPhone 5S",
+					"parent": "57a221554e24b7081cdd02a1",
+					"__v": 0,
+					"children": [],
+					"ancestors": [
+						"57a221554e24b7081cdd029b",
+						"57a221554e24b7081cdd029e",
+						"57a221554e24b7081cdd02a1"
+					],
+					"slug": "iphone-5s"
+				},
+				{
+					"_id": "57a221554e24b7081cdd02a9",
+					"name": "iPhone 6S",
+					"parent": "57a221554e24b7081cdd02a1",
+					"__v": 0,
+					"children": [],
+					"ancestors": [
+						"57a221554e24b7081cdd029b",
+						"57a221554e24b7081cdd029e",
+						"57a221554e24b7081cdd02a1"
+					],
+					"slug": "iphone-6s"
+				},
+				{
+					"_id": "57a221554e24b7081cdd02ab",
+					"name": "iPhone 4S",
+					"parent": "57a221554e24b7081cdd02a1",
+					"__v": 0,
+					"children": [],
+					"ancestors": [
+						"57a221554e24b7081cdd029b",
+						"57a221554e24b7081cdd029e",
+						"57a221554e24b7081cdd02a1"
+					],
+					"slug": "iphone-4s"
+				}
+			],
+			"ancestors": [
+				"57a221554e24b7081cdd029b",
+				"57a221554e24b7081cdd029e"
+			],
+			"slug": "iphone"
+		},
+		{
+			"_id": "57a221554e24b7081cdd02a2",
+			"name": "Samsung",
+			"parent": "57a221554e24b7081cdd029e",
+			"__v": 2,
+			"children": [
+				{
+					"_id": "57a221554e24b7081cdd02aa",
+					"name": "Galaxy S6",
+					"parent": "57a221554e24b7081cdd02a2",
+					"__v": 0,
+					"children": [],
+					"ancestors": [
+						"57a221554e24b7081cdd029b",
+						"57a221554e24b7081cdd029e",
+						"57a221554e24b7081cdd02a2"
+					],
+					"slug": "galaxy-s6"
+				},
+				{
+					"_id": "57a221554e24b7081cdd02ac",
+					"name": "Galaxy S5",
+					"parent": "57a221554e24b7081cdd02a2",
+					"__v": 0,
+					"children": [],
+					"ancestors": [
+						"57a221554e24b7081cdd029b",
+						"57a221554e24b7081cdd029e",
+						"57a221554e24b7081cdd02a2"
+					],
+					"slug": "galaxy-s5"
+				}
+			],
+			"ancestors": [
+				"57a221554e24b7081cdd029b",
+				"57a221554e24b7081cdd029e"
+			],
+			"slug": "samsung"
+		},
+		{
+			"_id": "57a221554e24b7081cdd02a3",
+			"name": "Sony",
+			"parent": "57a221554e24b7081cdd029e",
+			"__v": 0,
+			"children": [],
+			"ancestors": [
+				"57a221554e24b7081cdd029b",
+				"57a221554e24b7081cdd029e"
+			],
+			"slug": "sony"
+		},
+		{
+			"_id": "57a221554e24b7081cdd02a4",
+			"name": "Hard Disk",
+			"parent": "57a221554e24b7081cdd029f",
+			"__v": 0,
+			"children": [],
+			"ancestors": [
+				"57a221554e24b7081cdd029b",
+				"57a221554e24b7081cdd029f"
+			],
+			"slug": "hard-disk"
+		},
+		{
+			"_id": "57a221554e24b7081cdd02a5",
+			"name": "Graphic Cards",
+			"parent": "57a221554e24b7081cdd029f",
+			"__v": 0,
+			"children": [],
+			"ancestors": [
+				"57a221554e24b7081cdd029b",
+				"57a221554e24b7081cdd029f"
+			],
+			"slug": "graphic-cards"
+		},
+		{
+			"_id": "57a221554e24b7081cdd02a6",
+			"name": "Laptop",
+			"parent": "57a221554e24b7081cdd029f",
+			"__v": 0,
+			"children": [],
+			"ancestors": [
+				"57a221554e24b7081cdd029b",
+				"57a221554e24b7081cdd029f"
+			],
+			"slug": "laptop"
+		},
+		{
+			"_id": "57a221554e24b7081cdd02a7",
+			"name": "Toshiba",
+			"parent": "57a221554e24b7081cdd02a0",
+			"__v": 0,
+			"children": [],
+			"ancestors": [
+				"57a221554e24b7081cdd029b",
+				"57a221554e24b7081cdd02a0"
+			],
+			"slug": "toshiba"
+		},
+		{
+			"_id": "57a221554e24b7081cdd02a8",
+			"name": "iPhone 5S",
+			"parent": "57a221554e24b7081cdd02a1",
+			"__v": 0,
+			"children": [],
+			"ancestors": [
+				"57a221554e24b7081cdd029b",
+				"57a221554e24b7081cdd029e",
+				"57a221554e24b7081cdd02a1"
+			],
+			"slug": "iphone-5s"
+		},
+		{
+			"_id": "57a221554e24b7081cdd02a9",
+			"name": "iPhone 6S",
+			"parent": "57a221554e24b7081cdd02a1",
+			"__v": 0,
+			"children": [],
+			"ancestors": [
+				"57a221554e24b7081cdd029b",
+				"57a221554e24b7081cdd029e",
+				"57a221554e24b7081cdd02a1"
+			],
+			"slug": "iphone-6s"
+		},
+		{
+			"_id": "57a221554e24b7081cdd02aa",
+			"name": "Galaxy S6",
+			"parent": "57a221554e24b7081cdd02a2",
+			"__v": 0,
+			"children": [],
+			"ancestors": [
+				"57a221554e24b7081cdd029b",
+				"57a221554e24b7081cdd029e",
+				"57a221554e24b7081cdd02a2"
+			],
+			"slug": "galaxy-s6"
+		},
+		{
+			"_id": "57a221554e24b7081cdd02ab",
+			"name": "iPhone 4S",
+			"parent": "57a221554e24b7081cdd02a1",
+			"__v": 0,
+			"children": [],
+			"ancestors": [
+				"57a221554e24b7081cdd029b",
+				"57a221554e24b7081cdd029e",
+				"57a221554e24b7081cdd02a1"
+			],
+			"slug": "iphone-4s"
+		},
+		{
+			"_id": "57a221554e24b7081cdd02ac",
+			"name": "Galaxy S5",
+			"parent": "57a221554e24b7081cdd02a2",
+			"__v": 0,
+			"children": [],
+			"ancestors": [
+				"57a221554e24b7081cdd029b",
+				"57a221554e24b7081cdd029e",
+				"57a221554e24b7081cdd02a2"
+			],
+			"slug": "galaxy-s5"
+		}
+	],
+	"products": [
+		{
+			"title": "iPhone 6s 128GB",
+			"price": "8000",
+			"stock": "4",
+			"description": "apple smarphone"
+		},
+		{
+			"title": "Samsung Galaxy s5",
+			"price": "5000",
+			"stock": "3",
+			"description": "samsung smarphone"
+		},
+		{
+			"title": "Sony X3",
+			"price": "3400",
+			"stock": "7",
+			"description": "Sony smarphone"
+		}
+	]
+}
