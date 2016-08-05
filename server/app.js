@@ -8,6 +8,7 @@ var config = require('./config');       // configration file
 var models = require('./models');            // init models
 var cache = require('./data-memory');
 var authentication = require('./authentication');
+var passport = require('passport');
 
 // load cached data
 cache.get('loadCache')(function(){
@@ -30,7 +31,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(authentication.init());
+app.use(passport.initialize());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);

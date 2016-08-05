@@ -3,7 +3,7 @@ var passport = require('passport');
 var User = require('../models').User;
 var verify = require('./verify');
 
-var router = express.Router;
+var router = express.Router();
 
 router.get('/users', verify.verifyUser, verify.verifyAdmin, function (req, res, next) {
 	User.find({}, function (err, users) {
