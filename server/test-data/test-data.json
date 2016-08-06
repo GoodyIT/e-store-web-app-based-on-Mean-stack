@@ -635,5 +635,21 @@
 			"stock": "7",
 			"description": "Sony smarphone"
 		}
+	],
+	"users": [
+		{
+			"username": "ahmed",
+			"password": "123",
+			"firstname": "ahmed",
+			"lastname": "ali",
+			"email": "ahmedali@cookiescode.com"
+		},
+		{
+			"username": "mohammed",
+			"password": "222",
+			"firstname": "mohammed",
+			"lastname": "Fathy",
+			"email": "mohammedali@cookiescode.com"
+		}
 	]
 }

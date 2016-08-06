@@ -20,7 +20,7 @@ exports.verifyUser = function verifyUser(req, res, next) {
 			}
 			else {
 				// if everything is good, add user data to the req for future use.
-				req.user = decoded;
+				req.userData = decoded;
 				next();
 			}
 		});
@@ -35,7 +35,7 @@ exports.verifyUser = function verifyUser(req, res, next) {
 };
 
 exports.verifyAdmin = function (req, res, next) {
-	if (!req.user.admin) {
+	if (!req.userData.admin) {
 		var err = new Error('You are not authorized to perform this operation!');
         err.status = 403;
         return next(err);

@@ -7,7 +7,6 @@ var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
 	username: String,
-    password: String,
     OauthId: String,
     OauthToken: String,
     firstname: {
@@ -18,6 +17,7 @@ var userSchema = new Schema({
         type: String,
         default: ''
     },
+    email: String,
     admin: {
         type: Boolean,
         default: false

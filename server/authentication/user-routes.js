@@ -22,19 +22,20 @@ router.get('/users', verify.verifyUser, verify.verifyAdmin, function (req, res, 
 router.post('/register', function (req, res, next) {
 
 	User.register(
-		new User(
-			{
-				username: req.body.username,
-				firstname: req.body.firstname,
-				lastnae: req.body.lastname
-			}
-		),
+		new User({ username: req.body.username }),
 		req.body.password,
 		function (err, user) {
 			if (err) {
 				err.status = 500;
 				return next(err);
 			}
+
+			if(req.body.firstname)
+				user.firstname = req.body.firstname;
+			if(req.body.lastname)
+				user.lastname = req.body.lastname;
+			if(req.body.email)
+				user.email = req.body.email;
 
 			user.save(function (err, user) {
 				passport.authenticate('local')(req, res, function () {

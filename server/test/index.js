@@ -26,9 +26,14 @@ before(function (done) {
 	db.once('open', function () {
 
 		models = require('../models');     // load models first
+		var authentication = require('../authentication');
+		var passport = require('passport');
 
 		app.use(bodyParser.json());
+		app.use(passport.initialize());
+		
 		// init api 
+		app.use('/users', authentication.routes);
 		app.use('/api/blu-store/', require('../api'));
 
 		// bootstrap server
@@ -59,4 +64,6 @@ afterEach(function (done) {
 describe('API tests', function () {
 	require('./api');  // api tests folder
 });
+
+require('./auth');
 

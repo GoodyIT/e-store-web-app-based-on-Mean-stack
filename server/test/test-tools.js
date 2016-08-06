@@ -17,6 +17,7 @@ var models = require('../models');
 // set models variables
 var Category = models.Category;
 var Product = models.Product;
+var User = models.User;
 
 
 // export variable and functions.
@@ -36,7 +37,10 @@ exports.clearDb = function (done) {
 
 		Product.remove({}, function (err) {
 			assert.isNotOk(err);
-			done();
+			User.remove({}, function (err) {
+				assert.isNotOk(err);
+				done();
+			});
 		});
 	});
 }
@@ -85,7 +89,7 @@ exports.handleResponse = function (obj, validator, done) {
 
 exports.createDoc = function (model) {
 
-	return function(data, done) {
+	return function (data, done) {
 		model.create(data, function (err, result) {
 			assert.isNotOk(err);
 
