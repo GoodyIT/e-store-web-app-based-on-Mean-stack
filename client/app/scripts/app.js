@@ -1,0 +1,1 @@
+var bluStore = angular.module('bluStore', []);

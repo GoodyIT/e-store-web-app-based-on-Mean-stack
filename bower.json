@@ -1,0 +1,23 @@
+{
+  "name": "blu-store",
+  "description": "e-store webapp",
+  "main": "app.js",
+  "authors": [
+    "AhmedAli7O1 <ahmedaliabdullah70@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/AhmedAli7O1/blu-store",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "bootstrap": "^3.3.7",
+    "jquery-easing": "*",
+    "font-awesome": "font-awsome#^4.6.3"
+  }
+}

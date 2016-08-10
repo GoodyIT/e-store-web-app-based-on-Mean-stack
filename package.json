@@ -27,8 +27,10 @@
     "wagner-core": "^0.2.0"
   },
   "devDependencies": {
+    "bower": "^1.7.9",
     "chai": "^3.5.0",
     "colors": "^1.1.2",
+    "gulp": "^3.9.1",
     "mocha": "^2.5.3",
     "superagent": "^2.1.0"
   }

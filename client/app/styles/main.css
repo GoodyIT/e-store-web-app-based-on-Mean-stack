@@ -1,0 +1,51 @@
+#logo {
+    width: 32px;
+    position: relative;
+    bottom: 5px;
+}
+
+.jumbotron {
+    margin-top: 51px;
+}
+
+.navbar li:hover {
+    border-bottom-style: solid;
+    border-color: #81d883;
+    background: whitesmoke;
+}
+
+#search-box {
+    width: 400px;
+}
+
+#search-form {
+    margin-right: 100px;
+}
+
+.affix-top {
+    position: absolute;
+    top: 400px;
+    right: 10px;
+}
+
+.affix {
+    top: 200px;
+    right: 10px;
+}
+
+.fa-facebook-square {
+    color: #3A4E82;
+}
+
+.fa-twitter-square {
+    color: #4099FF;
+}
+
+footer {
+    height: 200px;
+    background: #3eac46;
+}
+
+.content {
+    height: 1000px;
+}
