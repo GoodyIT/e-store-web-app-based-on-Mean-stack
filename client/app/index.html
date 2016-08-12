@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>BluStore</title>
 
-    <!-- Bootstrap -->
+    <!-- build:css styles/main.css -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="styles/main.css" rel="stylesheet">
+    <!-- endbuild -->
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -35,9 +36,8 @@
 
         <div class="collapse navbar-collapse" id="menu-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#/login"><span class="fa fa-info-circle"></span> Help</a></li>
                 <li><a href="#/login"><span class="fa fa-user"></span> Login</a></li>
-                <li><a href="#/login"><span class="fa fa-shopping-cart"></span> Cart</a></li>
+                <li><a href="#/cart"><span class="fa fa-shopping-cart"></span> Cart</a></li>
             </ul>
             <form id="search-form" class="navbar-form navbar-right">
                 <div class="form-group">
@@ -50,14 +50,19 @@
                     </div>
                 </div>
             </form>
+            <ul class="nav navbar-nav navbar-left">
+                <li class="active"><a href="#"><span class="fa fa-home"></span> Home</a></li>
+                <li><a href="#"><span class="fa fa-shopping-bag"></span> Categories</a></li>
+                <li><a href="#/help"><span class="fa fa-info-circle"></span> Help</a></li>
+            </ul>
         </div>
     </div>
 </nav>
 
-<div id="social-links" data-spy="affix" data-offset-top="180" data-offset-bottom="200">
-    <span class="fa fa-facebook-square fa-3x"></span> </br>
-    <span class="fa fa-twitter-square fa-3x"></span> </br>
-    <span class="fa fa-youtube-square fa-3x"></span> </br>
+<div id="social-links" data-spy="affix" data-offset-top="200">
+    <span class="fa fa-facebook-square fa-2x"></span> </br>
+    <span class="fa fa-twitter-square fa-2x"></span> </br>
+    <span class="fa fa-youtube-square fa-2x"></span> </br>
 </div>
 
 <div class="jumbotron">
@@ -65,17 +70,81 @@
     <p>e-store webapp using Mean-Stack</p>
 </div>
 
-<div class="container content"></div>
-
+<div ui-view></div>
 
 <footer>
-    <div class="container-fluid"></div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-3 footer-links">
+            <h5>Customer Service</h5>
+            <ul>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">Shipping Policy</a></li>
+                <li><a href="#">Returns & Refunds</a></li>
+                <li><a href="#">Payment</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Corporate Deals</a></li>
+                <li><a href="#">Terms & Conditions</a></li>
+                <li><a href="#">How To Shop</a></li>
+            </ul>
+        </div>
+        <div class="col-xs-12 col-sm-3 footer-links">
+            <h5>About BluStore</h5>
+            <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Press</a></li>
+                <li><a href="#">Videos</a></li>
+                <li><a href="#">Join Us</a></li>
+            </ul>
+            <h5>Make money with us</h5>
+            <ul>
+                <li><a href="#">Affiliate Program</a></li>
+                <li><a href="#">Become a Seller</a></li>
+            </ul>
+        </div>
+        <div class="col-xs-12 col-sm-3 footer-icons">
+            <h5>Follow Us</h5>
+            <span class="fa fa-facebook-square fa-2x"></span>
+            <span class="fa fa-twitter-square fa-2x"></span>
+            <span class="fa fa-youtube-square fa-2x"></span>
+            <span class="fa fa-instagram fa-2x"></span>
+            <span class="fa fa-google-plus-circle fa-2x"></span>
+            <h5>Payment Methods</h5>
+            <span class="fa fa-cc-visa fa-2x"></span>
+            <span class="fa fa-cc-mastercard fa-2x"></span>
+            <span class="fa fa-cc-paypal fa-2x"></span>
+            <span class="fa fa-cc-stripe fa-2x"></span>
+            <h5>BluStore in your pocket!</h5>
+            <span class="fa fa-android fa-3x"></span>
+            <span class="fa fa-apple fa-3x"></span>
+            <span class="fa fa-windows fa-3x"></span>
+        </div>
+        <div class="col-xs-12 col-sm-3 footer-forms">
+            <h5>Subscribe to our Newsletter</h5>
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="subscribeEmail" class="sr-only">Email Address</label>
+                    <input type="email" class="form-control" id="subscribeEmail" placeholder="type your email">
+                </div>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 footer-cr">
+            <p>Designed and built by <a href="https://www.linkedin.com/in/ahmedaliabdullah">Ahmed Ali</a>
+                - Cookies Code &copy; and it's demo version.</p>
+        </div>
+    </div>
 </footer>
 
+<!-- build:js scripts/main.js -->
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="../bower_components/angular/angular.min.js"></script>
+<script src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
 <script src="scripts/app.js"></script>
 <script src="scripts/controllers/main.js"></script>
+<script src="scripts/directives/product-short.js"></script>
+<!-- endbuild -->
 </body>
 </html>
