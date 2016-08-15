@@ -18,13 +18,13 @@ var gulp = require('gulp'),
 
 
 
-gulp.task('jshint', function(){
+gulp.task('debug', function(){
 	return gulp.src('client/app/scripts/**/*.js')
         .pipe(jshint())
         .pipe(jshint.reporter(stylish));
 });
 
-gulp.task('usemin', ['jshint'], function () {
+gulp.task('usemin', ['debug'], function () {
     return gulp.src('client/app/**/*.html')
         .pipe(usemin({
             css: [minifyCss(), rev()],
@@ -44,9 +44,9 @@ gulp.task('clean',function () {
 });
 
 gulp.task('copyfonts', ['clean'], function () {
-    gulp.src('./client/bower_components/font-awesome/fonts/**/*.{ttf, woff, eof, svg}*')
+    gulp.src('./client/bower_components/font-awesome/fonts/**/*.{ttf, woff, woff2, otf, eot, svg}*')
         .pipe(gulp.dest('./dist/fonts'));
-    gulp.src('./client/bower_components/bootstrap/dist/fonts/**/*.{ttf, woff, eof, svg}*')
+    gulp.src('./client/bower_components/bootstrap/dist/fonts/**/*.{ttf, woff, woff2, eot, svg}*')
         .pipe(gulp.dest('./dist/fonts'));
 });
 

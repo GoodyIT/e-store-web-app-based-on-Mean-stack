@@ -1,16 +1,36 @@
 #logo {
     width: 32px;
+}
+
+.navbar-brand {
     position: relative;
     bottom: 5px;
 }
 
-.jumbotron {
+#header-carousel {
     margin-top: 51px;
+}
+
+#header-carousel img {
+    height: 300px;
+    width: auto;
+}
+
+.carousel-button {
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
 }
 
 .navbar-default .navbar-nav > li > a:hover {
     background: #3ea346;
     color: #ffffff;
+}
+
+.carousel-control {
+    display: none;
+}
+
+#header-carousel:hover .carousel-control {
+    display: block;
 }
 
 #search-box {
@@ -95,6 +115,54 @@ footer a:hover {
     font-weight: bold;
 }
 
-.content {
-    height: 1000px;
+blu-product-short .thumbnail {
+    height: 350px;
+    border-style: none;
+}
+
+blu-product-short:hover .thumbnail{
+    border-style: solid;
+    background: rgba(128, 128, 128, 0.03);
+}
+
+blu-product-short .thumbnail > img {
+    height: 150px;
+    width: auto;
+}
+
+blu-product-short .product-desc {
+    height: 130px;
+    padding: 10px;
+}
+
+blu-product-short .product-actions {
+    display: none;
+    text-align: center;
+}
+
+blu-product-short:hover .product-actions {
+    display: block;
+}
+
+.login-dropdown {
+    min-width: 250px;
+    padding: 14px 14px 0;
+    overflow:hidden;
+    background-color:rgba(230,230,230,.8);
+}
+
+.login-dropdown .bottom {
+    background-color:rgba(255,255,255,.8);
+    border-top:1px solid #ddd;
+    clear:both;
+    padding:14px;
+    text-align: center;
+}
+
+.login-dropdown .row {
+    padding-bottom: 20px;
+}
+
+.login-btn {
+    width: 100px;
 }

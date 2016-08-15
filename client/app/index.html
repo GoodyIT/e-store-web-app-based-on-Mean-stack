@@ -9,6 +9,7 @@
     <!-- build:css styles/main.css -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../bower_components/smartmenus/dist/css/sm-core-css.css" rel="stylesheet">
     <link href="styles/main.css" rel="stylesheet">
     <!-- endbuild -->
 
@@ -19,132 +20,42 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
+<body ng-controller="mainCtrl as bluMainCtrl">
 
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed"
-                    data-toggle='collapse' data-target="#menu-collapse" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#"><img id="logo" class="img-responsive" src="images/logo.svg"></a>
-        </div>
 
-        <div class="collapse navbar-collapse" id="menu-collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#/login"><span class="fa fa-user"></span> Login</a></li>
-                <li><a href="#/cart"><span class="fa fa-shopping-cart"></span> Cart</a></li>
-            </ul>
-            <form id="search-form" class="navbar-form navbar-right">
-                <div class="form-group">
-                    <div id="search-box" class="input-group" >
-                        <input type="text" class="form-control" placeholder="Search products, brands and categories"
-                               aria-describedby="basic-addon1">
-                        <span class="input-group-btn">
-                            <button class="btn btn-success" type="button">Search</button>
-                        </span>
-                    </div>
-                </div>
-            </form>
-            <ul class="nav navbar-nav navbar-left">
-                <li class="active"><a href="#"><span class="fa fa-home"></span> Home</a></li>
-                <li><a href="#"><span class="fa fa-shopping-bag"></span> Categories</a></li>
-                <li><a href="#/help"><span class="fa fa-info-circle"></span> Help</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<div ui-view="header"></div>
+<div ui-view="content"></div>
+<div ui-view="footer"></div>
 
-<div id="social-links" data-spy="affix" data-offset-top="200">
-    <span class="fa fa-facebook-square fa-2x"></span> </br>
-    <span class="fa fa-twitter-square fa-2x"></span> </br>
-    <span class="fa fa-youtube-square fa-2x"></span> </br>
-</div>
-
-<div class="jumbotron">
-    <h1>BluStore</h1>
-    <p>e-store webapp using Mean-Stack</p>
-</div>
-
-<div ui-view></div>
-
-<footer>
-    <div class="row">
-        <div class="col-xs-12 col-sm-3 footer-links">
-            <h5>Customer Service</h5>
-            <ul>
-                <li><a href="#">Contact Us</a></li>
-                <li><a href="#">Shipping Policy</a></li>
-                <li><a href="#">Returns & Refunds</a></li>
-                <li><a href="#">Payment</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Corporate Deals</a></li>
-                <li><a href="#">Terms & Conditions</a></li>
-                <li><a href="#">How To Shop</a></li>
-            </ul>
-        </div>
-        <div class="col-xs-12 col-sm-3 footer-links">
-            <h5>About BluStore</h5>
-            <ul>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Press</a></li>
-                <li><a href="#">Videos</a></li>
-                <li><a href="#">Join Us</a></li>
-            </ul>
-            <h5>Make money with us</h5>
-            <ul>
-                <li><a href="#">Affiliate Program</a></li>
-                <li><a href="#">Become a Seller</a></li>
-            </ul>
-        </div>
-        <div class="col-xs-12 col-sm-3 footer-icons">
-            <h5>Follow Us</h5>
-            <span class="fa fa-facebook-square fa-2x"></span>
-            <span class="fa fa-twitter-square fa-2x"></span>
-            <span class="fa fa-youtube-square fa-2x"></span>
-            <span class="fa fa-instagram fa-2x"></span>
-            <span class="fa fa-google-plus-circle fa-2x"></span>
-            <h5>Payment Methods</h5>
-            <span class="fa fa-cc-visa fa-2x"></span>
-            <span class="fa fa-cc-mastercard fa-2x"></span>
-            <span class="fa fa-cc-paypal fa-2x"></span>
-            <span class="fa fa-cc-stripe fa-2x"></span>
-            <h5>BluStore in your pocket!</h5>
-            <span class="fa fa-android fa-3x"></span>
-            <span class="fa fa-apple fa-3x"></span>
-            <span class="fa fa-windows fa-3x"></span>
-        </div>
-        <div class="col-xs-12 col-sm-3 footer-forms">
-            <h5>Subscribe to our Newsletter</h5>
-            <form class="form-inline">
-                <div class="form-group">
-                    <label for="subscribeEmail" class="sr-only">Email Address</label>
-                    <input type="email" class="form-control" id="subscribeEmail" placeholder="type your email">
-                </div>
-                <button type="submit" class="btn btn-success">Submit</button>
-            </form>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 footer-cr">
-            <p>Designed and built by <a href="https://www.linkedin.com/in/ahmedaliabdullah">Ahmed Ali</a>
-                - Cookies Code &copy; and it's demo version.</p>
-        </div>
-    </div>
-</footer>
+<blu-social-links data-spy="affix" data-offset-top="200"></blu-social-links>
 
 <!-- build:js scripts/main.js -->
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="../bower_components/angular/angular.min.js"></script>
 <script src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="../bower_components/smartmenus/dist/jquery.smartmenus.min.js"></script>
 <script src="scripts/app.js"></script>
+<!-- controllers -->
 <script src="scripts/controllers/main.js"></script>
+<script src="scripts/controllers/home.js"></script>
+<script src="scripts/controllers/category.js"></script>
+<!-- services -->
+<script src="scripts/services/categories.js"></script>
+<script src="scripts/services/products.js"></script>
+<!-- directives -->
+<script src="scripts/directives/navbar.js"></script>
+<script src="scripts/directives/header.js"></script>
+<script src="scripts/directives/footer.js"></script>
 <script src="scripts/directives/product-short.js"></script>
+<script src="scripts/directives/social-links.js"></script>
+<script src="scripts/directives/login-dropdown.js"></script>
+<!-- filters -->
+<script src="scripts/filters/product-grid.js"></script>
+<script src="scripts/filters/description-min.js"></script>
+<!-- constants -->
+
+
 <!-- endbuild -->
 </body>
 </html>

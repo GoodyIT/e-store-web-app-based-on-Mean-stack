@@ -1,8 +1,10 @@
-bluStore.directive('productShort', function(){
+bluStore.directive('bluProductShort', function(){
+    'use strict';
+
     return {
         restrict: 'E',
         scope: {
-            productName: '@'
+            productInfo: '='
         },
         templateUrl: "templates/product-short.html"
     };

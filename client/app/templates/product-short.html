@@ -1,9 +1,15 @@
 <div class="thumbnail">
-    <img src="..." alt="...">
-    <div class="caption">
-        <h3>{{ productName }}</h3>
-        <p>...</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a>
-            <a href="#" class="btn btn-default" role="button">Button</a></p>
+        <img src="{{ productInfo.image }}" alt="{{ productInfo.name }}">
+    <div class="product-desc">
+        <h3>{{ productInfo.name }}
+            <span class="label label-danger" ng-if="productInfo.isNew">New</span>
+            <span class="label label-warning" ng-if="productInfo.isSale">Sale</span>
+        </h3>
+        <span class="label label-success">{{ productInfo.category.name }}</span>
+        <p>{{ productInfo.description | descriptionMin:15 }}</p>
+        <span class="badge">Price: ${{ productInfo.price }}</span>
+    </div>
+    <div class="product-actions">
+        <a href="#" class="btn btn-success" role="button"><span class="fa fa-cart-plus"> Buy Now</span></a>
     </div>
 </div>
