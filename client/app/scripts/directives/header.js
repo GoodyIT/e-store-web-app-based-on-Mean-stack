@@ -9,7 +9,7 @@ bluStore.directive('bluHeader', function () {
             $('#header-carousel').carousel({interval: 3000, cycle: true});
 
             $(function () {
-                $('[data-toggle="tooltip"]').tooltip()
+                $('[data-toggle="tooltip"]').tooltip();
             });
 
         }

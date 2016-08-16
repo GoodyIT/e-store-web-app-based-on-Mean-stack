@@ -1,0 +1,64 @@
+<li class="dropdown" ng-controller="userCtrl as navbarUser">
+    <a class="dropdown-toggle" ng-if="!navbarUser.isLoggedIn" data-toggle="dropdown" role="button"
+       aria-haspopup="true" aria-expanded="false"><span class="fa fa-user"></span> Login</a>
+    <ul class="dropdown-menu login-dropdown" ng-if="!navbarUser.isLoggedIn">
+        <p>Login via</p>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6">
+                <a class="btn btn-primary login-btn"><span class="fa fa-facebook"></span> Facebook</a>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                <a class="btn btn-info login-btn"><span class="fa fa-twitter"></span> Twitter</a>
+            </div>
+        </div>
+        <p>or</p>
+        <form class="form-horizontal" ng-submit="navbarUser.login()">
+            <div class="form-group">
+                <div class="col-xs-12">
+                    <label for="email-input" class="sr-only control-label">Email</label>
+                    <input type="email" ng-model="navbarUser.userEmail" class="form-control"
+                           id="email-input" placeholder="enter your email..">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-12">
+                    <label for="password-input" class="sr-only control-label">Password</label>
+                    <input type="password" ng-model="navbarUser.password" class="form-control"
+                           id="password-input" placeholder="enter your password..">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-12">
+                    <a href="" class="pull-right">Forget your password?</a>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-12">
+                    <button type="submit" class="btn btn-success btn-block">Sign in</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-12">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="navbarUser.keepInfo"> keep me logged-in
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="row bottom">
+            <div class="col-xs-12">
+                New here? <a data-toggle="modal" data-target="#register-modal" role="button">Join Us</a>
+            </div>
+        </div>
+    </ul>
+
+    <a class="dropdown-toggle" ng-if="navbarUser.isLoggedIn" data-toggle="dropdown" role="button"
+       aria-haspopup="true" aria-expanded="false"><span class="fa fa-user"></span> {{ navbarUser.fullName }}</a>
+    <ul class="dropdown-menu" ng-if="navbarUser.isLoggedIn">
+        <li ng-if="navbarUser.isAdmin"><a href="#">Add Product</a></li>
+        <li><a href="#">Sign out</a></li>
+    </ul>
+</li>

@@ -78,7 +78,13 @@ router.post('/login', function (req, res, next) {
 
 			res.json({
 				state: true,
-				token: token
+				token: token,
+				userData: {
+					id: user._id,
+					firstName: user.firstname,
+					lastName: user.lastname,
+					isAdmin: user.admin
+				}
 			});
 
 		});

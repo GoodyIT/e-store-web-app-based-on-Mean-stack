@@ -17,7 +17,6 @@ var userSchema = new Schema({
         type: String,
         default: ''
     },
-    email: String,
     admin: {
         type: Boolean,
         default: false
