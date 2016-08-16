@@ -9,7 +9,7 @@ var productSchema = new Schema({
 	stock: { type: Number, default: 1 },
 	description: String,
 	imageUrl: String,
-	categories: [{ type: Schema.Types.ObjectId, ref: 'Category', index: true }]
+	category: { type: Schema.Types.ObjectId, ref: 'Category', index: true }
 },
 {
 	timestamps: true

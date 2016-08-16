@@ -2,9 +2,11 @@ bluStore.controller('categoryCtrl', ['$scope', '$stateParams', '$filter', 'produ
     function ($scope, $stateParams, $filter, productsFactory) {
         'use strict';
 
-        var products = productsFactory.getByCategoryId($stateParams.id);
+        var that = this;
 
-        this.products = $filter('productsGrid')(products, 3);
+        productsFactory.getCategoryById($stateParams.id).get(function(result){
+            that.products = $filter('productsGrid')(result.data, 3);
+        });
 
         $scope.categoryCtrl = this;
 

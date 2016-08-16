@@ -1,34 +1,17 @@
-bluStore.factory('categoriesFactory', function () {
+bluStore.factory('categoriesFactory', function ($resource, CONFIG, API) {
     'use strict';
+
+    var url = CONFIG.SERVER_URL;
 
     return {
 
-        categories:  [
-            {
-                _id: "asjdh92130daskdlaqpopos8712",
-                name: "electronics",
-                children: [
-                    {
-                        name: "tv"
-                    },
-                    {
-                        name: "computers"
-                    }
-                ]
-            },
-            {
-                _id: "asjdh92130daskdlasasdas8712",
-                name: "books",
-                children: [
-                    {
-                        name: "science"
-                    },
-                    {
-                        name: "math"
-                    }
-                ]
-            }
-        ]
+        getAll: function(){
+            return $resource(url + API.VIEW_CATEGORIES, { format: 'tree' });
+        },
+
+        getById: function (id) {
+            return $resource(url + API.VIEW_CATEGORY, { id: id });
+        }
 
     };
 });

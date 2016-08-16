@@ -25,20 +25,16 @@
     color: #ffffff;
 }
 
+#navbar-search {
+    width: 200px;
+}
+
 .carousel-control {
     display: none;
 }
 
 #header-carousel:hover .carousel-control {
     display: block;
-}
-
-#search-box {
-    width: 400px;
-}
-
-#search-form {
-    margin-right: 100px;
 }
 
 .affix {
@@ -52,15 +48,15 @@
     right: 10px;
 }
 
-.fa-facebook-square, footer .fa-facebook-square:hover {
+.fa-facebook-square{
     color: #4A6EA9;
 }
 
-.fa-twitter-square, footer .fa-twitter-square:hover{
+.fa-twitter-square {
     color: #4099FF;
 }
 
-.fa-youtube-square, footer .fa-youtube-square:hover {
+.fa-youtube-square {
     color: red;
 }
 
@@ -82,8 +78,12 @@ footer h5 {
 }
 
 .footer-icons span {
-    color: white;
+    color: #ffffff;
     padding-right: 5px;
+}
+
+.footer-icons span:hover {
+    color: #65ba65;
 }
 
 .footer-forms h5{
@@ -165,4 +165,62 @@ blu-product-short:hover .product-actions {
 
 .login-btn {
     width: 100px;
+}
+
+.navbar-brand {
+    bottom: 10px;
+}
+
+#navbar-title {
+    font-size: 1.4em;
+}
+
+#footer-logo {
+    text-align: center;
+    padding-top: 50px;
+}
+
+#footer-logo p {
+    color: white;
+    font-weight: bold;
+}
+
+#footer-logo span, #navbar-logo, #navbar-title {
+    color: #65ba65;
+}
+
+.form-horizontal .control-label {
+    text-align: left;
+}
+
+@media only screen and (min-width: 320px){
+
+}
+
+@media only screen and (min-width: 360px){
+
+}
+
+@media only screen and (min-width: 550px){
+    #navbar-search {
+        width: 400px;
+    }
+}
+
+@media only screen and (min-width: 720px){
+    #navbar-search {
+        width: 300px;
+    }
+}
+
+@media only screen and (min-width: 1024px){
+    #navbar-search {
+        width: 400px;
+    }
+}
+
+@media only screen and (min-width: 1280px){
+    #navbar-search {
+        width: 500px;
+    }
 }

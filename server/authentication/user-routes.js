@@ -5,7 +5,7 @@ var verify = require('./verify');
 
 var router = express.Router();
 
-router.get('/users', verify.verifyUser, verify.verifyAdmin, function (req, res, next) {
+router.get('/', verify.verifyUser, verify.verifyAdmin, function (req, res, next) {
 	User.find({}, function (err, users) {
 		if (err) {
             return next(err);

@@ -1,4 +1,4 @@
-<ul class="dropdown-menu login-dropdown">
+<ul class="dropdown-menu login-dropdown" ng-controller="loginCtrl as navbarLogin">
     <p>Login via</p>
     <div class="row">
         <div class="col-xs-12 col-sm-6">
@@ -9,17 +9,19 @@
         </div>
     </div>
     <p>or</p>
-    <form class="form-horizontal">
+    <form class="form-horizontal" ng-submit="navbarLogin.login()">
         <div class="form-group">
             <div class="col-xs-12">
                 <label for="email-input" class="sr-only control-label">Email</label>
-                <input type="email" class="form-control" id="email-input" placeholder="enter your email..">
+                <input type="email" ng-model="navbarLogin.userEmail" class="form-control"
+                       id="email-input" placeholder="enter your email..">
             </div>
         </div>
         <div class="form-group">
             <div class="col-xs-12">
                 <label for="password-input" class="sr-only control-label">Password</label>
-                <input type="email" class="form-control" id="password-input" placeholder="enter your password..">
+                <input type="password" ng-model="navbarLogin.password" class="form-control"
+                       id="password-input" placeholder="enter your password..">
             </div>
         </div>
         <div class="form-group">
@@ -37,7 +39,7 @@
             <div class="col-xs-12">
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox"> keep me logged-in
+                        <input type="checkbox" ng-model="navbarLogin.keepInfo"> keep me logged-in
                     </label>
                 </div>
             </div>
@@ -45,7 +47,7 @@
     </form>
     <div class="row bottom">
         <div class="col-xs-12">
-            New here? <a href="">Join Us</a>
+            New here? <a data-toggle="modal" data-target="#register-modal" role="button">Join Us</a>
         </div>
     </div>
 </ul>

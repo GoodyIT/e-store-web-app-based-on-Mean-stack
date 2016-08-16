@@ -15,7 +15,9 @@ bluStore.controller('mainCtrl', ['$scope', '$rootScope', '$filter', 'categoriesF
         });
 
         // get all categories and set them to the scope
-        this.categories = categoriesFactory.categories;
+        categoriesFactory.getAll().get(function(result){
+            that.categories = result.data;
+        });
 
     }]
 );

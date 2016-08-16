@@ -1,9 +1,16 @@
 bluStore.controller('homeCtrl', ['$scope', '$filter', 'productsFactory',
-    function($scope, $filter, productsFactory){
-    'use strict';
+    function ($scope, $filter, productsFactory) {
+        'use strict';
 
-    // get all products and reorganize them to fit in bootstrap grid
-    this.products = $filter('productsGrid')(productsFactory.products, 3);
+        // for internal use
+        var that = this;
 
-    $scope.homeCtrl = this;
-}]);
+        // get all products and reorganize them to fit in bootstrap grid
+        productsFactory.getAll().get(function (result) {
+            that.products = $filter('productsGrid')(result.data, 3);
+        });
+
+        $scope.homeCtrl = this;
+
+    }]
+);

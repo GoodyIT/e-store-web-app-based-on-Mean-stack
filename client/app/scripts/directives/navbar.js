@@ -4,8 +4,8 @@ bluStore.directive('bluNavbar', function () {
     return {
         restrict: "E",
         scope: {
-            categoriesList: "=",
-            activeView: "="
+            categoriesList: '=',
+            activeView: '='
         },
         templateUrl: "templates/navbar.html"
     };

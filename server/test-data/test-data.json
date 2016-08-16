@@ -621,31 +621,45 @@
 			"title": "iPhone 6s 128GB",
 			"price": "8000",
 			"stock": "4",
-			"description": "apple smarphone"
+			"description": "apple smarphone",
+			"imageUrl": "images/iphone.jpg",
+			"category":"57a221554e24b7081cdd02a8"
 		},
 		{
 			"title": "Samsung Galaxy s5",
 			"price": "5000",
 			"stock": "3",
-			"description": "samsung smarphone"
+			"description": "samsung smarphone",
+			"imageUrl": "images/xbox-one.png",
+			"category": "57a221554e24b7081cdd02a2"
 		},
 		{
 			"title": "Sony X3",
 			"price": "3400",
 			"stock": "7",
-			"description": "Sony smarphone"
+			"description": "Sony smarphone",
+			"imageUrl": "images/laptop2.png",
+			"category": "57a221554e24b7081cdd02a3"
+		},
+		{
+			"title": "The C++ Programming Language 4th",
+			"price": "100",
+			"stock": "50",
+			"description": "book to learn the c++ programming language",
+			"imageUrl": "images/book.jpg",
+			"category": "57a221554e24b7081cdd029d"
 		}
 	],
 	"users": [
 		{
-			"username": "ahmed",
+			"username": "test@test.com",
 			"password": "123",
 			"firstname": "ahmed",
 			"lastname": "ali",
 			"email": "ahmedali@cookiescode.com"
 		},
 		{
-			"username": "mohammed",
+			"username": "ahmedali@cookiescode.com",
 			"password": "222",
 			"firstname": "mohammed",
 			"lastname": "Fathy",

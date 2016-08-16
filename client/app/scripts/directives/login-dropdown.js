@@ -6,6 +6,5 @@ bluStore.directive('bluLoginDropdown', function () {
         restrict: "E",
         replace: true,
         templateUrl: "templates/login-dropdown.html"
-
     };
 });

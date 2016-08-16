@@ -1,7 +1,7 @@
 <div class="thumbnail">
-        <img src="{{ productInfo.image }}" alt="{{ productInfo.name }}">
+        <img src="{{ productInfo.imageUrl }}" alt="{{ productInfo.name }}">
     <div class="product-desc">
-        <h3>{{ productInfo.name }}
+        <h3>{{ productInfo.title }}
             <span class="label label-danger" ng-if="productInfo.isNew">New</span>
             <span class="label label-warning" ng-if="productInfo.isSale">Sale</span>
         </h3>

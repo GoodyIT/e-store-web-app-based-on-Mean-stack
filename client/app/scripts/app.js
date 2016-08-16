@@ -1,4 +1,4 @@
-var bluStore = angular.module('bluStore', ['ui.router']);
+var bluStore = angular.module('bluStore', ['ui.router', 'ngResource']);
 
 bluStore.config(function ($stateProvider, $urlRouterProvider) {
     "use strict";
