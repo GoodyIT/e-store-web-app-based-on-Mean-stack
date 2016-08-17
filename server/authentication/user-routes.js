@@ -58,9 +58,25 @@ router.post('/login', function (req, res, next) {
 			return next(err);
 		}
 		if (!user) {
-			var error = new Error(info);
-			error.status = 401;
-			return next(error);
+		    if(info.name === 'IncorrectUsernameError'){
+                res.status(401).json({
+                    state: false,
+                    error: 'user_not_found',
+                    message: 'Incorrect Username'
+                });
+            }
+            else if (info.name === 'IncorrectPasswordError'){
+                res.status(401).json({
+                    state: false,
+                    error: 'invalid_password',
+                    message: 'Incorrect Password'
+                });
+            }
+            else {
+                var error = new Error(info);
+                error.status = 401;
+                return next(error);
+            }
 		}
 
 		// login the user
@@ -83,6 +99,7 @@ router.post('/login', function (req, res, next) {
 					id: user._id,
 					firstName: user.firstname,
 					lastName: user.lastname,
+					imageUrl: user.imageUrl,
 					isAdmin: user.admin
 				}
 			});

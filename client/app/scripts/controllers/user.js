@@ -10,6 +10,7 @@ bluStore.controller('userCtrl', ['authFactory' ,function (authFactory) {
     this.firstName = '';
     this.lastName = '';
     this.fullName = '';
+    this.userImage = '';
     this.isAdmin = false;
 
     this.login = function () {
@@ -21,11 +22,23 @@ bluStore.controller('userCtrl', ['authFactory' ,function (authFactory) {
                 that.lastName = result.userData.lastName;
                 that.isLoggedIn = true;
                 that.fullName = that.firstName + ' ' + that.lastName;
+                that.userImage = result.userData.imageUrl;
                 that.isAdmin = result.userData.isAdmin;
+
+                // debug
                 console.log(result);
 
             },
             function(err){
+                // on login error
+                if(err.data.error === 'user_not_found'){
+
+                }
+                else if (err.data.error === 'invalid_password') {
+
+                }
+
+                //debug
                console.log(err);
             }
         );

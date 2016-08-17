@@ -193,6 +193,11 @@ blu-product-short:hover .product-actions {
     text-align: left;
 }
 
+#navbar-user-img {
+    width: 16px;
+    height: auto;
+}
+
 @media only screen and (min-width: 320px){
 
 }
