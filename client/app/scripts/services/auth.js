@@ -1,14 +1,18 @@
 bluStore.factory('authFactory', function ($resource, CONFIG, API) {
     'use strict';
 
-    var url = CONFIG.SERVER_URL;
-
     return {
 
         login: function(userName, password){
 
-            return $resource(url + API.USER_LOGIN)
+            return $resource(API.USER_LOGIN)
                 .save({}, { username: userName, password: password }).$promise;
+
+        },
+
+        logout: function() {
+
+            return $resource(API.USER_LOGOUT);
 
         }
 

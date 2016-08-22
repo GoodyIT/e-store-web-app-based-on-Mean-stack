@@ -13,18 +13,22 @@
         </div>
         <p>or</p>
         <form class="form-horizontal" ng-submit="navbarUser.login()">
-            <div class="form-group">
+            <div class="form-group has-feedback" ng-class="{ 'has-error': navbarUser.emailErr }">
                 <div class="col-xs-12">
                     <label for="email-input" class="sr-only control-label">Email</label>
                     <input type="email" ng-model="navbarUser.userEmail" class="form-control"
                            id="email-input" placeholder="enter your email..">
+                    <span ng-show="navbarUser.emailErr"
+                          class="glyphicon glyphicon-info-sign form-control-feedback"></span>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group has-feedback" ng-class="{ 'has-error': navbarUser.passErr }">
                 <div class="col-xs-12">
                     <label for="password-input" class="sr-only control-label">Password</label>
                     <input type="password" ng-model="navbarUser.password" class="form-control"
                            id="password-input" placeholder="enter your password..">
+                    <span ng-show="navbarUser.passErr"
+                          class="glyphicon glyphicon-info-sign form-control-feedback"></span>
                 </div>
             </div>
             <div class="form-group">
@@ -57,9 +61,9 @@
 
     <a class="dropdown-toggle" ng-if="navbarUser.isLoggedIn" data-toggle="dropdown" role="button"
        aria-haspopup="true" aria-expanded="false">
-        <img id="navbar-user-img" class="img-rounded" src="{{ navbarUser.userImage }}" alt="user image"> {{ navbarUser.fullName }}</a>
+        <img id="navbar-user-img" class="img-rounded" src="{{ navbarUser.userImage }}"> {{ navbarUser.fullName }}</a>
     <ul class="dropdown-menu" ng-if="navbarUser.isLoggedIn">
         <li ng-if="navbarUser.isAdmin"><a href="#">Add Product</a></li>
-        <li><a href="#">Sign out</a></li>
+        <li><a ng-click="navbarUser.logout()">Sign out</a></li>
     </ul>
 </li>

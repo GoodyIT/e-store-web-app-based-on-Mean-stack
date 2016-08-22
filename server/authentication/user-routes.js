@@ -30,11 +30,11 @@ router.post('/register', function (req, res, next) {
 				return next(err);
 			}
 
-			if(req.body.firstname)
+			if (req.body.firstname)
 				user.firstname = req.body.firstname;
-			if(req.body.lastname)
+			if (req.body.lastname)
 				user.lastname = req.body.lastname;
-			if(req.body.email)
+			if (req.body.email)
 				user.email = req.body.email;
 
 			user.save(function (err, user) {
@@ -58,14 +58,14 @@ router.post('/login', function (req, res, next) {
 			return next(err);
 		}
 		if (!user) {
-		    if(info.name === 'IncorrectUsernameError'){
+			if (info.name === 'IncorrectUsernameError') {
                 res.status(401).json({
                     state: false,
                     error: 'user_not_found',
                     message: 'Incorrect Username'
                 });
             }
-            else if (info.name === 'IncorrectPasswordError'){
+            else if (info.name === 'IncorrectPasswordError') {
                 res.status(401).json({
                     state: false,
                     error: 'invalid_password',
@@ -77,6 +77,7 @@ router.post('/login', function (req, res, next) {
                 error.status = 401;
                 return next(error);
             }
+            return;
 		}
 
 		// login the user
@@ -109,12 +110,28 @@ router.post('/login', function (req, res, next) {
 
 });
 
-router.get('/logout', function (req, res) {
+router.get('/logout', verify.verifyUser, function (req, res) {
 	req.logOut();
 	res.json({
 		state: true,
 		message: 'logged out succesfully'
     });
+});
+
+router.get('/token', verify.verifyUser, function (req, res) {
+
+	User.findOne({ _id: req.userData._id }, function (err, user) {
+		res.json({
+			state: true,
+			userData: {
+				id: user._id,
+				firstName: user.firstname,
+				lastName: user.lastname,
+				imageUrl: user.imageUrl,
+				isAdmin: user.admin
+			}
+		});
+	});
 });
 
 module.exports = router;

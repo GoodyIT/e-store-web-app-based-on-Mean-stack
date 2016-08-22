@@ -1,3 +1,3 @@
 bluStore.constant('CONFIG', {
-    'SERVER_URL': 'http://localhost:3000/'
+    'TOKEN_STORE_KEY': 'R09RmoQQwljs'
 });

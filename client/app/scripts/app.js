@@ -1,6 +1,6 @@
 var bluStore = angular.module('bluStore', ['ui.router', 'ngResource']);
 
-bluStore.config(function ($stateProvider, $urlRouterProvider) {
+bluStore.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
     "use strict";
 
     // For any unmatched url, redirect to /index
@@ -41,5 +41,16 @@ bluStore.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         });
-
+/*
+    $httpProvider.interceptors.push(['$q',
+        function($q) {
+            return {
+                request: function(config) {
+                    config.withCredentials = true;
+                    return config;
+                }
+            };
+        }
+    ]);
+*/
 });

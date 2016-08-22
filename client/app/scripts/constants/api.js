@@ -4,5 +4,6 @@ bluStore.constant('API', {
     'VIEW_PRODUCTS': 'api/blu-store/products',
     'VIEW_PRODUCT': 'api/blu-store/products/:id',
     'VIEW_PRODUCT_CAT_ID': 'api/blu-store/products/category/:id',
-    'USER_LOGIN': 'users/login'
+    'USER_LOGIN': 'users/login',
+    'USER_LOGOUT': 'users/logout'
 });

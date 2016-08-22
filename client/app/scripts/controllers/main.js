@@ -1,7 +1,7 @@
 bluStore.controller('mainCtrl', ['$scope', '$rootScope', '$filter', 'categoriesFactory',
     function($scope, $rootScope, $filter, categoriesFactory){
         "use strict";
-
+        //$httpProvider.interceptors.push(httpInterceptor);
         // pointer to the scope for internal use.
         var that = this;
 

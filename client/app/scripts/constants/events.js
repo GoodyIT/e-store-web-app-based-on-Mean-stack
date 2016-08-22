@@ -1,3 +1,5 @@
-/**
- * Created by Ahmed Ali on 21/08/2016.
- */
+bluStore.constant('EVENTS', {
+    'USER_LOGGED_IN': 'userLoggedIn',
+    'USER_LOGGED_OUT': 'userLoggedOut',
+    'USER_LOGIN_ERROR': 'userLoginError'
+});
