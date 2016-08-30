@@ -61,7 +61,7 @@
 
     <a class="dropdown-toggle" ng-if="navbarUser.isLoggedIn" data-toggle="dropdown" role="button"
        aria-haspopup="true" aria-expanded="false">
-        <img id="navbar-user-img" class="img-rounded" src="{{ navbarUser.userImage }}"> {{ navbarUser.fullName }}</a>
+        <img id="navbar-user-img" class="img-rounded" ng-src=" {{ navbarUser.userImage }}"> {{ navbarUser.fullName }}</a>
     <ul class="dropdown-menu" ng-if="navbarUser.isLoggedIn">
         <li ng-if="navbarUser.isAdmin"><a href="#">Add Product</a></li>
         <li><a ng-click="navbarUser.logout()">Sign out</a></li>

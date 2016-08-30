@@ -1,5 +1,5 @@
 <div class="thumbnail">
-        <img src="{{ productInfo.imageUrl }}" alt="{{ productInfo.name }}">
+        <img ng-src="{{ productInfo.imageUrl }}" alt="{{ productInfo.name }}">
     <div class="product-desc">
         <h3>{{ productInfo.title }}
             <span class="label label-danger" ng-if="productInfo.isNew">New</span>

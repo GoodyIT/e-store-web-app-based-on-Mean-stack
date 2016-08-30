@@ -47,6 +47,7 @@ bluStore.controller('userCtrl', ['$rootScope', '$http', 'authFactory', 'localSto
             that.fullName = '';
             that.userImage = '';
             that.isAdmin = false;
+            localStorage.remove(CONFIG.TOKEN_STORE_KEY);
         });
 
         // Login error event
@@ -62,6 +63,21 @@ bluStore.controller('userCtrl', ['$rootScope', '$http', 'authFactory', 'localSto
             }
         });
 
+        $rootScope.$on(EVENTS.USER_REQUIRED, function (event) {
+            // user logout
+            that.isLoggedIn = false;
+            that.firstName = '';
+            that.lastName = '';
+            that.fullName = '';
+            that.userImage = '';
+            that.isAdmin = false;
+            localStorage.remove(CONFIG.TOKEN_STORE_KEY);
+        });
+
+        $rootScope.$on(EVENTS.ADMIN_REQUIRED, function (event) {
+            localStorage.remove(CONFIG.TOKEN_STORE_KEY);
+        });
+
 
         /*
          * look for stored token in the local storage
@@ -71,13 +87,10 @@ bluStore.controller('userCtrl', ['$rootScope', '$http', 'authFactory', 'localSto
          * if the token is still valid.
          */
 
-        var userCred = localStorage.getObject(CONFIG.TOKEN_STORE_KEY, null);
-        if (userCred !== null) {
-            // set token into headers
-            $http.defaults.headers.common['x-access-token'] = userCred.token;
+        var user = localStorage.getObject(CONFIG.TOKEN_STORE_KEY);
+        if (user) {
             // login user with local data 
-
-            $rootScope.$broadcast(EVENTS.USER_LOGGED_IN, userCred.userData);
+            $rootScope.$broadcast(EVENTS.USER_LOGGED_IN, user.userData);
         }
 
         // user login using form data

@@ -22,7 +22,7 @@ bluStore.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
                 }
             }
         })
-    
+
         .state('app.category', {
             url: 'category/:id',
             views: {
@@ -41,16 +41,8 @@ bluStore.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
                 }
             }
         });
-/*
-    $httpProvider.interceptors.push(['$q',
-        function($q) {
-            return {
-                request: function(config) {
-                    config.withCredentials = true;
-                    return config;
-                }
-            };
-        }
-    ]);
-*/
+
+    // register the http interceptors
+    $httpProvider.interceptors.push('httpInterceptor');
+
 });

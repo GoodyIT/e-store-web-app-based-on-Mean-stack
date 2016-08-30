@@ -29,8 +29,7 @@ gulp.task('debug', function(){
 gulp.task('imagemin', function() {
   return del(['server/public/images']), gulp.src('client/app/images/**/*')
     .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
-    .pipe(gulp.dest('server/public/images'))
-    .pipe(notify({ message: 'Images task complete' }));
+    .pipe(gulp.dest('server/public/images'));
 });
 
 gulp.task('usemin', ['debug'], function () {
@@ -47,9 +46,9 @@ gulp.task('clean',function () {
 });
 
 gulp.task('copyfonts', ['clean'], function () {
-    gulp.src('client/bower_components/font-awesome/fonts/**/*.{ttf, woff, woff2, otf, eot, svg}*')
+    gulp.src('client/bower_components/font-awesome/fonts/**/*')
         .pipe(gulp.dest('server/public/fonts'));
-    gulp.src('client/bower_components/bootstrap/dist/fonts/**/*.{ttf, woff, woff2, eot, svg}*')
+    gulp.src('client/bower_components/bootstrap/dist/fonts/**/*.')
         .pipe(gulp.dest('server/public/fonts'));
 });
 

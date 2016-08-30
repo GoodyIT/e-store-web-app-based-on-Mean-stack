@@ -1,4 +1,4 @@
-bluStore.factory('authFactory', function ($resource, CONFIG, API) {
+bluStore.factory('authFactory', function ($resource, API) {
     'use strict';
 
     return {
