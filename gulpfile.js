@@ -48,7 +48,7 @@ gulp.task('clean',function () {
 gulp.task('copyfonts', ['clean'], function () {
     gulp.src('client/bower_components/font-awesome/fonts/**/*')
         .pipe(gulp.dest('server/public/fonts'));
-    gulp.src('client/bower_components/bootstrap/dist/fonts/**/*.')
+    gulp.src('client/bower_components/bootstrap/dist/fonts/**/*')
         .pipe(gulp.dest('server/public/fonts'));
 });
 

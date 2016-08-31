@@ -1,7 +1,7 @@
 bluStore.controller('mainCtrl', ['$scope', '$rootScope', '$filter', 'categoriesFactory',
     function($scope, $rootScope, $filter, categoriesFactory){
         "use strict";
-        //$httpProvider.interceptors.push(httpInterceptor);
+        
         // pointer to the scope for internal use.
         var that = this;
 
@@ -12,6 +12,12 @@ bluStore.controller('mainCtrl', ['$scope', '$rootScope', '$filter', 'categoriesF
          */
         $rootScope.$on('$stateChangeStart', function (event, toState) {
             that.activeView = toState.name;
+            if(toState.name !== 'app') {
+                that.showHeader = false;
+            }
+            else {
+                that.showHeader = true;
+            }
         });
 
         // get all categories and set them to the scope

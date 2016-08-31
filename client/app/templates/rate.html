@@ -1,0 +1,8 @@
+<span class="fa" 
+	ng-class="{
+		'fa-star': rate === 1,
+		'fa-star-o': rate === 0,
+		'fa-star-half-full': rate === 0.5
+	}"
+	ng-repeat="rate in rating track by $index"></span>
+{{ total }}

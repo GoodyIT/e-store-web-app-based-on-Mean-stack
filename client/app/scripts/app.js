@@ -33,6 +33,18 @@ bluStore.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
             }
         })
 
+        .state('app.product', {
+
+            url: 'product/:id',
+            views: {
+                'content@': {
+                    templateUrl: "views/product.html",
+                    controller: 'productCtrl'
+                }
+            }
+
+        })
+
         .state('app.help', {
             url: 'help',
             views: {
@@ -45,4 +57,8 @@ bluStore.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
     // register the http interceptors
     $httpProvider.interceptors.push('httpInterceptor');
 
+});
+
+bluStore.run(function() {
+    $("[data-toggle='tooltip']").tooltip();
 });

@@ -17,7 +17,7 @@ exports.addNew = function (req, res) {
 
 // get product by id 
 exports.getById = function (req, res) {
-	Product.findOne({ _id: req.params.id }, handler(res));
+	Product.findOne({ _id: req.params.id }).populate('category').exec(handler(res));
 };
 
 // delete product by id

@@ -1,0 +1,43 @@
+<div id="product-view" class="container">
+
+	<div class="row">
+		<div class="col-xs-12">
+			<h2>{{ product.title }}</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 col-sm-4">
+			<div id="product-image">
+				<img ng-src="{{ product.imageUrl }}" class="img-responsive img-thumbnail">
+			</div>
+		</div>
+		<div id="product-info-top" class="col-xs-12 col-sm-8">
+			<p>Price: {{ product.price }}</p>
+			<p>Category: {{ product.category.name }}</p>
+			<blu-rate rating="4.5" total="200"></blu-rate>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<ul id="product-info-bottom" class="nav nav-tabs" role="tablist">
+				<li role="presentation" class="active">
+					<a aria-controls="prodDesc" data-target="#prodDesc"
+						role="tab" data-toggle="tab">Description</a>
+				</li>
+				<li role="presentation">
+					<a aria-controls="prodReviews" data-target="#prodReviews"
+						role="tab" data-toggle="tab">Reviews</a>
+				</li>
+			</ul>
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane fade in active" id="prodDesc">
+					{{ product.description }}
+				</div>
+				<div role="tabpanel" class="tab-pane fade" id="prodReviews">
+					reviews goes here...
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
