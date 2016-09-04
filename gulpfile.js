@@ -18,6 +18,9 @@ var gulp = require('gulp'),
 
 
 
+gulp.task('favicon', function() {
+    gulp.src('client/app/favicon.ico').pipe(gulp.dest('server/public'));
+});
 
 gulp.task('debug', function(){
 	return gulp.src('client/app/scripts/**/*.js')
@@ -26,7 +29,7 @@ gulp.task('debug', function(){
 });
 
 // Images
-gulp.task('imagemin', function() {
+gulp.task('imagemin', ['favicon'], function() {
   return del(['server/public/images']), gulp.src('client/app/images/**/*')
     .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
     .pipe(gulp.dest('server/public/images'));

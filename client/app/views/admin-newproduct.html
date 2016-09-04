@@ -1,0 +1,91 @@
+<div class="row">
+	<div class="col-xs-12 col-sm-9">
+		<form novalidate class="form-horizontal" id="np-form" name="adminNp.upload_form" ng-submit="adminNp.submit()">
+			<div class="form-group has-feedback" 
+				ng-class="{
+					'has-success': !adminNp.upload_form.npName.$error.required,
+					'has-error': adminNp.upload_form.npName.$error.required && adminNp.upload_form.npName.$touched
+				}">
+				<label for="np-name" class="control-label col-xs-12 col-sm-2">Name</label>
+				<div class="col-xs-12 col-sm-10">
+					<input type="text" class="form-control" id="np-name" name="npName" ng-model="adminNp.npName" required>
+					<span ng-show="!adminNp.upload_form.npName.$error.required" 
+						class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+					<span ng-show="adminNp.upload_form.npName.$error.required && adminNp.upload_form.npName.$touched" 
+						class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="np-amount" class="control-label col-xs-12 col-sm-2">Amount</label>
+				<div class="col-xs-12 col-sm-10">
+					<input type="number" min="0" class="form-control" id="np-amount" ng-model="adminNp.npAmount" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="np-price" class="control-label col-xs-12 col-sm-2">Price</label>
+				<div class="col-xs-12 col-sm-10">
+					<input type="number" min="0" class="form-control" id="np-price" ng-model="adminNp.npPrice" required>
+				</div>
+			</div>
+			<div class="form-group has-feedback" 
+				ng-class="{
+					'has-success': !adminNp.upload_form.npDescription.$error.required,
+					'has-error': adminNp.upload_form.npDescription.$error.required && adminNp.upload_form.npDescription.$touched
+				}">
+				<label for="np-description" class="control-label col-xs-12 col-sm-2">Description</label>
+				<div class="col-xs-12 col-sm-10">
+					<textarea class="form-control" id="np-description" rows="3" name="npDescription" ng-model="adminNp.npDescription" required></textarea>
+					<span ng-show="!adminNp.upload_form.npDescription.$error.required" 
+						class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+					<span ng-show="adminNp.upload_form.npDescription.$error.required && adminNp.upload_form.npDescription.$touched" 
+						class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="np-category" class="control-label col-xs-12 col-sm-2">Category</label>
+				<div class="col-xs-12 col-sm-10">
+					<input type="text" class="form-control" id="np-category" ng-model="adminNp.npCategory" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="np-upload" class="control-label col-xs-12 col-sm-2">Upload Image</label>
+				<div class="col-xs-12 col-sm-10">
+					<label class="btn btn-primary btn-block" form="#np-from">
+						Select <input type="file" ngf-select
+							ng-model="adminNp.file" name="file" 
+							ngf-pattern="'image/*'" accept="image/*"
+							ngf-max-size="5MB" style="display: none;" required>
+					</label>
+					<div class="progress">
+						<div class="progress-bar progress-bar-success progress-bar-striped active"
+							role="progressbar" aria-valuenow="{{adminNp.progress}}" 
+							aria-valuemin="0" aria-valuemax="100" style="width: {{adminNp.progress}}%">
+							{{adminNp.progress}}%
+							<span class="sr-only">{{adminNp.progress}}% Complete (success)</span>
+						</div>
+					</div>
+					<i ng-show="adminNp.upload_form.file.$error.required && adminNp.upload_form.file.$touched">*required</i>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-xs-12 col-sm-3 col-sm-offset-3">
+					<button type="submit" class="btn btn-success btn-block" 
+						ng-class="{ 
+							'disabled': adminNp.upload_form.$pristine || adminNp.upload_form.$invalid
+						}">Save
+					</button>
+				</div>
+				<div class="col-xs-12 col-sm-3">
+					<button type="reset" class="btn btn-default btn-block">Clear</button>
+				</div>
+			</div>
+			
+			<i ng-show="adminNp.upload_form.file.$error.maxSize">File too large
+				{{adminNp.file.size / 1000000|number:1}}MB: max 5MB
+			</i>
+		</form>
+	</div>
+	<div class="col-xs-12 col-sm-3">
+		<img id="np-image" class="img-responsive img-thumbnail" ngf-thumbnail="adminNp.file || 'images/product.png'">
+	</div>
+</div>

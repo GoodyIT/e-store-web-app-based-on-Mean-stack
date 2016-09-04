@@ -5,7 +5,7 @@ var verify = require('./verify');
 
 var router = express.Router();
 
-router.get('/', verify.verifyUser, verify.verifyAdmin, function (req, res, next) {
+router.get('/', verify.admin, function (req, res, next) {
 	User.find({}, function (err, users) {
 		if (err) {
             return next(err);
@@ -90,7 +90,8 @@ router.post('/login', function (req, res, next) {
 			// get token and send it
 			var token = verify.getToken({
 				username: user.username,
-				_id: user._id
+				_id: user._id,
+				admin: true
 			});
 
 			res.json({
@@ -110,7 +111,7 @@ router.post('/login', function (req, res, next) {
 
 });
 
-router.get('/logout', verify.verifyUser, function (req, res) {
+router.get('/logout', verify.user, function (req, res) {
 	req.logOut();
 	res.json({
 		state: true,
@@ -118,20 +119,7 @@ router.get('/logout', verify.verifyUser, function (req, res) {
     });
 });
 
-router.get('/token', verify.verifyUser, function (req, res) {
-
-	User.findOne({ _id: req.userData._id }, function (err, user) {
-		res.json({
-			state: true,
-			userData: {
-				id: user._id,
-				firstName: user.firstname,
-				lastName: user.lastname,
-				imageUrl: user.imageUrl,
-				isAdmin: user.admin
-			}
-		});
-	});
-});
+// verify that incoming token is valid
+router.get('/token', verify.token);
 
 module.exports = router;

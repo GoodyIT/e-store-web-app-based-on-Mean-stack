@@ -9,22 +9,23 @@ var models = require('./models');            // init models
 var cache = require('./data-memory');
 var authentication = require('./authentication');
 var passport = require('passport');
-
-// load cached data
-cache.get('loadCache')(function(){
-    console.log('cached objects loaded');
-});
+var verify = require('./authentication/verify');
 
 var apiRouter = require('./api');
 
 var app = express();
 
+// verify user authentication 
+app.use('/', verify.auth);
+
+// pervent access to admin view 
+app.use('/views/admin.html', verify.admin);
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

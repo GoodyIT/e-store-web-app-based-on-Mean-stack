@@ -64,6 +64,7 @@
         <img id="navbar-user-img" class="img-rounded" ng-src=" {{ navbarUser.userImage }}"> {{ navbarUser.fullName }}</a>
     <ul class="dropdown-menu" ng-if="navbarUser.isLoggedIn">
         <li ng-if="navbarUser.isAdmin"><a href="#">Add Product</a></li>
+        <li ng-if="navbarUser.isAdmin"><a ui-sref="app.admin">Admin Settings</a></li>
         <li><a ng-click="navbarUser.logout()">Sign out</a></li>
     </ul>
 </li>

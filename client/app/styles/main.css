@@ -178,6 +178,19 @@ blu-rate {
 
 /* End: Product View */
 
+/* Start: Admin New Product */
+
+#np-amount, #np-price {
+    width: 60%;
+}
+
+/* End: Admin New Product */
+
+.loading {
+    position: relative;
+    text-align: center;
+}
+
 .login-dropdown {
     min-width: 250px;
     padding: 14px 14px 0;

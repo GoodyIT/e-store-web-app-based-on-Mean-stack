@@ -14,6 +14,15 @@ bluStore.factory('authFactory', function ($resource, API) {
 
             return $resource(API.USER_LOGOUT);
 
+        },
+
+        /**
+         * "GET" request on /users/token to validate user token
+         * httpInterceptor will catch errors if any so we don't
+         * need to wait for any response 
+         */
+        verifyToken: function () {
+            return $resource(API.USER_TOKEN);
         }
 
     };

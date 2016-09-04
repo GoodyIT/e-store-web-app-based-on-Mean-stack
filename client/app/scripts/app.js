@@ -1,4 +1,4 @@
-var bluStore = angular.module('bluStore', ['ui.router', 'ngResource']);
+var bluStore = angular.module('bluStore', ['ui.router', 'ngResource', 'ngFileUpload']);
 
 bluStore.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
     "use strict";
@@ -46,10 +46,40 @@ bluStore.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
         })
 
         .state('app.help', {
-            url: 'help',
+            url: 'help/',
             views: {
                 'content@': {
                     templateUrl: "views/help.html"
+                }
+            }
+        })
+        
+        .state('app.admin', {
+            url: 'admin/',
+            views: {
+                'content@': {
+                    templateUrl: "views/admin.html",
+                    controller: "adminCtrl"
+                }
+            }
+        })
+        
+        .state('app.admin.orders', {
+            url: 'orders/',
+            views: {
+                'settings': {
+                    templateUrl: "views/admin-orders.html",
+                    controller: "adminOrdersCtrl"
+                }
+            }
+        })
+        
+        .state('app.admin.newproduct', {
+            url: 'newproduct/',
+            views: {
+                'settings': {
+                    templateUrl: "views/admin-newproduct.html",
+                    controller: "adminNewProductCtrl"
                 }
             }
         });
