@@ -35,7 +35,6 @@ router.get('/', verify.admin, function (req, res, next) {
 router.post('/register', function (req, res, next) {
 
 	upload(req, res, function (err) {
-		console.log(req.file);
 		if (err) {
 			return res.status(500).json({
 				state: false,
@@ -43,20 +42,22 @@ router.post('/register', function (req, res, next) {
 			});
 		}
 
-		var rgUser = req.body.registerData;
 		var pic = req.file.filename;
 		
 		User.register(
-			new User({ username: rgUser.username }),
-			rgUser.password,
+			new User({ username: req.body.username }),
+			req.body.password,
 			function (err, user) {
 				if (err) {
-					err.status = 500;
-					return next(err);
+					return res.status(500).json({
+						state: false,
+						error: err.name,
+						message: err.message
+					});
 				}
 
-				user.firstname = rgUser.firstname;
-				user.lastname = rgUser.lastname;
+				user.firstname = req.body.firstname;
+				user.lastname = req.body.lastname;
 				user.imageUrl = "images/users/" + pic;
 					
 				user.save(function (err, user) {

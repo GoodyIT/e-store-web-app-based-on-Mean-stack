@@ -246,9 +246,14 @@ blu-rate {
     text-align: left;
 }
 
-#navbar-user-img {
-    width: 16px;
-    height: auto;
+.profile-image {
+    width: 32px;
+    height: 32px;
+}
+
+#user-dropdown {
+	padding-top: 10px;
+	padding-bottom: 8px;
 }
 
 @media only screen and (min-width: 550px) {

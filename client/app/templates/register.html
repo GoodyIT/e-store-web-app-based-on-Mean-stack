@@ -7,68 +7,118 @@
                 </button>
                 <h4 class="modal-title">Register new user</h4>
             </div>
-            <form class="form-horizontal" name="baseCtrl.rgForm" ng-submit="baseCtrl.register()">
+            <form novalidate class="form-horizontal" name="baseCtrl.rgForm" ng-submit="baseCtrl.register()">
                 <div class="row">
                     <div class="col-xs-12 col-sm-9">
                         <div class="modal-body">
-                    <div class="form-group">
-                        <label for="rg-fname-input" class="control-label col-xs-12 col-sm-3">First name</label>
-                        <div class="col-xs-12 col-sm-9">
-                            <input type="text" class="form-control" id="rg-fname-input" name="rgFname" ng-model="baseCtrl.rgFname" placeholder="enter your first name" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="rg-lname-input" class="control-label col-xs-12 col-sm-3">Last name</label>
-                        <div class="col-xs-12 col-sm-9">
-                            <input type="text" class="form-control" id="rg-lname-input" name="rgLname" ng-model="baseCtrl.rgLname" placeholder="enter your last name" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="rg-email-input" class="control-label col-xs-12 col-sm-3">Email Address</label>
-                        <div class="col-xs-12 col-sm-9">
-                            <input type="email" class="form-control" id="rg-email-input" name="rgEmail" ng-model="baseCtrl.rgEmail" placeholder="enter your email..." required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="rg-pass-input" class="control-label col-xs-12 col-sm-3">Password</label>
-                        <div class="col-xs-12 col-sm-9">
-                            <input type="password" class="form-control" id="rg-pass-input" name="rgPass" ng-model="baseCtrl.rgPass" placeholder="enter your password..." required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="rg-pass2-input" class="control-label col-xs-12 col-sm-3">Password again</label>
-                        <div class="col-xs-12 col-sm-9">
-                            <input type="password" class="form-control" id="rg-pass2-input" name="rgPass2" ng-model="baseCtrl.rgPass2" placeholder="enter your password again..." required>
-                        </div>
-                    </div>
-                    <!-- Profile Picture -->
-                    <div class="form-group">
-                        <label for="rg-upload" class="control-label col-xs-12 col-sm-3">Picture</label>
-                        <div class="col-xs-12 col-sm-9">
-                            <label class="btn btn-primary btn-block">
+                            <!-- First Name -->
+                            <div class="form-group has-feedback" 
+				                ng-class="{
+					                'has-success': baseCtrl.rgForm.rgFname.$valid,
+					                'has-error': baseCtrl.rgForm.rgFname.$invalid && baseCtrl.rgForm.rgFname.$dirty
+				                }">
+                                <label for="rg-fname-input" class="control-label col-xs-12 col-sm-3">First name</label>
+                                <div class="col-xs-12 col-sm-9">
+                                    <input type="text" class="form-control" id="rg-fname-input" name="rgFname" ng-model="baseCtrl.rgFname" placeholder="enter your first name" required>
+                                    <span ng-show="baseCtrl.rgForm.rgFname.$valid" 
+						                class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+					                <span ng-show="baseCtrl.rgForm.rgFname.$invalid && baseCtrl.rgForm.rgFname.$dirty" 
+						                class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <!-- Last Name -->
+                            <div class="form-group has-feedback"
+				                ng-class="{
+					                'has-success': baseCtrl.rgForm.rgLname.$valid,
+					                'has-error': baseCtrl.rgForm.rgLname.$invalid && baseCtrl.rgForm.rgLname.$dirty
+				                }">
+                                <label for="rg-lname-input" class="control-label col-xs-12 col-sm-3">Last name</label>
+                                <div class="col-xs-12 col-sm-9">
+                                    <input type="text" class="form-control" id="rg-lname-input" name="rgLname" ng-model="baseCtrl.rgLname" placeholder="enter your last name" required>
+                                    <span ng-show="baseCtrl.rgForm.rgLname.$valid" 
+						                class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+					                <span ng-show="baseCtrl.rgForm.rgLname.$invalid && baseCtrl.rgForm.rgLname.$dirty" 
+						                class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <!-- Email Address -->
+                            <div class="form-group has-feedback" 
+				                ng-class="{
+					                'has-success': baseCtrl.rgForm.rgEmail.$valid,
+					                'has-error': baseCtrl.rgForm.rgEmail.$invalid && baseCtrl.rgForm.rgEmail.$dirty
+				                }">
+                                <label for="rg-email-input" class="control-label col-xs-12 col-sm-3">Email Address</label>
+                                <div class="col-xs-12 col-sm-9">
+                                    <input type="email" class="form-control" id="rg-email-input" name="rgEmail" ng-model="baseCtrl.rgEmail" placeholder="enter your email..." required>
+                                    <span ng-show="baseCtrl.rgForm.rgEmail.$valid" 
+						                class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+					                <span ng-show="baseCtrl.rgForm.rgEmail.$invalid && baseCtrl.rgForm.rgEmail.$dirty" 
+						                class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <!-- Password --> 
+                            <div class="form-group has-feedback" 
+				                ng-class="{
+					                'has-success': baseCtrl.rgForm.rgPass.$valid,
+					                'has-error': baseCtrl.rgForm.rgPass.$invalid && baseCtrl.rgForm.rgPass.$dirty
+				                }">
+                                <label for="rg-pass-input" class="control-label col-xs-12 col-sm-3">Password</label>
+                                <div class="col-xs-12 col-sm-9">
+                                    <input type="password" class="form-control" id="rg-pass-input" name="rgPass" ng-model="baseCtrl.rgPass" placeholder="enter your password..." required>
+                                    <span ng-show="baseCtrl.rgForm.rgPass.$valid" 
+						                class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+					                <span ng-show="baseCtrl.rgForm.rgPass.$invalid && baseCtrl.rgForm.rgPass.$dirty" 
+						                class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span> 
+                                </div>
+                            </div>
+                            <!-- Password Again -->
+                            <div class="form-group has-feedback" 
+				                ng-class="{
+					                'has-success': baseCtrl.passwordMatch() && baseCtrl.rgForm.rgPass2.$valid,
+					                'has-error': !baseCtrl.passwordMatch() && baseCtrl.rgForm.rgPass2.$dirty
+				                }">
+                                <label for="rg-pass2-input" class="control-label col-xs-12 col-sm-3">Password again</label>
+                                <div class="col-xs-12 col-sm-9">
+                                    <input type="password" class="form-control" id="rg-pass2-input" name="rgPass2" ng-model="baseCtrl.rgPass2" placeholder="enter your password again..." required>
+                                    <span ng-show="baseCtrl.passwordMatch() && baseCtrl.rgForm.rgPass2.$valid" 
+						                class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+					                <span ng-show="!baseCtrl.passwordMatch() && baseCtrl.rgForm.rgPass2.$dirty" 
+						                class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span> 
+                                </div>
+                            </div>
+                            <!-- Profile Picture -->
+                            <div class="form-group">
+                                <label for="rg-upload" class="control-label col-xs-12 col-sm-3">Picture</label>
+                                <div class="col-xs-12 col-sm-9">
+                                    <label class="btn btn-primary btn-block">
 						        Select <input id="rg-upload" type="file" ngf-select name="rgPic" ng-model="baseCtrl.rgPic"
 							    ngf-pattern="'image/*'" accept="image/*"
 							    ngf-max-size="5MB" style="display: none;" required>
 					        </label>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="{{baseCtrl.rgProgress}}" ng-model="baseCtrl.rgProgress" aria-valuemin="0" aria-valuemax="100" style="width: {{baseCtrl.rgProgress}}%">
-                                    {{baseCtrl.rgProgress}}%
-                                    <span class="sr-only">{{baseCtrl.rgProgress}}% Complete (success)</span>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="{{baseCtrl.rgProgress}}" ng-model="baseCtrl.rgProgress" aria-valuemin="0" aria-valuemax="100" style="width: {{baseCtrl.rgProgress}}%">
+                                            {{baseCtrl.rgProgress}}%
+                                            <span class="sr-only">{{baseCtrl.rgProgress}}% Complete (success)</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                    </div>
                     <!-- image thumbnail view -->
                     <div class="col-xs-12 col-sm-3">
-                        <img id="rg-image" class="img-responsive img-thumbnail" 
-                            ngf-thumbnail="baseCtrl.rgPic || 'images/male_user.png'">
+                        <img id="rg-image" class="img-responsive img-thumbnail" ngf-thumbnail="baseCtrl.rgPic || 'images/users/male_user.png'">
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <p class="pull-left" ng-show="baseCtrl.rgMessage" ng-class="{ 'text-danger': baseCtrl.rgMsgErr, 'text-success': !baseCtrl.rgMsgErr }">
+                        <span class="fa fa-info-circle"></span> {{ baseCtrl.rgMessage }}
+                    </p>
                     <button type="reset" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Register</button>
+                    <button type="submit" class="btn btn-success" 
+                        ng-class="{ 
+							'disabled': baseCtrl.rgForm.$pristine || baseCtrl.rgForm.$invalid || !baseCtrl.passwordMatch()
+						}">Register</button>
                 </div>
             </form>
         </div>

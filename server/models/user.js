@@ -19,7 +19,7 @@ var userSchema = new Schema({
     },
     imageUrl: {
         type: String,
-        default: 'images/female_user.png'
+        default: 'images/users/male_user.png'
     },
     admin: {
         type: Boolean,

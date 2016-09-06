@@ -12,6 +12,12 @@ bluStore.controller('mainCtrl', ['$scope', '$rootScope', '$state', '$filter', 'c
             admin: false
         };
 
+        /** START: Register Modal */
+
+        that.passwordMatch = function () {
+            return that.rgPass === that.rgPass2;
+        };
+
         //function to call on form submit
         that.register = function() {
             //check if from is valid
@@ -26,12 +32,10 @@ bluStore.controller('mainCtrl', ['$scope', '$rootScope', '$state', '$filter', 'c
                 url: API.USER_REGISTER,
                 data: {
                     file: file,
-                    registerData: {
-                        username: that.rgEmail,
-                        firstname: that.rgFname,
-                        lastname: that.rgLname,
-                        password: that.rgPass
-                    }
+                    username: that.rgEmail,
+                    firstname: that.rgFname,
+                    lastname: that.rgLname,
+                    password: that.rgPass
                 }
             }).then(function (resp) {
                 if (resp.data.state === true) {
@@ -41,14 +45,19 @@ bluStore.controller('mainCtrl', ['$scope', '$rootScope', '$state', '$filter', 'c
                     that.rgPass = "";
                     that.rgPass2 = "";
                     that.rgProgress = 0;
-                    ctr.up.$setPristine();
+                    that.rgPic = "";
+                    that.rgForm.$setPristine();
+                    that.rgMessage = resp.data.message;
+                    that.rgMsgErr = false;
                 }
                 else {
-					// upload failed
+                    that.rgMessage = resp.data.message;
+                    that.rgMsgErr = true;
 				}
             },
             function (resp) {
-				// error
+                that.rgMessage = resp.data.message;
+                that.rgMsgErr = true;
 			},
 			function (evt) {
 				// capture upload progress
@@ -56,6 +65,9 @@ bluStore.controller('mainCtrl', ['$scope', '$rootScope', '$state', '$filter', 'c
 			});
         };
 
+        /** END: Register Modal */
+
+        /** START: Routing Events */
         /**
          * register event to track view changes and
          * reflect it on the navbar which is connected
@@ -103,9 +115,10 @@ bluStore.controller('mainCtrl', ['$scope', '$rootScope', '$state', '$filter', 'c
             
         });
 
-        /*******************\
-        | * Global Actions *|
-        \*******************/
+        /** END: Routing Events */
+
+
+        /** START: Global Actions */
 
         /**
          * get all categories and set them to the scope
@@ -123,6 +136,8 @@ bluStore.controller('mainCtrl', ['$scope', '$rootScope', '$state', '$filter', 'c
                 }
             );
 		};
+
+        /** END: Global Actions */
 
     }]
 );

@@ -622,7 +622,7 @@
 			"price": "8000",
 			"stock": "4",
 			"description": "apple smarphone",
-			"imageUrl": "images/iphone.jpg",
+			"imageUrl": "images/products/iphone.jpg",
 			"category":"57a221554e24b7081cdd02a8"
 		},
 		{
@@ -630,7 +630,7 @@
 			"price": "5000",
 			"stock": "3",
 			"description": "samsung smarphone",
-			"imageUrl": "images/xbox-one.png",
+			"imageUrl": "images/products/xbox-one.png",
 			"category": "57a221554e24b7081cdd02a2"
 		},
 		{
@@ -638,7 +638,7 @@
 			"price": "3400",
 			"stock": "7",
 			"description": "Sony smarphone",
-			"imageUrl": "images/laptop2.png",
+			"imageUrl": "images/products/laptop2.png",
 			"category": "57a221554e24b7081cdd02a3"
 		},
 		{
@@ -646,7 +646,7 @@
 			"price": "100",
 			"stock": "50",
 			"description": "book to learn the c++ programming language",
-			"imageUrl": "images/book.jpg",
+			"imageUrl": "images/products/book.jpg",
 			"category": "57a221554e24b7081cdd029d"
 		}
 	],
