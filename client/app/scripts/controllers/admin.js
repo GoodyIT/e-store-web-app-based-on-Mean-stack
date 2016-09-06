@@ -17,6 +17,9 @@ bluStore.controller('adminCtrl', ['$rootScope', '$scope',
 			else if (toState.name === "app.admin.orders") {
 				that.activeView = "orders";
 			}
+			else if (toState.name === "app.admin.categories") {
+				that.activeView = "categories";
+			}
 		});
 
 		$scope.adminScope = this;

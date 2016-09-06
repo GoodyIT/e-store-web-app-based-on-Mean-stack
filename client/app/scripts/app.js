@@ -82,6 +82,16 @@ bluStore.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
                     controller: "adminNewProductCtrl"
                 }
             }
+        })
+        
+        .state('app.admin.categories', {
+            url: 'categories/',
+            views: {
+                'settings': {
+                    templateUrl: "views/admin-categories.html",
+                    controller: "adminCategories"
+                }
+            }
         });
 
     // register the http interceptors

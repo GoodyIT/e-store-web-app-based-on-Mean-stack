@@ -4,8 +4,12 @@
 			<div class="list-group">
 				<a ui-sref="app.admin.orders" class="list-group-item"
 					ng-class="{'active': adminScope.activeView === 'orders'}">
-						<i class="fa fa-dropbox"></i> Orders
+						<i class="fa fa-dropbox"></i> Orders <span class="badge pull-right">0</span>
 					
+				</a>
+				<a ui-sref="app.admin.categories" class="list-group-item" 
+					ng-class="{'active': adminScope.activeView === 'categories'}">
+						<i class="fa fa-plus-circle"></i> Categories
 				</a>
 				<a ui-sref="app.admin.newproduct" class="list-group-item" 
 					ng-class="{'active': adminScope.activeView === 'newproduct'}">
