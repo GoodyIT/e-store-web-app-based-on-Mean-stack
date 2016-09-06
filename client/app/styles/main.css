@@ -149,6 +149,10 @@ blu-product-short:hover .product-actions {
     display: block;
 }
 
+#rg-image {
+    margin-top: 20px;
+    margin-left: -10px;
+}
 
 /* Product View */
 

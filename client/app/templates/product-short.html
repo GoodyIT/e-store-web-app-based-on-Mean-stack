@@ -1,6 +1,6 @@
-<div ui-sref="app.product({id:productInfo._id})" class="thumbnail">
-        <img ng-src="{{ productInfo.imageUrl }}" alt="{{ productInfo.name }}">
-    <div class="product-desc">
+<div class="thumbnail">
+    <img ui-sref="app.product({id:productInfo._id})" ng-src="{{ productInfo.imageUrl }}" alt="{{ productInfo.name }}">
+    <div ui-sref="app.product({id:productInfo._id})" class="product-desc">
         <h3>{{ productInfo.title }}
             <span class="label label-danger" ng-if="productInfo.isNew">New</span>
             <span class="label label-warning" ng-if="productInfo.isSale">Sale</span>
@@ -10,6 +10,13 @@
         <span class="badge">Price: ${{ productInfo.price }}</span>
     </div>
     <div class="product-actions">
-        <a href="#" class="btn btn-success" role="button"><span class="fa fa-cart-plus"> Buy Now</span></a>
+        <a href="#" ng-if="!isAdmin" class="btn btn-success" role="button"><span class="fa fa-cart-plus"> Buy Now</span></a>
+        <div class="btn-group" ng-if="isAdmin">
+            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin 
+                <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <li><a href="" ng-click="deleteProduct(productInfo._id)">delete</a></li>
+            </ul>
+        </div>
     </div>
 </div>

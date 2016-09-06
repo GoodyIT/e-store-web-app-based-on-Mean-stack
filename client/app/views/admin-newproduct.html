@@ -1,18 +1,18 @@
 <div class="row">
 	<div class="col-xs-12 col-sm-9">
-		<form novalidate class="form-horizontal" id="np-form" name="adminNp.upload_form" ng-submit="adminNp.submit()">
+		<form novalidate class="form-horizontal" id="np-form" name="adminNp.up" ng-submit="adminNp.submit()">
 			<!-- name input -->
             <div class="form-group has-feedback" 
 				ng-class="{
-					'has-success': !adminNp.upload_form.npName.$error.required,
-					'has-error': adminNp.upload_form.npName.$error.required && adminNp.upload_form.npName.$touched
+					'has-success': adminNp.up.npName.$valid,
+					'has-error': adminNp.up.npName.$invalid && adminNp.up.npName.$dirty
 				}">
 				<label for="np-name" class="control-label col-xs-12 col-sm-2">Name</label>
 				<div class="col-xs-12 col-sm-10">
-					<input type="text" class="form-control" id="np-name" name="npName" ng-model="adminNp.npName" required>
-					<span ng-show="!adminNp.upload_form.npName.$error.required" 
+					<input type="text" class="form-control" id="np-name" ng-model="adminNp.npName" name="npName" required>
+					<span ng-show="adminNp.up.npName.$valid" 
 						class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-					<span ng-show="adminNp.upload_form.npName.$error.required && adminNp.upload_form.npName.$touched" 
+					<span ng-show="adminNp.up.npName.$invalid && adminNp.up.npName.$dirty" 
 						class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
 				</div>
 			</div>
@@ -21,14 +21,14 @@
 			<div 
                 class="form-group"
                 ng-class="{
-                    'has-success': !adminNp.upload_form.npAmount.$error.required,
-                    'has-error': adminNp.upload_form.npAmount.$error.required && adminNp.upload_form.npAmount.$touched }">
+					'has-success': adminNp.up.npAmount.$valid,
+					'has-error': adminNp.up.npAmount.$invalid && adminNp.up.npAmount.$dirty }">
 				<label for="np-amount" class="control-label col-xs-12 col-sm-2">Amount</label>
 				<div class="col-xs-12 col-sm-10">
-					<input type="number" min="0" class="form-control" id="np-amount" name="npAmount" ng-model="adminNp.npAmount" required>
-                    <span ng-show="!adminNp.upload_form.npAmount.$error.required" 
+					<input type="number" min="0" class="form-control" id="np-amount" ng-model="adminNp.npAmount" name="npAmount" required>
+                    <span ng-show="adminNp.up.npAmount.$valid" 
 						class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-					<span ng-show="adminNp.upload_form.npAmount.$error.required && adminNp.upload_form.npAmount.$touched" 
+					<span ng-show="adminNp.up.npAmount.$invalid && adminNp.up.npAmount.$dirty" 
 						class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
 				</div>
 			</div>
@@ -37,14 +37,14 @@
 			<div 
 				class="form-group"
 				ng-class="{
-                    'has-success': !adminNp.upload_form.npPrice.$error.required,
-                    'has-error': adminNp.upload_form.npPrice.$error.required && adminNp.upload_form.npPrice.$touched }">
+                    'has-success': adminNp.up.npPrice.$valid,
+                    'has-error': adminNp.up.npPrice.$invalid && adminNp.up.npPrice.$dirty }">
 				<label for="np-price" class="control-label col-xs-12 col-sm-2">Price</label>
 				<div class="col-xs-12 col-sm-10">
-					<input type="number" min="0" class="form-control" id="np-price" name="npPrice" ng-model="adminNp.npPrice" required>
-					<span ng-show="!adminNp.upload_form.npPrice.$error.required" 
+					<input type="number" min="0" class="form-control" id="np-price" ng-model="adminNp.npPrice" name="npPrice" required>
+					<span ng-show="adminNp.up.npPrice.$valid" 
 						class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-					<span ng-show="adminNp.upload_form.npPrice.$error.required && adminNp.upload_form.npPrice.$touched" 
+					<span ng-show="adminNp.up.npPrice.$invalid && adminNp.up.npPrice.$dirty" 
 						class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
 				</div>
 			</div>
@@ -53,15 +53,14 @@
 			<div 
                 class="form-group has-feedback" 
 				ng-class="{
-					'has-success': !adminNp.upload_form.npDescription.$error.required,
-					'has-error': adminNp.upload_form.npDescription.$error.required && adminNp.upload_form.npDescription.$touched }">
+					'has-success': adminNp.up.npDescription.$valid,
+					'has-error': adminNp.up.npDescription.$invalid && adminNp.up.npDescription.$dirty }">
 				<label for="np-description" class="control-label col-xs-12 col-sm-2">Description</label>
 				<div class="col-xs-12 col-sm-10">
-					<textarea class="form-control" id="np-description" rows="3" name="npDescription" 
-                        ng-model="adminNp.npDescription" required></textarea>
-					<span ng-show="!adminNp.upload_form.npDescription.$error.required" 
+					<textarea class="form-control" id="np-description" ng-model="adminNp.npDescription" rows="3" name="npDescription" required></textarea>
+					<span ng-show="adminNp.up.npDescription.$valid" 
 						class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-					<span ng-show="adminNp.upload_form.npDescription.$error.required && adminNp.upload_form.npDescription.$touched" 
+					<span ng-show="adminNp.up.npDescription.$invalid && adminNp.up.npDescription.$dirty" 
 						class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
 				</div>
 			</div>
@@ -70,23 +69,26 @@
 			<div class="form-group">
 				<label for="np-category" class="control-label col-xs-12 col-sm-2">Category</label>
 				<div class="col-xs-12 col-sm-10">
-					<input type="text" class="form-control" id="np-category" ng-model="adminNp.npCategory" required>
+					<input type="text" class="form-control" id="np-category" ng-model="adminNp.npCategory"
+						list="categories-list" name="npCategory" autocomplete="off" required>
 				</div>
+				<datalist id="categories-list">
+					<option ng-repeat="category in adminNp.categoriesList" value="{{ category.name }}"></option>
+				</datalist>
 			</div>
             
             <!-- image input -->
 			<div class="form-group">
 				<label for="np-upload" class="control-label col-xs-12 col-sm-2">Upload Image</label>
 				<div class="col-xs-12 col-sm-10">
-					<label class="btn btn-primary btn-block" form="#np-from">
-						Select <input type="file" ngf-select
-							ng-model="adminNp.file" name="file" 
+					<label class="btn btn-primary btn-block">
+						Select <input id="np-upload" type="file" ngf-select name="file" ng-model="adminNp.file"
 							ngf-pattern="'image/*'" accept="image/*"
 							ngf-max-size="5MB" style="display: none;" required>
 					</label>
 					<div class="progress">
 						<div class="progress-bar progress-bar-success progress-bar-striped active"
-							role="progressbar" aria-valuenow="{{adminNp.progress}}" 
+							role="progressbar" aria-valuenow="{{adminNp.progress}}" ng-model="adminNp.progress"
 							aria-valuemin="0" aria-valuemax="100" style="width: {{adminNp.progress}}%">
 							{{adminNp.progress}}%
 							<span class="sr-only">{{adminNp.progress}}% Complete (success)</span>
@@ -100,7 +102,7 @@
 				<div class="col-xs-12 col-sm-3 col-sm-offset-3">
 					<button type="submit" class="btn btn-success btn-block" 
 						ng-class="{ 
-							'disabled': adminNp.upload_form.$pristine || adminNp.upload_form.$invalid
+							'disabled': adminNp.up.$pristine || adminNp.up.$invalid
 						}">Save
 					</button>
 				</div>
@@ -109,8 +111,8 @@
 				</div>
 			</div>
 			
-            <!-- form massage -->
-			<i ng-show="adminNp.upload_form.file.$error.maxSize">File too large
+            <!-- form message -->
+			<i ng-show="adminNp.up.file.$error.maxSize">File too large
 				{{adminNp.file.size / 1000000|number:1}}MB: max 5MB
 			</i>
 		</form>

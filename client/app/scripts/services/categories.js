@@ -3,8 +3,8 @@ bluStore.factory('categoriesFactory', function ($resource, API) {
 
     return {
 
-        getAll: function(){
-            return $resource(API.VIEW_CATEGORIES, { format: 'tree' });
+        getAll: function(format){
+            return $resource(API.VIEW_CATEGORIES, { format: format });
         },
 
         getById: function (id) {

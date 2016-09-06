@@ -1,5 +1,5 @@
 <div class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -7,46 +7,67 @@
                 </button>
                 <h4 class="modal-title">Register new user</h4>
             </div>
-            <form class="form-horizontal">
-                <div class="modal-body">
+            <form class="form-horizontal" name="baseCtrl.rgForm" ng-submit="baseCtrl.register()">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-9">
+                        <div class="modal-body">
                     <div class="form-group">
                         <label for="rg-fname-input" class="control-label col-xs-12 col-sm-3">First name</label>
-                        <div class="col-xs-12 col-sm-6">
-                            <input type="text" class="form-control" id="rg-fname-input"
-                                   placeholder="enter your first name" required>
+                        <div class="col-xs-12 col-sm-9">
+                            <input type="text" class="form-control" id="rg-fname-input" name="rgFname" ng-model="baseCtrl.rgFname" placeholder="enter your first name" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="rg-lname-input" class="control-label col-xs-12 col-sm-3">Last name</label>
-                        <div class="col-xs-12 col-sm-6">
-                            <input type="text" class="form-control" id="rg-lname-input"
-                                   placeholder="enter your last name" required>
+                        <div class="col-xs-12 col-sm-9">
+                            <input type="text" class="form-control" id="rg-lname-input" name="rgLname" ng-model="baseCtrl.rgLname" placeholder="enter your last name" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="rg-email-input" class="control-label col-xs-12 col-sm-3">Email Address</label>
-                        <div class="col-xs-12 col-sm-6">
-                            <input type="email" class="form-control" id="rg-email-input"
-                                   placeholder="enter your email..." required>
+                        <div class="col-xs-12 col-sm-9">
+                            <input type="email" class="form-control" id="rg-email-input" name="rgEmail" ng-model="baseCtrl.rgEmail" placeholder="enter your email..." required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="rg-pass-input" class="control-label col-xs-12 col-sm-3">Password</label>
-                        <div class="col-xs-12 col-sm-6">
-                            <input type="password" class="form-control" id="rg-pass-input"
-                                   placeholder="enter your password..." required>
+                        <div class="col-xs-12 col-sm-9">
+                            <input type="password" class="form-control" id="rg-pass-input" name="rgPass" ng-model="baseCtrl.rgPass" placeholder="enter your password..." required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="rg-pass2-input" class="control-label col-xs-12 col-sm-3">Password again</label>
-                        <div class="col-xs-12 col-sm-6">
-                            <input type="password" class="form-control" id="rg-pass2-input"
-                                   placeholder="enter your password again..." required>
+                        <div class="col-xs-12 col-sm-9">
+                            <input type="password" class="form-control" id="rg-pass2-input" name="rgPass2" ng-model="baseCtrl.rgPass2" placeholder="enter your password again..." required>
+                        </div>
+                    </div>
+                    <!-- Profile Picture -->
+                    <div class="form-group">
+                        <label for="rg-upload" class="control-label col-xs-12 col-sm-3">Picture</label>
+                        <div class="col-xs-12 col-sm-9">
+                            <label class="btn btn-primary btn-block">
+						        Select <input id="rg-upload" type="file" ngf-select name="rgPic" ng-model="baseCtrl.rgPic"
+							    ngf-pattern="'image/*'" accept="image/*"
+							    ngf-max-size="5MB" style="display: none;" required>
+					        </label>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="{{baseCtrl.rgProgress}}" ng-model="baseCtrl.rgProgress" aria-valuemin="0" aria-valuemax="100" style="width: {{baseCtrl.rgProgress}}%">
+                                    {{baseCtrl.rgProgress}}%
+                                    <span class="sr-only">{{baseCtrl.rgProgress}}% Complete (success)</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                    </div>
+                    <!-- image thumbnail view -->
+                    <div class="col-xs-12 col-sm-3">
+                        <img id="rg-image" class="img-responsive img-thumbnail" 
+                            ngf-thumbnail="baseCtrl.rgPic || 'images/male_user.png'">
+                    </div>
+                </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="reset" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-success">Register</button>
                 </div>
             </form>

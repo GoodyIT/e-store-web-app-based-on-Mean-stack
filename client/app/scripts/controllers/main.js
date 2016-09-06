@@ -1,5 +1,5 @@
-bluStore.controller('mainCtrl', ['$scope', '$rootScope', '$state', '$filter', 'categoriesFactory',
-    function($scope, $rootScope, $state, $filter, categoriesFactory){
+bluStore.controller('mainCtrl', ['$scope', '$rootScope', '$state', '$filter', 'categoriesFactory', 'productsFactory', 'Upload', 'API',
+    function($scope, $rootScope, $state, $filter, categories, products, Upload, API){
         "use strict";
 
         // pointer to the scope for internal use.
@@ -10,6 +10,50 @@ bluStore.controller('mainCtrl', ['$scope', '$rootScope', '$state', '$filter', 'c
             app: false,
             content: false,
             admin: false
+        };
+
+        //function to call on form submit
+        that.register = function() {
+            //check if from is valid
+            if(that.rgForm.$valid && that.rgPic) {
+                //call upload function
+                that.upload(that.rgPic);
+            }
+        };
+
+        that.upload = function (file) {
+            Upload.upload({
+                url: API.USER_REGISTER,
+                data: {
+                    file: file,
+                    registerData: {
+                        username: that.rgEmail,
+                        firstname: that.rgFname,
+                        lastname: that.rgLname,
+                        password: that.rgPass
+                    }
+                }
+            }).then(function (resp) {
+                if (resp.data.state === true) {
+                    that.rgEmail = "";
+                    that.rgFname = "";
+                    that.rgLname = "";
+                    that.rgPass = "";
+                    that.rgPass2 = "";
+                    that.rgProgress = 0;
+                    ctr.up.$setPristine();
+                }
+                else {
+					// upload failed
+				}
+            },
+            function (resp) {
+				// error
+			},
+			function (evt) {
+				// capture upload progress
+				that.rgProgress = parseInt(100.0 * evt.loaded / evt.total);
+			});
         };
 
         /**
@@ -59,10 +103,26 @@ bluStore.controller('mainCtrl', ['$scope', '$rootScope', '$state', '$filter', 'c
             
         });
 
-        // get all categories and set them to the scope
-        categoriesFactory.getAll().get(function(result){
+        /*******************\
+        | * Global Actions *|
+        \*******************/
+
+        /**
+         * get all categories and set them to the scope
+         * to use in the navbar
+         */        
+        categories.getAll('tree').get(function(result){
             that.categories = result.data;
         });
+
+        // delete product by it's ID
+        $rootScope.deleteProduct = function (id) {
+            products.deleteById(id).remove(
+                function(result){
+                    $state.reload(); // reload state after deleting a product
+                }
+            );
+		};
 
     }]
 );

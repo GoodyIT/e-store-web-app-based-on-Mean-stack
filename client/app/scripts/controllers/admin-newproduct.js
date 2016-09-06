@@ -1,19 +1,30 @@
-bluStore.controller('adminNewProductCtrl', ['$scope', 'Upload', 'API',
-	function ($scope, Upload, API) {
+bluStore.controller('adminNewProductCtrl', ['$scope', 'Upload', 'API', 'categoriesFactory',
+	function ($scope, Upload, API, categories) {
 		'use strict';
 
 		var ctr = this;
 		
+		// get all categories and set them to the scope
+        categories.getAll('doc').get(function(result){
+            ctr.categoriesList = result.data;
+        });
+
 		//function to call on form submit
 		ctr.submit = function () {
 			//check if from is valid
-			if (ctr.upload_form.file.$valid && ctr.file) {
+			if (ctr.up.file.$valid && ctr.file) {
 				//call upload function
 				ctr.upload(ctr.file);
 			}
 		};
 
 		ctr.upload = function (file) {
+			// get category by selected name
+			var category = ctr.categoriesList.find(function (obj) {
+				return obj.name === ctr.npCategory;
+			});
+
+			// upload new product data to server 
 			Upload.upload({
 				url: API.ADD_PRODUCT,
 				data: {
@@ -23,7 +34,7 @@ bluStore.controller('adminNewProductCtrl', ['$scope', 'Upload', 'API',
 						productAmount: ctr.npAmount,
 						productPrice: ctr.npPrice,
 						productDescription: ctr.npDescription,
-						productCategory: ctr.npCategory
+						productCategory: category._id
 					}
 				}
 			}).then(function (resp) {
@@ -35,6 +46,7 @@ bluStore.controller('adminNewProductCtrl', ['$scope', 'Upload', 'API',
 					ctr.npCategory = "";
 					ctr.file = "";
 					ctr.progress = 0;
+					ctr.up.$setPristine();
 				}
 				else {
 					// upload failed

@@ -16,6 +16,7 @@ bluStore.controller('userCtrl', ['$rootScope', '$http', 'authFactory', 'localSto
 
         this.isAdmin = false;
         this.isLoggedIn = false;
+        
         $rootScope.isLoggedIn = false;
         $rootScope.isAdmin = false;
 

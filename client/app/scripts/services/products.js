@@ -15,6 +15,10 @@ bluStore.factory('productsFactory', function ($resource, API) {
 
         getCategoryById: function(id){
             return $resource(API.VIEW_PRODUCT_CAT_ID, { id: id });
+        },
+
+        deleteById: function(id) {
+            return $resource(API.DEL_PRODUCT, { id: id });
         }
 
     };

@@ -3,9 +3,6 @@ bluStore.directive('bluProductShort', function(){
 
     return {
         restrict: 'E',
-        scope: {
-            productInfo: '='
-        },
         templateUrl: "templates/product-short.html"
     };
 });

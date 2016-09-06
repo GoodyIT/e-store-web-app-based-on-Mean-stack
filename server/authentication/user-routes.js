@@ -2,8 +2,21 @@ var express = require('express');
 var passport = require('passport');
 var User = require('../models').User;
 var verify = require('./verify');
-
+var multer = require('multer');
 var router = express.Router();
+
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './server/public/images/users/');
+    },
+    filename: function (req, file, cb) {
+        var datetimestamp = Date.now();
+        cb(null, file.fieldname + "-" + datetimestamp + "." +
+            file.originalname.split(".")[file.originalname.split(".").length - 1]);
+    }
+});
+
+var upload = multer({ storage: storage }).single('file');
 
 router.get('/', verify.admin, function (req, res, next) {
 	User.find({}, function (err, users) {
@@ -21,33 +34,44 @@ router.get('/', verify.admin, function (req, res, next) {
 
 router.post('/register', function (req, res, next) {
 
-	User.register(
-		new User({ username: req.body.username }),
-		req.body.password,
-		function (err, user) {
-			if (err) {
-				err.status = 500;
-				return next(err);
-			}
+	upload(req, res, function (err) {
+		console.log(req.file);
+		if (err) {
+			return res.status(500).json({
+				state: false,
+				error: err
+			});
+		}
 
-			if (req.body.firstname)
-				user.firstname = req.body.firstname;
-			if (req.body.lastname)
-				user.lastname = req.body.lastname;
-			if (req.body.email)
-				user.email = req.body.email;
+		var rgUser = req.body.registerData;
+		var pic = req.file.filename;
+		
+		User.register(
+			new User({ username: rgUser.username }),
+			rgUser.password,
+			function (err, user) {
+				if (err) {
+					err.status = 500;
+					return next(err);
+				}
 
-			user.save(function (err, user) {
-				passport.authenticate('local')(req, res, function () {
-					return res.json({
-						state: true,
-						message: 'Registration Successful!'
+				user.firstname = rgUser.firstname;
+				user.lastname = rgUser.lastname;
+				user.imageUrl = "images/users/" + pic;
+					
+				user.save(function (err, user) {
+					passport.authenticate('local')(req, res, function () {
+						return res.json({
+							state: true,
+							message: 'Registration Successful!'
+						});
 					});
 				});
-			});
 
-		}
-	);
+			}
+		);
+
+	});
 
 });
 

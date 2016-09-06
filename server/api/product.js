@@ -4,6 +4,7 @@ var Product = require('../models').Product;
 var handler = require('./handler');
 var cache = require('../data-memory');
 var multer = require('multer');
+var fs = require('fs');
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -34,7 +35,7 @@ exports.addNew = function (req, res) {
 
 	upload(req, res, function (err) {
 		if (err) {
-			return handler(res)(err);;
+			return handler(res)(err);
 		}
 
 		// create new product and add it to database
@@ -61,7 +62,23 @@ exports.getById = function (req, res) {
 
 // delete product by id
 exports.deleteById = function (req, res) {
-	Product.remove({ _id: req.params.id }, handler(res));
+	Product.findByIdAndRemove({ _id: req.params.id }, function (error, product) {
+		// delete product image 
+		var imageUrl = product.imageUrl;
+
+		// check if the product image is exist 
+		fs.stat('server/public/' + imageUrl, function (err, stats) {
+			if(!err) {
+				// delete the image
+				fs.unlink('server/public/' + imageUrl, function (err) {
+					handler(res)(error, product); // send response back
+				});
+			}
+			else {
+				handler(res)(error, product); // send response back
+			}
+		});
+	});
 };
 
 // update product and return it
