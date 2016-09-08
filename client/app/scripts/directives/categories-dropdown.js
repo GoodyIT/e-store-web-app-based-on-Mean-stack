@@ -5,11 +5,12 @@ bluStore.directive('bluCategoriesDropdown', function () {
 		restrict : "E",
 		replace: true,
 		templateUrl: "templates/categories-dropdown.html",
-        link: function (scope, element, attr) {
-           element.on('hide.bs.dropdown', function (e) {
-				console.log(e);
-            });
-        }
+		link: function (scope, element, attrs) {
+			$('#categories-dropdown').on('click', function (e) {
+				e.stopPropagation();
+            	e.preventDefault();
+			});
+		}
 	};
 
 });

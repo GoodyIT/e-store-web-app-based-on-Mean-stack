@@ -118,19 +118,36 @@ bluStore.controller('mainCtrl', ['$scope', '$rootScope', '$state', '$filter', 'c
         /** END: Routing Events */
 
 
-        /** START: Global Actions */
+        /** START: Categories List */
 
         /**
          * get all categories and set them to the scope
          * to use in the navbar
          */        
+        
+        that.categories = [];
+
+        // get categories tree from server 
         categories.getAll('tree').get(function(result){
             that.categories = result.data;
         });
 
-        that.selectedCate = function (cateName) {
-            console.log(cateName);
+        /**
+         * get children categories from selected parent,
+         * and append to Categories List 
+         */
+        that.selectSubCategory = function (category) {
+            that.categories = that.categories.find(function (obj){
+                return obj.name === category.name; 
+            }).children;
         };
+
+        that.selectParentCategory = function (category) {
+            console.log(category);
+            that.categories = category.ancestors;
+        };
+
+        /** END: Categories List */
 
         // delete product by it's ID
         $rootScope.deleteProduct = function (id) {
@@ -140,8 +157,6 @@ bluStore.controller('mainCtrl', ['$scope', '$rootScope', '$state', '$filter', 'c
                 }
             );
 		};
-
-        /** END: Global Actions */
 
     }]
 );
