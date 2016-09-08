@@ -21,9 +21,14 @@ categorySchema.methods = {
 
 		return self.model('Category').create(child).then(function (child) {
 			self.children.push(child._id);
-			self.save().then(function(err){
-				cb(err);
-			});
+			self.save().then(
+				function(result){
+					cb(null, result);
+				},
+				function (error){
+					cb(error, null);
+				}
+			);
 		});
 	}
 };

@@ -128,6 +128,10 @@ bluStore.controller('mainCtrl', ['$scope', '$rootScope', '$state', '$filter', 'c
             that.categories = result.data;
         });
 
+        that.selectedCate = function (cateName) {
+            console.log(cateName);
+        };
+
         // delete product by it's ID
         $rootScope.deleteProduct = function (id) {
             products.deleteById(id).remove(

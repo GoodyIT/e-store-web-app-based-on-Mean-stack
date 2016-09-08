@@ -101,4 +101,7 @@ bluStore.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
 
 bluStore.run(function() {
     $("[data-toggle='tooltip']").tooltip();
+    $('li.dropdown a').on('click', function (event) {
+        $(this).parent().toggleClass('open');
+    });
 });

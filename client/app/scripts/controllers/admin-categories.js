@@ -23,6 +23,41 @@ bluStore.controller('adminCategories', ['$scope','categoriesFactory',
 			});
 		};
 
+		ctr.submit = function () {
+			// check if the form is valid
+			if (ctr.catForm.$valid) {
+				// get parent category id if exist
+				var parent;
+
+				if (ctr.catParent) {
+					parent = ctr.categoriesList.find(function (obj) {
+						return obj.name === ctr.catParent;
+					});
+				}
+
+				categories.add(ctr.catName, parent).then(
+					function (result) {
+						ctr.catName = "";
+						ctr.catParent = "";
+						ctr.catForm.$setPristine();
+						ctr.successMsg = true;
+						ctr.errorMsg = false;
+					},
+					function (err) {
+						
+						if (err.data.error.code === 11000) {
+							ctr.message = "this category is already exist!";
+						}
+						else {
+							ctr.message = err.data.message;
+						}
+
+						ctr.successMsg = false;
+						ctr.errorMsg = true;
+					}
+				);
+			}
+		};
 
 		$scope.adminCat = ctr;
 

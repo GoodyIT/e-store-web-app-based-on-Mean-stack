@@ -25,11 +25,37 @@ exports.getAll = function (req, res) {
 };
 
 exports.addNew = function (req, res) {
-	// create new category and return it
-	Category.create(req.body, handler(res, function(done){
-		// do before send response back
-		cache.get('refreshCategories')(done);
-	}));
+
+	var cate = {
+		name: req.body.name
+	};
+
+	// if category have parent
+	if (req.body.parent) {
+		// find this parent and add a child to it
+		Category.findOne({ _id: req.body.parent }, function (err, parent) {
+			// if parent not found
+			if (err) {
+				return handler(res)(err);
+			}
+
+			// if parent found
+			parent.addChild(cate, handler(res, function (done) {
+				// do before send response back
+				cache.get('refreshCategories')(done);
+			}));
+
+		});
+	}
+	else {
+		
+		// create new category and return it
+		Category.create(req.body, handler(res, function (done) {
+			// do before send response back
+			cache.get('refreshCategories')(done);
+		}));
+		
+	}
 
 };
 

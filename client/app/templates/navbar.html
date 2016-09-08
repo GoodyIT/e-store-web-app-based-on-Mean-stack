@@ -29,9 +29,10 @@
                 </div>
             </form>
             <ul class="nav navbar-nav navbar-left">
-                <li ng-class="{ 'active': activeView === 'app' }"><a ui-sref="app"><span class="fa fa-home">
+                <li ng-class="{ 'active': baseCtrl.activeView === 'app' }"><a ui-sref="app"><span class="fa fa-home">
                 </span> Home</a></li>
                 <!-- Categories Dropdown -->
+                <!--
                 <li class="dropdown" ng-class="{ 'active': activeView === 'app.category' }">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button"
                        aria-haspopup="true" aria-expanded="false"><span class="fa fa-shopping-bag"></span>
@@ -41,7 +42,11 @@
                             {{ category.name }}</a></li>
                     </ul>
                 </li>
-                <li ng-class="{ 'active': activeView === 'app.help' }"><a ui-sref="app.help">
+                -->
+                <blu-categories-dropdown></blu-categories-dropdown>
+
+                <!-- help button -->
+                <li ng-class="{ 'active': baseCtrl.activeView === 'app.help' }"><a ui-sref="app.help">
                     <span class="fa fa-info-circle"></span> Help</a></li>
             </ul>
         </div>

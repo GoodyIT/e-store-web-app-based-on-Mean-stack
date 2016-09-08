@@ -1,0 +1,43 @@
+<li id="cate-dropdown" class="dropdown">
+	<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-shopping-bag"></span> Categories</a>
+	<ul id="categories-dropdown" class="dropdown-menu">
+		<form>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="search categories" role="search">
+					<span class="input-group-btn">
+                    	<button class="btn btn-success" type="button"><span class="fa fa-search"></span></button>
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="list-group">
+					<a href="" class="list-group-item" 
+						ng-repeat="category in baseCtrl.categories",
+						ng-class="{ 'active': baseCtrl.selectedCate === category.name }"
+						ng-click="baseCtrl.selectedCate = category.name">
+							{{ category.name }}
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-4">
+				<button type="button" data-toggle="tooltip" title="parent category" 
+					class="btn btn-primary btn-block">&lt;&lt;</button>
+			</div>
+			<div class="col-xs-4">
+				<button type="button" data-toggle="tooltip" title="open selected category" 
+					class="btn btn-primary btn-block">GO</button>
+			</div>
+			<div class="col-xs-4">
+				<button type="button" data-toggle="tooltip" title="sub categories" 
+					class="btn btn-primary btn-block">&gt;&gt;</button>
+			</div>
+		</div>	
+		</form>
+	</ul>
+</li>
