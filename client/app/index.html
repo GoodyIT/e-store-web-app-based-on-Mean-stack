@@ -10,6 +10,7 @@
     <!-- build:css styles/main.css -->
     <link href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="styles/simple-sidebar.css" rel="stylesheet">
     <link href="styles/main.css" rel="stylesheet">
     <!-- endbuild -->
 
@@ -22,17 +23,82 @@
 </head>
 
 <body ng-controller="mainCtrl as baseCtrl">
-    <div ng-hide="$root.stateLoading.app">
-        <blu-register id="register-modal"></blu-register>
-        <div ui-view="header"></div>
-        <div ui-view="content"></div>
-        <div ui-view="footer"></div>
-    </div>
+
     <div class="container loading" ng-show="$root.stateLoading.app">
         <i class="fa fa-spinner fa-spin fa-2x"></i>
     </div>
 
-    <blu-social-links data-spy="affix" data-offset-top="200"></blu-social-links>
+    <div ng-hide="$root.stateLoading.app">
+        <div id="wrapper">
+
+            <!-- Sidebar -->
+            <div id="sidebar-wrapper">
+                <ul class="sidebar-nav">
+                    <li class="sidebar-brand">
+                        <a href="">
+                        Categories
+                    </a>
+                    </li>
+                    <!-- categories search form -->
+                    <form id="sidebar-search" class="form-inline">
+                        <div class="input-group">
+					        <input type="text" class="form-control" 
+                                ng-model="baseCtrl.cateSearchTerm"
+                                placeholder="search categories" role="search">
+					        <span class="input-group-btn">
+                    	        <button class="btn btn-info" type="button"><span class="fa fa-search"></span></button>
+					        </span>
+				        </div>
+                    </form>
+                    <div id="sidebar-menu">
+                    <li><a 
+                        ng-repeat="category in baseCtrl.categories | categoriesSearch: $root.categoriesList:baseCtrl.cateSearchTerm",
+						ng-class="{ 'active': baseCtrl.selectedCate === category.name }"
+						ng-click="baseCtrl.selectedCate = category.name">
+                            <span ng-hide="baseCtrl.selectedCate === category.name">{{ category.name }}</span>
+							<span ng-show="baseCtrl.selectedCate === category.name">
+								<button type="button" class="btn btn-warning" 
+									ng-disabled="!category.parent"
+									ng-click="baseCtrl.displayCategory(category, true)">
+										&lt;&lt;
+								</button>
+								<button type="button" class="btn btn-success"
+									ui-sref="app.category({id: category.slug})"
+                                    ng-click="baseCtrl.currentCategory = category">{{ category.name }}
+								</button>
+								<button type="button" class="btn btn-danger"
+									ng-disabled="category.children.length < 1" 
+									ng-click="baseCtrl.displayCategory(category)">
+										&gt;&gt;
+								</button>
+							</span>
+                    </a></li>
+                    </div>
+                    <li>
+				        <i class="text-primary">Current: {{ baseCtrl.currentCategory.name }}</i>
+			        </li>
+                </ul>
+            </div>
+            <!-- /#sidebar-wrapper -->
+
+            <!-- Page Content -->
+            <div id="page-content-wrapper">
+
+
+                <blu-register id="register-modal"></blu-register>
+                <div ui-view="header"></div>
+                <div ui-view="content"></div>
+                <div ui-view="footer"></div>
+
+                <blu-social-links data-spy="affix" data-offset-top="200"></blu-social-links>
+
+            </div>
+            <!-- /#page-content-wrapper -->
+
+        </div>
+        <!-- /#wrapper -->
+
+    </div>
 
     <!-- build:js scripts/main.js -->
     <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
@@ -66,18 +132,18 @@
     <script src="scripts/directives/product-short.js"></script>
     <script src="scripts/directives/social-links.js"></script>
     <script src="scripts/directives/user-dropdown.js"></script>
-    <script src="scripts/directives/categories-dropdown.js"></script>
     <script src="scripts/directives/register.js"></script>
     <script src="scripts/directives/rate.js"></script>
     <!-- filters -->
     <script src="scripts/filters/product-grid.js"></script>
     <script src="scripts/filters/description-min.js"></script>
+    <script src="scripts/filters/categories-search.js"></script>
     <!-- constants -->
     <script src="scripts/constants/config.js"></script>
     <script src="scripts/constants/api.js"></script>
     <script src="scripts/constants/events.js"></script>
     <script src="scripts/constants/errors.js"></script>
-
+    <!-- utils -->
 
     <!-- endbuild -->
 </body>

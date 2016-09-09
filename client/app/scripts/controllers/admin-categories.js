@@ -7,7 +7,7 @@ bluStore.controller('adminCategories', ['$scope','categoriesFactory',
 		ctr.catName = "";
 
 		// get all categories and set them to the scope
-        categories.getAll('doc').get(function(result){
+        categories.getAll().get(function(result){
             ctr.categoriesList = result.data;
         });
 
