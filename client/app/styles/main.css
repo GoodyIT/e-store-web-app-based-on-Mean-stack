@@ -1,3 +1,7 @@
+::-webkit-scrollbar {
+    width: 50px;
+}
+
 body {
     margin-top: 51px;
 }

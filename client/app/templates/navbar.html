@@ -31,19 +31,12 @@
             <ul class="nav navbar-nav navbar-left">
                 <li ng-class="{ 'active': baseCtrl.activeView === 'app' }"><a ui-sref="app"><span class="fa fa-home">
                 </span> Home</a></li>
-                <!-- Categories Dropdown -->
-                <!--
-                <li class="dropdown" ng-class="{ 'active': activeView === 'app.category' }">
-                    <a class="dropdown-toggle" data-toggle="dropdown" role="button"
-                       aria-haspopup="true" aria-expanded="false"><span class="fa fa-shopping-bag"></span>
-                        Categories</span></a>
-                    <ul class="dropdown-menu">
-                        <li ng-repeat="category in categoriesList"><a ui-sref="app.category({id: category._id})">
-                            {{ category.name }}</a></li>
-                    </ul>
+                <!-- Categories sidebar -->
+                <li>
+                    <a href="#menu-toggle" id="menu-toggle">
+                        <span class="fa fa-shopping-bag"></span> Categories
+                    </a>
                 </li>
-                -->
-                <blu-categories-dropdown></blu-categories-dropdown>
 
                 <!-- help button -->
                 <li ng-class="{ 'active': baseCtrl.activeView === 'app.help' }"><a ui-sref="app.help">
