@@ -1,20 +1,36 @@
 <div id="product-view" class="container">
 
 	<div class="row">
-		<div class="col-xs-12">
-			<h2>{{ product.title }}</h2>
-		</div>
-	</div>
-	<div class="row">
 		<div class="col-xs-12 col-sm-4">
 			<div id="product-image">
 				<img ng-src="{{ product.imageUrl }}" class="img-responsive img-thumbnail">
 			</div>
 		</div>
 		<div id="product-info-top" class="col-xs-12 col-sm-8">
-			<p>Price: {{ product.price }}</p>
-			<p>Category: {{ product.category.name }}</p>
-			<blu-rate rating="4.5" total="200"></blu-rate>
+			<h3 id="product-info-title">{{ product.title }}</h3>
+			<span class="label label-success">{{ product.category.name }}</span>
+			<span class="label label-warning label-xs" ng-if="product.sale">On Sale</span>
+			<span class="label label-danger label-xs" ng-if="product.hot">Hot</span><br>
+			<blu-rate rating="4.5" total="200"></blu-rate> <a href="" class="write-review">write a review</a>
+			<hr ng-if="product.specifications">
+			<p>
+				<h4>Specifications</h4>
+				<ul>
+					<li ng-repeat="spec in product.specifications track by $index">{{ spec }}</li>
+				</ul>
+			</p>
+			<hr>
+			<div class="row">
+				<div class="col-xs-6">
+					<p id="product-info-price" class="text-danger">{{ product.price | currency }}</p>
+				</div>
+				<div class="col-xs-3">
+					<a type="button" class="btn btn-success btn-block">BUY NOW</a>
+				</div>
+				<div class="col-xs-3">
+					<a type="button" class="btn btn-warning btn-block">ADD TO WISH LIST</a>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="row">
@@ -28,12 +44,26 @@
 					<a aria-controls="prodReviews" data-target="#prodReviews"
 						role="tab" data-toggle="tab">Reviews</a>
 				</li>
+				<li role="presentation">
+					<a aria-controls="prodSpecs" data-target="#prodSpecs"
+						role="tab" data-toggle="tab">Specifications</a>
+				</li>
+				<li role="presentation">
+					<a aria-controls="prodReturn" data-target="#prodReturn"
+						role="tab" data-toggle="tab">Return Policy</a>
+				</li>
 			</ul>
 			<div class="tab-content">
 				<div role="tabpanel" class="tab-pane fade in active" id="prodDesc">
 					{{ product.description }}
 				</div>
 				<div role="tabpanel" class="tab-pane fade" id="prodReviews">
+					reviews goes here...
+				</div>
+				<div role="tabpanel" class="tab-pane fade" id="prodSpecs">
+					reviews goes here...
+				</div>
+				<div role="tabpanel" class="tab-pane fade" id="prodReturn">
 					reviews goes here...
 				</div>
 			</div>

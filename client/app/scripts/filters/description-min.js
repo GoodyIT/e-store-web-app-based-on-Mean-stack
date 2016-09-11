@@ -5,22 +5,33 @@
 bluStore.filter('descriptionMin', function(){
     "use strict";
 
-    return function(input, descLength){
-        var words = input.split(' ');
-        var output = "";
+    return function(input, limit){
 
-        if(descLength < words.length) {
+        if(input.length > limit) {
+            
+            // reserve space for text ending "..."
+            limit -= 3;
 
-            for (var i = 0; i < descLength; i++) {
-                output += words[i] + " ";
+            var words = input.split(' ');
+            var output = "";
+
+            for (var i = 0; i < words.length; i++) {
+                            
+                if ((output.length + words[i].length + 1) <= limit) {
+                    if (i > 0) output += ' '; // add space before every new word
+                    output += words[i];
+                }
+
             }
 
-            output += "...";
-        }
-        else{
-            output = input;
-        }
+            output += '...';
 
-        return output;
+            return output;
+
+        }
+        else {
+            return input;
+        }
+        
     };
 });

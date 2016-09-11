@@ -8,6 +8,9 @@ var productSchema = new Schema({
 	price: { type: Number, required: true, min: 0 },
 	stock: { type: Number, default: 1 },
 	description: String,
+	specifications: [{type: String}],
+	hot: Boolean,
+	sale: Boolean,
 	imageUrl: String,
 	category: { type: Schema.Types.ObjectId, ref: 'Category', index: true }
 },

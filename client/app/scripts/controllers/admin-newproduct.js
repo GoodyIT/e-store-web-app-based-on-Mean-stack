@@ -30,11 +30,14 @@ bluStore.controller('adminNewProductCtrl', ['$scope', 'Upload', 'API', 'categori
 				data: {
 					file: file,
 					productInfo: {
-						productName: ctr.npName,
-						productAmount: ctr.npAmount,
-						productPrice: ctr.npPrice,
-						productDescription: ctr.npDescription,
-						productCategory: category._id
+						name: ctr.npName,
+						amount: ctr.npAmount,
+						price: ctr.npPrice,
+						sale: ctr.npSale,
+						hot: ctr.npHot,
+						specifications: ctr.npSpecs.split('\n'),
+						description: ctr.npDescription,
+						category: category._id
 					}
 				}
 			}).then(function (resp) {
@@ -42,6 +45,7 @@ bluStore.controller('adminNewProductCtrl', ['$scope', 'Upload', 'API', 'categori
 					ctr.npName = "";
 					ctr.npAmount = "";
 					ctr.npPrice = "";
+					ctr.npSpecs = "";
 					ctr.npDescription = "";
 					ctr.npCategory = "";
 					ctr.file = "";

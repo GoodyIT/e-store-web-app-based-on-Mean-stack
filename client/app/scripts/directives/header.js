@@ -7,11 +7,6 @@ bluStore.directive('bluHeader', function () {
         link: function(scope, element, attrs){
             // trigger header carousel
             $('#header-carousel').carousel({interval: 3000, cycle: true});
-
-            $(function () {
-                $('[data-toggle="tooltip"]').tooltip();
-            });
-
         }
     };
 });

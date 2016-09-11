@@ -48,7 +48,32 @@
 						class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
 				</div>
 			</div>
-            
+			<!-- options -->
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-2">Options</label>
+				<div class="col-xs-12 col-sm-10">					
+					<div id="np-options" class="btn-group" data-toggle="buttons">
+  						<label class="btn btn-default" ng-click="adminNp.npSale = !adminNp.Sale">
+    						<input type="checkbox" autocomplete="off"> On Sale
+  						</label>
+  						<label class="btn btn-default" ng-click="adminNp.npHot = !adminNp.npHot">
+    						<input type="checkbox" autocomplete="off"> Hot
+  						</label>
+					</div>
+				</div>
+			</div>
+
+            <!-- specifications input -->
+			<div class="form-group" 
+				ng-class="{
+                    'has-success': adminNp.up.npSpecs.$valid,
+                    'has-error': adminNp.up.npSpecs.$invalid && adminNp.up.npSpecs.$dirty }">
+				<label for="np-specs" class="control-label col-xs-12 col-sm-2">Specifications</label>
+				<div class="col-xs-12 col-sm-10">
+					<textarea class="form-control" id="np-specs" ng-model="adminNp.npSpecs" name="npSpecs" required></textarea>
+				</div>
+			</div>
+
             <!-- description input -->
 			<div 
                 class="form-group has-feedback" 
@@ -58,10 +83,6 @@
 				<label for="np-description" class="control-label col-xs-12 col-sm-2">Description</label>
 				<div class="col-xs-12 col-sm-10">
 					<textarea class="form-control" id="np-description" ng-model="adminNp.npDescription" rows="3" name="npDescription" required></textarea>
-					<span ng-show="adminNp.up.npDescription.$valid" 
-						class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-					<span ng-show="adminNp.up.npDescription.$invalid && adminNp.up.npDescription.$dirty" 
-						class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
 				</div>
 			</div>
             

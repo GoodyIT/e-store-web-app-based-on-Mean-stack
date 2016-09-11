@@ -23,8 +23,10 @@
 </head>
 
 <body ng-controller="mainCtrl as baseCtrl">
-
-    <div class="container loading" ng-show="$root.stateLoading.app">
+    <!-- loading screen -->
+    <div class="container loading logo" ng-show="$root.stateLoading.app">
+        <span class="fa fa-shopping-bag fa-2x"></span>
+        <h2>BluStore</h2>
         <i class="fa fa-spinner fa-spin fa-2x"></i>
     </div>
 
@@ -144,6 +146,7 @@
     <script src="scripts/constants/events.js"></script>
     <script src="scripts/constants/errors.js"></script>
     <!-- utils -->
+    <script src="scripts/utils/onload.js"></script>
 
     <!-- endbuild -->
 </body>

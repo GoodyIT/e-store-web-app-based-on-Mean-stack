@@ -98,7 +98,3 @@ bluStore.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
     $httpProvider.interceptors.push('httpInterceptor');
 
 });
-
-bluStore.run(function() {
-    $("[data-toggle='tooltip']").tooltip();
-});

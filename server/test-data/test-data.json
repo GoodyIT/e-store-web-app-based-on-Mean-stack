@@ -621,7 +621,18 @@
 			"title": "iPhone 6s 128GB",
 			"price": "8000",
 			"stock": "4",
+			"hot": true,
+			"sale": true,
 			"description": "apple smarphone",
+			"specifications": [
+				"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+				"Nunc iaculis risus luctus orci malesuada, eu tempor sem placerat.",
+				"Etiam in sem id ex hendrerit ultrices.",
+				"Fusce ac enim eu tortor viverra finibus.",
+				"In mollis est ut blandit interdum.",
+				"Proin imperdiet diam dignissim auctor tristique.",
+				"Etiam id odio consequat, pellentesque nunc nec, tincidunt purus."
+			],
 			"imageUrl": "images/products/iphone.jpg",
 			"category":"57a221554e24b7081cdd02a8"
 		},
@@ -629,7 +640,18 @@
 			"title": "Samsung Galaxy s5",
 			"price": "5000",
 			"stock": "3",
+			"hot": true,
+			"sale": true,
 			"description": "samsung smarphone",
+			"specifications": [
+				"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+				"Nunc iaculis risus luctus orci malesuada, eu tempor sem placerat.",
+				"Etiam in sem id ex hendrerit ultrices.",
+				"Fusce ac enim eu tortor viverra finibus.",
+				"In mollis est ut blandit interdum.",
+				"Proin imperdiet diam dignissim auctor tristique.",
+				"Etiam id odio consequat, pellentesque nunc nec, tincidunt purus."
+			],
 			"imageUrl": "images/products/xbox-one.png",
 			"category": "57a221554e24b7081cdd02a2"
 		},
@@ -637,7 +659,17 @@
 			"title": "Sony X3",
 			"price": "3400",
 			"stock": "7",
+			"sale": true,
 			"description": "Sony smarphone",
+			"specifications": [
+				"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+				"Nunc iaculis risus luctus orci malesuada, eu tempor sem placerat.",
+				"Etiam in sem id ex hendrerit ultrices.",
+				"Fusce ac enim eu tortor viverra finibus.",
+				"In mollis est ut blandit interdum.",
+				"Proin imperdiet diam dignissim auctor tristique.",
+				"Etiam id odio consequat, pellentesque nunc nec, tincidunt purus."
+			],
 			"imageUrl": "images/products/laptop2.png",
 			"category": "57a221554e24b7081cdd02a3"
 		},
@@ -645,7 +677,17 @@
 			"title": "The C++ Programming Language 4th",
 			"price": "100",
 			"stock": "50",
+			"hot": true,
 			"description": "book to learn the c++ programming language",
+			"specifications": [
+				"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+				"Nunc iaculis risus luctus orci malesuada, eu tempor sem placerat.",
+				"Etiam in sem id ex hendrerit ultrices.",
+				"Fusce ac enim eu tortor viverra finibus.",
+				"In mollis est ut blandit interdum.",
+				"Proin imperdiet diam dignissim auctor tristique.",
+				"Etiam id odio consequat, pellentesque nunc nec, tincidunt purus."
+			],
 			"imageUrl": "images/products/book.jpg",
 			"category": "57a221554e24b7081cdd029d"
 		}

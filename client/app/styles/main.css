@@ -7,7 +7,7 @@ body {
 }
 
 .container {
-    margin-top: 100px; 
+    margin-top: 50px; 
     min-height: 300px;
 }
 
@@ -145,6 +145,7 @@ blu-product-short .product-desc {
 }
 
 blu-product-short .product-actions {
+    padding-top: 20px;
     display: none;
     text-align: center;
 }
@@ -170,9 +171,6 @@ blu-product-short:hover .product-actions {
 }
 
 #product-info-top {
-    margin-top: 150px;
-    font-weight: bold;
-    font-size: 1.2em;
     padding-left: 20px;
 }
 
@@ -181,7 +179,33 @@ blu-product-short:hover .product-actions {
 }
 
 blu-rate {
-    color: #FFD700;
+    color: #FFDC2E;
+    position: relative;
+    top: 10px;
+}
+
+.write-review {
+    margin-left: 10px;
+    position: relative;
+    top: 10px;
+}
+
+#product-info-top > h4 {
+    color: #404040;
+}
+
+#product-info-top > ul > li {
+    color: #808080;
+}
+
+#product-info-title {
+    font-weight: bold;
+    color: #555555;
+}
+
+#product-info-price {
+    font-weight: bold;
+    font-size: 1.2em;
 }
 
 /* End: Product View */
@@ -255,7 +279,8 @@ blu-rate {
 
 #footer-logo span,
 #navbar-logo,
-#navbar-title {
+#navbar-title,
+.logo {
     color: #65ba65;
 }
 
@@ -271,6 +296,12 @@ blu-rate {
 #user-dropdown {
 	padding-top: 10px;
 	padding-bottom: 8px;
+}
+
+#np-options > .btn-default.active {
+    color: #fff;
+    background-color: #449d44;
+    border-color: #255625;
 }
 
 @media only screen and (min-width: 550px) {

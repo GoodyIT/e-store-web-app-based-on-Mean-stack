@@ -42,12 +42,15 @@ exports.addNew = function (req, res) {
 		var product = req.body.productInfo;
 
 		var newProduct = {
-			title: product.productName,
-			price: product.productPrice,
-			stock: product.productAmount,
-			description: product.productDescription,
+			title: product.name,
+			price: product.price,
+			stock: product.amount,
+			sale: product.sale,
+			hot: product.hot,
+			specifications: product.specifications,
+			description: product.description,
 			imageUrl: "images/products/" + req.file.filename,
-			category: product.productCategory
+			category: product.category
 		};
 
 		Product.create(newProduct, handler(res));

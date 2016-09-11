@@ -102,8 +102,7 @@
 #sidebar-menu {
     min-height: 80%;
     overflow-y: hidden; 
-    overflow-x: hidden; 
-    background-color: #434343;
+    overflow-x: hidden;
 }
 
 #sidebar-search {

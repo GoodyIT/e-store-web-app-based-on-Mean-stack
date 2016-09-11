@@ -1,12 +1,11 @@
 <div class="thumbnail">
     <img ui-sref="app.product({id:productInfo._id})" ng-src="{{ productInfo.imageUrl }}" alt="{{ productInfo.name }}">
     <div ui-sref="app.product({id:productInfo._id})" class="product-desc">
-        <h3>{{ productInfo.title }}
-            <span class="label label-danger" ng-if="productInfo.isNew">New</span>
-            <span class="label label-warning" ng-if="productInfo.isSale">Sale</span>
-        </h3>
+        <h3>{{ productInfo.title }}</h3>
         <span class="label label-success">{{ productInfo.category.name }}</span>
-        <p>{{ productInfo.description | descriptionMin:15 }}</p>
+        <span class="label label-warning" ng-if="productInfo.sale">On Sale</span>
+        <span class="label label-danger" ng-if="productInfo.hot">Hot</span>
+        <p>{{ productInfo.description | descriptionMin:50 }}</p>
         <span class="badge">Price: ${{ productInfo.price }}</span>
     </div>
     <div class="product-actions">

@@ -3,6 +3,9 @@ bluStore.directive('bluFooter', function(){
 
     return {
         restrict : "E",
-        templateUrl: "templates/footer.html"
+        templateUrl: "templates/footer.html",
+        link: function () {
+            $("[data-toggle='tooltip']").tooltip();
+        }
     };
 });
