@@ -45,6 +45,16 @@ bluStore.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
 
         })
 
+        .state('app.search', {
+            url: 'search/:text',
+            views: {
+                'content@': {
+                    templateUrl: "views/search.html",
+                    controller: "searchCtrl"
+                }
+            }
+        })
+
         .state('app.help', {
             url: 'help/',
             views: {
