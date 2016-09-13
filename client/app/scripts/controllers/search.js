@@ -1,16 +1,17 @@
-bluStore.controller('searchCtrl', ['$scope', '$stateParams', 'productsFactory',
-	function ($scope, $stateParams, products) {
+bluStore.controller('searchCtrl', ['$scope', '$stateParams', 'productsFactory', '$filter',
+	function ($scope, $stateParams, products, $filter) {
 		'use strict';
 
 		var ctr = this;
+		ctr.searchTerm = $stateParams.text;
 
-		products.search($stateParams.text).get(
+		products.search(ctr.searchTerm).get(
 			function (result) {
-				ctr.searchTerm = result.data.length;
-				console.log(result.data);
+				ctr.error = false;
+				ctr.products = $filter('productsGrid')(result.data, 3);
 			},
 			function (err) {
-				console.log(err);
+				ctr.error = true;
 			}
 		);
 
