@@ -2,7 +2,6 @@
 
 var Product = require('../models').Product;
 var handler = require('./handler');
-var cache = require('../data-memory');
 var multer = require('multer');
 var fs = require('fs');
 
@@ -18,11 +17,6 @@ var storage = multer.diskStorage({
 });
 
 var upload = multer({ storage: storage }).single('file');
-
-// load cached data
-cache.get('loadCache')(function () {
-    console.log('cached objects loaded');
-});
 
 // get all products from database
 exports.getAll = function (req, res) {
@@ -95,25 +89,9 @@ exports.updateById = function (req, res) {
 };
 
 exports.getByCategoryId = function (req, res) {
+	
+	var categories = req.body.categories;
 
-	var catId = req.params.id;
-	var categories = [];
-
-	// get all child categories from cache memory
-	cache.get('categoriesDoc', function (err, cats) {
-
-		if (err) {
-			return handler(res)(err);
-		}
-
-		categories = cats.filter(function (obj) {
-			return obj.ancestors.indexOf(catId) != -1;
-		});
-
-		categories.push(catId);
-
-		Product.find({ category: { $in: categories } }, handler(res));
-
-	});
+	Product.find({ category: { $in: categories } }, handler(res));
 
 };

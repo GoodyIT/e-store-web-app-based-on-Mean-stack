@@ -6,7 +6,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var config = require('./config');       // configuration file
 var models = require('./models');            // init models
-var cache = require('./data-memory');
 var authentication = require('./authentication');
 var passport = require('passport');
 var verify = require('./authentication/verify');
