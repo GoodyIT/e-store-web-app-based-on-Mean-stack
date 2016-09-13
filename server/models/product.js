@@ -21,4 +21,6 @@ var productSchema = new Schema({
 	'description': 'text'
 });
 
+productSchema.index({ title: 'text' });
+
 module.exports = productSchema;

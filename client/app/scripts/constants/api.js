@@ -7,6 +7,7 @@ bluStore.constant('API', {
     'VIEW_PRODUCT_CAT_ID': 'api/blu-store/products/category/:id',
     'DEL_PRODUCT': 'api/blu-store/products/:id',
     'ADD_PRODUCT': 'api/blu-store/products',
+    'SEARCH_PRODUCTS': 'api/blu-store/products/search/:text',
     'USER_LOGIN': 'users/login',
     'USER_LOGOUT': 'users/logout',
     'USER_TOKEN': 'users/token',

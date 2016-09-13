@@ -20,10 +20,13 @@
             <form class="navbar-form navbar-right">
                 <div class="form-group">
                     <div id="navbar-search" class="input-group" >
-                        <input type="text" class="form-control" placeholder="Search products, brands and categories"
+                        <input type="text" class="form-control" ng-model="baseCtrl.searchTerm" placeholder="Search products, brands and categories"
                                role="search">
                         <span class="input-group-btn">
-                            <button class="btn btn-success" type="button"><span class="fa fa-search"></span></button>
+                            <button class="btn btn-success" type="button" 
+                                ui-sref="app.search({ text: baseCtrl.searchTerm })">
+                                <span class="fa fa-search"></span>
+                            </button>
                         </span>
                     </div>
                 </div>

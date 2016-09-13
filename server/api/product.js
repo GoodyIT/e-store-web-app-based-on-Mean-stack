@@ -117,3 +117,18 @@ exports.getByCategoryId = function (req, res) {
 	});
 
 };
+
+// search products using product title
+exports.search = function (req, res) {
+	
+	var text = req.params.text;
+
+	Product.find(
+		{ $text: { $search: text } },
+		{ score: { $meta: 'textScore' } }
+	)
+	.sort({ score: { $meta: 'textScore' } })
+	.limit(10)
+	.exec(handler(res));
+
+};
