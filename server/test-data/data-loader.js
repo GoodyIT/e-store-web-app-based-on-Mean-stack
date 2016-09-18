@@ -4,6 +4,7 @@ var testData = require('./test-data.json');
 var categoriesData = testData.categories;
 var productsData = testData.products;
 var usersData = testData.users;
+var reviewsData = testData.reviews;
 
 exports.loadCategories = function (Category, data, cb) {
 
@@ -37,7 +38,25 @@ exports.loadProducts = function (Product, data, cb) {
 
     });
 
-}
+};
+
+exports.loadReviews = function (Review, data, cb) {
+
+    if (!data) {
+        data = reviewsData;
+    }
+
+    Review.create(data, function (err, reviews) {
+
+        if (err) {
+            return cb(err);
+        }
+
+        cb(null, reviews);
+
+    });
+
+};
 
 exports.loadUsers = function (User, data, cb) {
 
@@ -61,7 +80,7 @@ exports.loadUsers = function (User, data, cb) {
     
             // register this user
             User.register(
-                new User({ username: userInfo.username }),
+                new User({ _id: userInfo._id, username: userInfo.username }),
                 userInfo.password,
                 function (err, user) {
                     if (err) {
@@ -95,3 +114,4 @@ exports.loadUsers = function (User, data, cb) {
 exports.categoriesData = categoriesData;
 exports.productsData = productsData;
 exports.usersData = usersData;
+exports.reviewsData = reviewsData;

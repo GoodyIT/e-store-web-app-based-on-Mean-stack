@@ -13,6 +13,7 @@ var models;
 var Category;
 var Product;
 var User;
+var Review;
 
 // connnect to database
 mongoose.connect(config.MONGODB);
@@ -28,6 +29,7 @@ db.once('open', function () {
     Category = models.Category;
     Product = models.Product;
     User = models.User;
+    Review = models.Review;
 
     if (arg === 'load') {
         loadData();
@@ -67,16 +69,28 @@ function loadData() {
             var msg = colors.green.bold(' - Products Loaded to Database!\n');
             console.log(num + msg);
 
-            dataLoader.loadUsers(User, null, function (err, users) {
+            dataLoader.loadReviews(Review, null, function (err, reviews) {
+
                 if (err) {
                     console.log(err);
                 }
 
-                var num = colors.yellow.bold('\n\t' + users.length);
-                var msg = colors.green.bold(' - Users Loaded to Database!\n');
+                var num = colors.yellow.bold('\n\t' + reviews.length);
+                var msg = colors.green.bold(' - Reviews Loaded to Database!\n');
                 console.log(num + msg);
 
-                db.close();
+                dataLoader.loadUsers(User, null, function (err, users) {
+                    if (err) {
+                        console.log(err);
+                    }
+
+                    var num = colors.yellow.bold('\n\t' + users.length);
+                    var msg = colors.green.bold(' - Users Loaded to Database!\n');
+                    console.log(num + msg);
+
+                    db.close();
+
+                });
 
             });
 
@@ -88,18 +102,22 @@ function loadData() {
 
 
 function clearData(done) {
-    
+
     deleteCollection(Category)
-        .then(function(fn, err){
+        .then(function (fn, err) {
             if (err) throw err;
             console.log(colors.red.bold('\n\t* categories db cleaned!\n'));
             return fn(Product);
         })
-        .then(function(fn){
+        .then(function (fn) {
             console.log(colors.red.bold('\n\t* products db cleaned!\n'));
+            return fn(Review);
+        })
+        .then(function (fn) {
+            console.log(colors.red.bold('\n\t* reviews db cleaned!\n'));
             return fn(User);
         })
-        .then(function(){
+        .then(function () {
             console.log(colors.red.bold('\n\t* users db cleaned!\n'));
             done();
         });

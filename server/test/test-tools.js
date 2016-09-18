@@ -14,15 +14,20 @@ var assert = require('chai').assert;
  * connecting to db in "<server-root>/test/test.js" Ln:23 */
 var models = require('../models');
 
+var dataLoader = require('../test-data/data-loader');
+
 // set models variables
 var Category = models.Category;
 var Product = models.Product;
 var User = models.User;
+var Review = models.Review;
 
 
 // export variable and functions.
 exports.Category = Category;
 exports.Product = Product;
+exports.User = User;
+exports.Review = Review;
 
 // orgnaize errors on screen
 exports.printError = function (err, msg) {
@@ -37,9 +42,15 @@ exports.clearDb = function (done) {
 
 		Product.remove({}, function (err) {
 			assert.isNotOk(err);
+			
 			User.remove({}, function (err) {
 				assert.isNotOk(err);
-				done();
+				
+				Review.remove({}, function (err) {
+					assert.isNotOk(err);
+
+					done();
+				});
 			});
 		});
 	});
@@ -66,15 +77,17 @@ exports.handleResponse = function (obj, validator, done) {
 		assert.isOk(res.body.state);
 
 		if (!obj) {
-			return done(res);
+			return done(err, res);
 		}
 
 		if (Array.isArray(obj)) {
 			assert.isOk(Array.isArray(res.body.data));
 			assert.equal(res.body.data.length, obj.length);
-			for (var x = 0; x < res.body.data; x++) {
-				for (var i = 0; i < validator.length; i++) {
-					assert.equal(res.body.data[x][validator[i]], obj[x][validator[i]]);
+			if (validator && validator.length > 0) {
+				for (var x = 0; x < res.body.data; x++) {
+					for (var i = 0; i < validator.length; i++) {
+						assert.equal(res.body.data[x][validator[i]], obj[x][validator[i]]);
+					}
 				}
 			}
 		}
@@ -83,7 +96,7 @@ exports.handleResponse = function (obj, validator, done) {
 				assert.equal(res.body.data[validator[i]], obj[validator[i]]);
 			}
 		}
-		done();
+		done(err, res);
 	}
 };
 
@@ -105,6 +118,38 @@ exports.createDoc = function (model) {
 	}
 
 };
+
+exports.loadProducts = function (data, done) {
+	dataLoader.loadProducts(Product, data, function (err, products) {
+		assert.isNotOk(err);
+		assert.isOk(products);
+		done(products);
+	});
+}
+
+exports.loadCategories = function (data, done) {
+	dataLoader.loadCategories(Category, data, function (err, categories) {
+		assert.isNotOk(err);
+		assert.isOk(categories);
+		done(categories);
+	});
+}
+
+exports.loadUsers = function (data, done) {
+	dataLoader.loadUsers(User, data, function (err, users) {
+		assert.isNotOk(err);
+		assert.isOk(users);
+		done(users);
+	});
+}
+
+exports.loadReviews = function (data, done) {
+	dataLoader.loadReviews(Review, data, function (err, reviews) {
+		assert.isNotOk(err);
+		assert.isOk(reviews);
+		done(reviews);
+	});
+}
 
 
 // test config

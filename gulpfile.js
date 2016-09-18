@@ -16,7 +16,8 @@ var gulp = require('gulp'),
     browserSync = require('browser-sync'),
     ngannotate = require('gulp-ng-annotate'),
     del = require('del'),
-    browserSync = require('browser-sync').create();
+    browserSync = require('browser-sync').create(),
+    babel  = require('gulp-babel');
 
 
 
@@ -26,7 +27,7 @@ gulp.task('browser-sync', ['server'], function() {
     });
 });
 
-gulp.task('favicon', function() {
+gulp.task('favicon', ['clean'], function() {
     return gulp.src('client/app/favicon.ico').pipe(gulp.dest('server/public'));
 });
 
@@ -37,7 +38,7 @@ gulp.task('debug', function(){
 });
 
 // Images
-gulp.task('imagemin', ['favicon'], function () {
+gulp.task('imagemin', ['clean', 'favicon'], function () {
     
     return del(['server/public/images']),
     
@@ -63,6 +64,7 @@ gulp.task('usemin-vendors', ['debug'], function () {
                 sourcemaps.write('./')
             ],
             js: [
+                babel({presets: ['es2015']}),
                 sourcemaps.init({loadMaps: true}),
                 ngannotate(), 
                 'concat',
@@ -79,6 +81,7 @@ gulp.task('usemin', ['debug'], function () {
         .pipe(usemin({
             css: [minifyCss(), rev()],
             js: [
+                babel({presets: ['es2015']}),
                 sourcemaps.init({loadMaps: true}),
                 ngannotate(), 
                 'concat',

@@ -1,6 +1,9 @@
 'use strict';
 
-var Product = require('../models').Product;
+var models = require('../models');
+var Product = models.Product;
+var Category = models.Category;
+var Review = models.Review;
 var handler = require('./handler');
 var multer = require('multer');
 var fs = require('fs');
@@ -54,7 +57,7 @@ exports.addNew = function (req, res) {
 
 // get product by id 
 exports.getById = function (req, res) {
-	Product.findOne({ _id: req.params.id }).populate('category').exec(handler(res));
+	Product.findOne({ slug: req.params.id }).populate('category').exec(handler(res));
 };
 
 // delete product by id
@@ -90,9 +93,13 @@ exports.updateById = function (req, res) {
 
 exports.getByCategoryId = function (req, res) {
 	
-	var categories = req.body.categories;
-
-	Product.find({ category: { $in: categories } }, handler(res));
+	var category = req.params.id;
+	// get all children
+	Category.find({ ancestors: category }, function (err, result) {
+		var categories = result;
+		categories.push(category);
+		Product.find({ category: { $in: categories } }, handler(res));
+	});
 
 };
 
@@ -107,6 +114,27 @@ exports.search = function (req, res) {
 	)
 	.sort({ score: { $meta: 'textScore' } })
 	.limit(10)
+	.populate('category')
 	.exec(handler(res));
 
+};
+
+exports.addReview = function (req, res) {
+	
+	var productId = req.params.id;
+	var review = req.body.review;
+	Product.findOne({ _id: productId }, function (err, product) {
+		if(err) {
+			return handler(res)(err);
+		}
+
+		product.addReview(review, handler(res));
+
+	});
+
+};
+
+exports.getReviews = function (req, res) {
+	var prodId = req.params.id;
+	Review.find({ product: prodId }).populate('user').exec(handler(res));
 };

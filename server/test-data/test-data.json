@@ -618,6 +618,25 @@
 	],
 	"products": [
 		{
+			"title": "iPhone 5s 64GB",
+			"price": "5000",
+			"stock": "10",
+			"hot": false,
+			"sale": true,
+			"description": "apple smarphone",
+			"specifications": [
+				"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+				"Nunc iaculis risus luctus orci malesuada, eu tempor sem placerat.",
+				"Etiam in sem id ex hendrerit ultrices.",
+				"Fusce ac enim eu tortor viverra finibus.",
+				"In mollis est ut blandit interdum.",
+				"Proin imperdiet diam dignissim auctor tristique.",
+				"Etiam id odio consequat, pellentesque nunc nec, tincidunt purus."
+			],
+			"imageUrl": "images/products/iphone.jpg",
+			"category":"57a221554e24b7081cdd02a8"
+		},
+		{
 			"title": "iPhone 6s 128GB",
 			"price": "8000",
 			"stock": "4",
@@ -690,27 +709,74 @@
 			],
 			"imageUrl": "images/products/book.jpg",
 			"category": "57a221554e24b7081cdd029d"
+		},
+		{
+			"_id": "57db129b6681422c147bee5d",
+			"title": "Learn JavaScript",
+			"price": "100",
+			"stock": "20",
+			"hot": false,
+			"sale": false,
+			"description": "programming book",
+			"rating": {
+				"count": 3,
+				"value": 10,
+				"average": 3.33
+			},
+			"specifications": [
+				"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+				"Nunc iaculis risus luctus orci malesuada, eu tempor sem placerat.",
+				"Etiam in sem id ex hendrerit ultrices.",
+				"Fusce ac enim eu tortor viverra finibus.",
+				"In mollis est ut blandit interdum.",
+				"Proin imperdiet diam dignissim auctor tristique.",
+				"Etiam id odio consequat, pellentesque nunc nec, tincidunt purus."
+			],
+			"imageUrl": "images/products/book.jpg",
+			"category": "57a221554e24b7081cdd029d"
+		}
+	],
+	"reviews": [
+		{
+			"product": "57db129b6681422c147bee5d",
+			"user": "57db129b6681422c147bee60",
+			"comment": "perfect book to master javascript",
+			"rate": "5"
+		},
+		{
+			"product": "57db129b6681422c147bee5d",
+			"user": "57db129b6681422c147bee5e",
+			"comment": "very useful",
+			"rate": "1"
+		},
+		{
+			"product": "57db129b6681422c147bee5d",
+			"user": "57db129b6681422c147bee5f",
+			"comment": "profesional author",
+			"rate": "4"
 		}
 	],
 	"users": [
 		{
+			"_id": "57db129b6681422c147bee5e",
 			"username": "test@test.com",
 			"password": "123",
 			"firstname": "ahmed",
 			"lastname": "ali"
 		},
 		{
+			"_id": "57db129b6681422c147bee5f",
 			"username": "ahmedali@cookiescode.com",
 			"password": "222",
 			"firstname": "mohammed",
 			"lastname": "Fathy"
 		},
 		{
+			"_id": "57db129b6681422c147bee60",
 			"username": "admin@test.com",
 			"password": "123",
 			"firstname": "Ahmed",
-			"lastname": "Ali",
-			"admin": true
+			"lastname": "Ali"
 		}
 	]
 }

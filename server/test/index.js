@@ -4,7 +4,6 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var config = require('../config');
 var dataLoader = require('../test-data/data-loader');
-var cache = require('../data-memory');
 var tools = require('./test-tools');
 
 mongoose.Promise = require('bluebird');
