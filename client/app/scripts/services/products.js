@@ -21,6 +21,14 @@ bluStore.factory('productsFactory', function ($resource, API) {
 
         deleteById: function (id) {
             return $resource(API.DEL_PRODUCT, { id: id });
+        },
+
+        getReviews: function (id) {
+            return $resource(API.PRODUCT_REVIEWS, {id: id});
+        },
+
+        addReview: function (id, review) {
+            return $resource(API.ADD_REVIEWS, { id: id }).save({}, { review: review }).$promise;
         }
 
     };

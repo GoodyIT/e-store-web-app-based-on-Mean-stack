@@ -1,34 +1,87 @@
+<div id="addReviewModel" class="modal fade" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<form novalidate class="form-horizontal" name="productCtr.rvForm" ng-submit="productCtr.addReview();">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">Add Review</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label class="control-label col-xs-12 col-sm-3">Rate</label>
+						<div class="col-xs-12 col-sm-9">
+							<span id="select-star1" class="fa fa-star fa-2x rating-star"></span>
+							<span id="select-star2" class="fa fa-star-o fa-2x rating-star"></span>
+							<span id="select-star3" class="fa fa-star-o fa-2x rating-star"></span>
+							<span id="select-star4" class="fa fa-star-o fa-2x rating-star"></span>
+							<span id="select-star5" class="fa fa-star-o fa-2x rating-star"></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="rvComment" class="control-label col-xs-12 col-sm-3">Review</label>
+						<div class="col-xs-12 col-sm-9">
+							<textarea id="rvComment" name="rvComment" ng-model="productCtr.rvComment"
+							 	class="form-control" rows="3" required></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+                    <p class="pull-left" ng-show="productCtr.rvMessage" ng-class="{ 'text-danger': productCtr.rvMsgErr, 'text-success': !productCtr.rvMsgErr }">
+                        <span class="fa fa-info-circle"></span> {{ productCtr.rvMessage }}
+                    </p>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary" 
+						ng-disabled="productCtr.rvForm.$pristine || productCtr.rvForm.$invalid">Add Review</button>
+				</div>
+			</form>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
 <div id="product-view" class="container">
 
 	<div class="row">
 		<div class="col-xs-12 col-sm-4">
 			<div id="product-image">
-				<img ng-src="{{ product.imageUrl }}" class="img-responsive img-thumbnail">
+				<img ng-src="{{ productCtr.product.imageUrl }}" class="img-responsive img-thumbnail">
 			</div>
 		</div>
 		<div id="product-info-top" class="col-xs-12 col-sm-8">
-			<h3 id="product-info-title">{{ product.title }}</h3>
-			<span class="label label-success">{{ product.category.name }}</span>
-			<span class="label label-warning label-xs" ng-if="product.sale">On Sale</span>
-			<span class="label label-danger label-xs" ng-if="product.hot">Hot</span><br>
-			<blu-rate rating="4.5" total="200"></blu-rate> <a href="" class="write-review">write a review</a>
-			<hr ng-if="product.specifications">
-			<p>
+			<h3 id="product-info-title">{{ productCtr.product.title }}</h3>
+			<span class="label label-success">{{ productCtr.product.category.name }}</span>
+			<span class="label label-warning label-xs" ng-if="productCtr.product.sale">On Sale</span>
+			<span class="label label-danger label-xs" ng-if="productCtr.product.hot">Hot</span><br>
+			<div id="product-top-reviews">
+			<blu-rate rating=" {{ productCtr.product.rating.average }}" total="productCtr.product.rating.count"></blu-rate> 
+			</div>
+			<hr>
+			<p ng-if="product.specifications">
 				<h4>Specifications</h4>
 				<ul>
-					<li ng-repeat="spec in product.specifications track by $index">{{ spec }}</li>
+					<li ng-repeat="spec in productCtr.product.specifications track by $index">{{ spec }}</li>
 				</ul>
 			</p>
 			<hr>
 			<div class="row">
-				<div class="col-xs-6">
-					<p id="product-info-price" class="text-danger">{{ product.price | currency }}</p>
+				<div class="col-xs-4 col-sm-4 col-md-1">
+					<p id="product-info-price" class="text-danger">
+						{{ productCtr.product.price | currency:"$":0 }}
+					</p>
 				</div>
-				<div class="col-xs-3">
-					<a type="button" class="btn btn-success btn-block">BUY NOW</a>
+				<div class="col-xs-8 col-sm-8 col-md-3">
+					<input id="product-amount" type="number" min="0" max="99" value="1">
 				</div>
-				<div class="col-xs-3">
-					<a type="button" class="btn btn-warning btn-block">ADD TO WISH LIST</a>
+				<div class="col-xs-12 col-sm-12 col-md-4 product-full-actions">
+					<button class="btn btn-success btn-custom"><span class="fa fa-shopping-cart fa-2x"></span> 
+					<span class="span-text">Add to cart</span></button>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-4 product-full-actions">
+					<button class="btn btn-warning btn-custom"><span class="fa fa-heart fa-2x"></span> 
+					<span class="span-text">Add to Wish List</span></button>
 				</div>
 			</div>
 		</div>
@@ -37,29 +90,83 @@
 		<div class="col-xs-12">
 			<ul id="product-info-bottom" class="nav nav-tabs" role="tablist">
 				<li role="presentation" class="active">
-					<a aria-controls="prodDesc" data-target="#prodDesc"
-						role="tab" data-toggle="tab">Description</a>
+					<a aria-controls="prodDesc" data-target="#prodDesc" role="tab" data-toggle="tab">Description</a>
 				</li>
 				<li role="presentation">
-					<a aria-controls="prodReviews" data-target="#prodReviews"
-						role="tab" data-toggle="tab">Reviews</a>
+					<a id="product-reviews-tab" aria-controls="prodReviews" data-target="#prodReviews" role="tab" data-toggle="tab">Reviews</a>
 				</li>
 				<li role="presentation">
-					<a aria-controls="prodSpecs" data-target="#prodSpecs"
-						role="tab" data-toggle="tab">Specifications</a>
+					<a aria-controls="prodSpecs" data-target="#prodSpecs" role="tab" data-toggle="tab">Specifications</a>
 				</li>
 				<li role="presentation">
-					<a aria-controls="prodReturn" data-target="#prodReturn"
-						role="tab" data-toggle="tab">Return Policy</a>
+					<a aria-controls="prodReturn" data-target="#prodReturn" role="tab" data-toggle="tab">Return Policy</a>
 				</li>
 			</ul>
 			<div class="tab-content">
 				<div role="tabpanel" class="tab-pane fade in active" id="prodDesc">
-					{{ product.description }}
+					{{ productCtr.product.description }}
 				</div>
-				<div role="tabpanel" class="tab-pane fade" id="prodReviews">
-					reviews goes here...
+				<!-- Reviews Tab -->
+				<div role="tabpanel" class="tab-pane fade" ng-show="productCtr.reviews" id="prodReviews">
+					<div class="row">
+						<div class="col-xs-12 col-sm-6 col-md-4">
+							<div id="rating-info">
+								<p>Average Rating</p>
+								<span class="fa fa-star fa-5x rating-star">
+									{{ productCtr.product.rating.average.toFixed(2); }}
+								</span>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6 col-md-4">
+							<div id="rating-info-bars">
+								5 star <span id="rating-bar">
+										<span style="width: {{ productCtr.ratePercent(productCtr.rateCount.fiveStar) }}%;"></span>
+									</span> {{ productCtr.rateCount.fiveStar }}<br> 
+								4 star <span id="rating-bar">
+										<span style="width: {{ productCtr.ratePercent(productCtr.rateCount.fourStar) }}%;"></span>
+									</span> {{ productCtr.rateCount.fourStar }}<br> 
+								3 star <span id="rating-bar">
+										<span style="width: {{ productCtr.ratePercent(productCtr.rateCount.threeStar) }}%;"></span>
+									</span> {{ productCtr.rateCount.threeStar }}<br> 
+								2 star <span id="rating-bar">
+										<span style="width: {{ productCtr.ratePercent(productCtr.rateCount.twoStar) }}%;"></span>
+									</span> {{ productCtr.rateCount.twoStar }}<br> 
+								1 star <span id="rating-bar">
+										<span style="width: {{ productCtr.ratePercent(productCtr.rateCount.oneStar) }}%;"></span>
+									</span> {{ productCtr.rateCount.oneStar }}
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-12 col-md-4">
+							<div id="rating-info-btn">
+								<button type="button" class="btn btn-primary btn-custom" data-toggle="modal" 
+									data-target="#addReviewModel" 
+										ng-disabled="!productCtr.canReview">
+									<span class="fa fa-thumbs-o-up"></span> write a review
+								</button>
+							</div>
+						</div>
+					</div>
+					<hr>
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="media review-comment" ng-repeat="review in productCtr.reviews">
+								<div class="media-left">
+									<a href="#">
+										<img id="review-profile-img" class="media-object img-circle" 
+											ng-src="{{ review.user.imageUrl }}" alt="user picture">
+									</a>
+								</div>
+								<div class="media-body">
+									<h4 class="media-heading">{{ review.user.fullName }}
+										<small> {{ review.createdAt | date }}</small></h4>
+									<blu-rate rating="{{ review.rate }}"></blu-rate>
+									<p>{{ review.comment }}</p>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
+				<!-- ./reviews tab end -->
 				<div role="tabpanel" class="tab-pane fade" id="prodSpecs">
 					reviews goes here...
 				</div>

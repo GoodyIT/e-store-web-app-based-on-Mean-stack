@@ -10,6 +10,10 @@ router.route('/products')
 	.get(productApi.getAll)
 	.post(productApi.addNew);
 
+router.route('/products/reviews/:id')
+	.get(productApi.getReviews)
+	.post(productApi.addReview);	
+
 router.route('/products/search/:text')
 	.get(productApi.search);
 

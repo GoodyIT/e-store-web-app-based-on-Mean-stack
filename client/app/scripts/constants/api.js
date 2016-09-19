@@ -8,6 +8,8 @@ bluStore.constant('API', {
     'DEL_PRODUCT': 'api/blu-store/products/:id',
     'ADD_PRODUCT': 'api/blu-store/products',
     'SEARCH_PRODUCTS': 'api/blu-store/products/search/:text',
+    'PRODUCT_REVIEWS': 'api/blu-store/products/reviews/:id',
+    'ADD_REVIEWS': 'api/blu-store/products/reviews/:id',
     'USER_LOGIN': 'users/login',
     'USER_LOGOUT': 'users/logout',
     'USER_TOKEN': 'users/token',

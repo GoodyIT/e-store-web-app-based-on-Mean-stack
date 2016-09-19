@@ -16,15 +16,14 @@ bluStore.controller('userCtrl', ['$rootScope', '$http', 'authFactory', 'localSto
 
         this.isAdmin = false;
         this.isLoggedIn = false;
-        
-        $rootScope.isLoggedIn = false;
-        $rootScope.isAdmin = false;
 
         // verify user token
         authFactory.verifyToken().get();
 
         // Logged in event
         $rootScope.$on(EVENTS.USER_LOGGED_IN, function (event, userData, token) {
+
+            $rootScope.userInfo = userData;
 
             // on login success
             that.password = '';
@@ -50,6 +49,7 @@ bluStore.controller('userCtrl', ['$rootScope', '$http', 'authFactory', 'localSto
         // Logged out event
         $rootScope.$on(EVENTS.USER_LOGGED_OUT, function () {
             // user logout
+            $rootScope.userInfo = null;
             that.firstName = '';
             that.lastName = '';
             that.fullName = '';

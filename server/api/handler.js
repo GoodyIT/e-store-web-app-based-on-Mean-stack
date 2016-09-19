@@ -20,6 +20,7 @@ function handleResponse(res, doBefore) {
 		}
 
 		if (error) {
+			console.log(error);
 			response.error = (isInDev ? error : {});
 			response.message = (isInDev ? error.message : 'INTERNAL SERVER ERROR');
 			sendResponse(res, 500, response, doBefore);

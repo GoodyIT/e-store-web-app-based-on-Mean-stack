@@ -6,9 +6,9 @@ var passportLocalMongoose = require('passport-local-mongoose');
 var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
-	username: String,
-    OauthId: String,
-    OauthToken: String,
+	username: { type: String, lowercase: true },
+    oAuthId: String,
+    oAuthToken: String,
     firstname: {
         type: String,
         default: ''
@@ -28,5 +28,12 @@ var userSchema = new Schema({
 });
 
 userSchema.plugin(passportLocalMongoose);
+
+userSchema.virtual('fullName').get(function () {
+    return this.firstname + ' ' + this.lastname;
+});
+
+userSchema.set('toObject', { virtuals: true });
+userSchema.set('toJSON', { virtuals: true });
 
 module.exports = userSchema;

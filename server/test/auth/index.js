@@ -12,29 +12,7 @@ var userData = dataLoader.usersData;
 
 describe('Authentication', function () {
 
-	it('can register user', function (done) {
-
-		var user = userData[0];
-
-		var registerUrl = url + 'users/register';
-
-		superagent.post(registerUrl).send(user).end(handleResponse(function (res) {
-
-			User.findOne({ username: user.username }, function (err, result) {
-				assert.isNotOk(err);
-				assert.isOk(result);
-				assert.equal(result.firstname, user.firstname);
-				assert.equal(result.lastname, user.lastname);
-				assert.equal(result.email, user.email);
-				assert.equal(result.admin, false);
-				done();
-			});
-
-		}));
-
-
-
-	});
+	it('can register user');
 
 	it('can login user', function (done) {
 
@@ -45,7 +23,7 @@ describe('Authentication', function () {
 			// login the new user 
 			superagent.post(url + 'users/login')
 				.send({ username: user.username, password: user.password })
-				.end(handleResponse(function (res) {
+				.end(handleResponse(function (err, res) {
 					assert.isOk(res.body.token);
 					done();
 				}));
@@ -55,10 +33,3 @@ describe('Authentication', function () {
 	});
 
 });
-
-function registerUser(user, done) {
-
-
-
-
-}
