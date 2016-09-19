@@ -20,6 +20,21 @@ var gulp = require('gulp'),
     babel  = require('gulp-babel');
 
 
+var paths = {
+    serverSrc: [
+        './server/**/*',
+        '!./server/{public,public/**/*}'
+    ],
+    clientSrc: [
+        'client/**/*'
+    ],
+    buildSrc: [
+        'server/**/*',
+        '!server/{test,test/**/*}',
+        '!server/{test-data,test-data/**/*}'
+    ]
+};
+
 
 gulp.task('browser-sync', ['server'], function() {
     return browserSync.init({
@@ -127,3 +142,16 @@ gulp.task('server' , ['default'], function(cb){
 });
 
 gulp.task('serve', ['watch']);
+
+gulp.task('clean-build', function () {
+    return del(['build']);
+});
+
+gulp.task('build', ['clean-build', 'default'], function () {
+    // clean & copy server files
+    return gulp.src(['.bowerrc', 'bower.json', 'package.json'])
+        .pipe(gulp.dest('./build')), 
+        
+        gulp.src(paths.buildSrc)
+            .pipe(gulp.dest('./build/server'));
+});

@@ -10,3 +10,4 @@ npm-debug.log
 coverage
 /db
 /server/public
+/build
