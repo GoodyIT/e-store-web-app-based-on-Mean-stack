@@ -72,7 +72,6 @@ bluStore.controller('productCtrl', ['$scope', '$rootScope', 'productsFactory', '
 			products.getReviews(ctr.product._id).get(
 				function (result) {
 					ctr.reviews = result.data;
-					
 					if ($rootScope.userInfo) {
 						if (ctr.reviews.find( (value) => value.user._id === $rootScope.userInfo.id )) {
 							ctr.hasReview = true;
