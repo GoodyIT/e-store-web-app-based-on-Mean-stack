@@ -1,7 +1,10 @@
 <div class="thumbnail">
     <div class="product-actions">
-        <a href="#" ng-if="!isAdmin" class="btn btn-primary product-actions-btn" role="button"><span class="fa fa-cart-plus"> Buy Now</span></a>
-        <a ui-sref="app.product({ id:productInfo.slug })" ng-if="!isAdmin" class="btn btn-primary product-actions-btn" role="button"><span class="fa fa-search"> Details</span></a>
+        <a href="#" ng-if="!isAdmin" class="btn btn-success product-actions-btn btn-custom" 
+            role="button"><span class="fa fa-cart-plus"></span> Add To Cart</a>
+        <a ui-sref="app.product({ id:productInfo.slug })" ng-if="!isAdmin" 
+            class="btn btn-warning product-actions-btn btn-custom" role="button">
+            <span class="fa fa-search"></span> View Details</a>
         <div class="btn-group" ng-if="isAdmin">
             <a type="button" class="btn btn-danger dropdown-toggle" 
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin 
@@ -13,12 +16,12 @@
     </div>
     <img ng-src="{{ productInfo.imageUrl }}" alt="{{ productInfo.name }}">
     <div class="product-desc">
-        <h3>{{ productInfo.title }}</h3>
+        <p class="product-desc-title">{{ productInfo.title | descriptionMin:37 }}</p>
         <blu-rate rating="{{ productInfo.rating.average }}"></blu-rate><br>
         <span class="label label-success">{{ productInfo.category.name }}</span>
         <span class="label label-warning" ng-if="productInfo.sale">On Sale</span>
         <span class="label label-danger" ng-if="productInfo.hot">Hot</span>
-        <p>{{ productInfo.description | descriptionMin:50 }}</p>
+        <p>{{ productInfo.description | descriptionMin:41 }}</p>
         <span class="badge">Price: {{ productInfo.price | currency:"$":0 }}</span>
     </div>
 </div>

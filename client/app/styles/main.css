@@ -121,7 +121,7 @@ footer a:hover {
 }
 
 blu-product-short .thumbnail {
-    height: 380px;
+    height: 330px;
     border-style: none;
 }
 
@@ -131,6 +131,7 @@ blu-product-short:hover .thumbnail {
 }
 
 blu-product-short .thumbnail> img {
+    margin-top: 10px;
     height: 150px;
     width: auto;
 }
@@ -140,13 +141,17 @@ blu-product-short .product-desc {
     padding: 10px;
 }
 
+.product-desc-title {
+    font-weight: 700;
+}
+
 .product-desc p {
     padding-top: 10px;
 }
 
 .product-actions {
     width: 284px;
-    height: 370px;
+    height: 320px;
     position: absolute;
     display: none;
     text-align: center;
@@ -155,7 +160,8 @@ blu-product-short .product-desc {
 
 .product-actions-btn {
     position: relative;
-    top: 70px;
+    top: 60px;
+    margin-top: 10px;
 }
 
 blu-product-short:hover .product-actions {
