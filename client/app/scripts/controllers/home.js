@@ -8,10 +8,11 @@ bluStore.controller('homeCtrl', ['$scope', '$rootScope', '$filter', 'productsFac
         // get all products and reorganize them to fit in bootstrap grid
         productsFactory.getAll().get(function (result) {
             that.products = $filter('productsGrid')(result.data, 3);
+            $rootScope.loadingState = 'none';
         });
 
         $scope.$on('$viewContentLoaded', function(event) {
-            $rootScope.stateLoading.app = false;
+            
         });
 
         $scope.homeCtrl = this;

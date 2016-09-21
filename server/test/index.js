@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var config = require('../config');
 var dataLoader = require('../test-data/data-loader');
 var tools = require('./test-tools');
+var verify = require('../authentication/verify');
 
 mongoose.Promise = require('bluebird');
 
@@ -27,6 +28,9 @@ before(function (done) {
 		models = require('../models');     // load models first
 		var authentication = require('../authentication');
 		var passport = require('passport');
+
+		// verify user authentication 
+		app.use('/', verify.auth);
 
 		app.use(bodyParser.json());
 		app.use(passport.initialize());

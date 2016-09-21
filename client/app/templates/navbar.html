@@ -15,7 +15,7 @@
         <div class="collapse navbar-collapse" id="menu-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <blu-user-dropdown></blu-user-dropdown>
-                <li><a href="#/cart"><span class="fa fa-shopping-cart"></span> Cart</a></li>
+                <blu-cart-dropdown></blu-cart-dropdown>
             </ul>
             <form class="navbar-form navbar-right">
                 <div class="form-group">
@@ -32,7 +32,7 @@
                 </div>
             </form>
             <ul class="nav navbar-nav navbar-left">
-                <li ng-class="{ 'active': baseCtrl.activeView === 'app' }"><a ui-sref="app"><span class="fa fa-home">
+                <li ng-class="{ 'active': $root.activeState === 'app' }"><a ui-sref="app"><span class="fa fa-home">
                 </span> Home</a></li>
                 <!-- Categories sidebar -->
                 <li>
@@ -42,7 +42,7 @@
                 </li>
 
                 <!-- help button -->
-                <li ng-class="{ 'active': baseCtrl.activeView === 'app.help' }"><a ui-sref="app.help">
+                <li ng-class="{ 'active': $root.activeState === 'app.help' }"><a ui-sref="app.help">
                     <span class="fa fa-info-circle"></span> Help</a></li>
             </ul>
         </div>

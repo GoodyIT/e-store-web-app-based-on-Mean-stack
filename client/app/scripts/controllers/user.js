@@ -1,9 +1,10 @@
-bluStore.controller('userCtrl', ['$rootScope', '$http', 'authFactory', 'localStorageFactory', 'CONFIG', 'EVENTS', 'ERRORS',
-    function ($rootScope, $http, authFactory, localStorage, CONFIG, EVENTS, ERRORS) {
+bluStore.controller('userCtrl', ['$rootScope', '$http', 'authFactory', 'localStorageFactory',
+    'CONFIG', 'EVENTS', 'ERRORS', 'cartFactory',
+    function ($rootScope, $http, authFactory, localStorage, CONFIG, EVENTS, ERRORS, cartFactory) {
         'use strict';
 
         var that = this;
-
+        var userInfo;
         this.userEmail = '';
         this.password = '';
         this.keepInfo = false;
@@ -13,7 +14,6 @@ bluStore.controller('userCtrl', ['$rootScope', '$http', 'authFactory', 'localSto
         this.userImage = '';
         this.emailErr = false;
         this.passErr = false;
-
         this.isAdmin = false;
         this.isLoggedIn = false;
 
@@ -23,7 +23,8 @@ bluStore.controller('userCtrl', ['$rootScope', '$http', 'authFactory', 'localSto
         // Logged in event
         $rootScope.$on(EVENTS.USER_LOGGED_IN, function (event, userData, token) {
 
-            $rootScope.userInfo = userData;
+            userInfo = userData;
+            $rootScope.userInfo = userInfo;
 
             // on login success
             that.password = '';
@@ -33,8 +34,6 @@ bluStore.controller('userCtrl', ['$rootScope', '$http', 'authFactory', 'localSto
             that.userImage = userData.imageUrl;
             that.isLoggedIn = true;
             that.isAdmin = userData.isAdmin;
-            $rootScope.isLoggedIn = true;
-            $rootScope.isAdmin = userData.isAdmin;
 
             if (token) {
                 // save token to local storage
@@ -56,10 +55,9 @@ bluStore.controller('userCtrl', ['$rootScope', '$http', 'authFactory', 'localSto
             that.userImage = '';
             that.isLoggedIn = false;
             that.isAdmin = false;
-            $rootScope.isLoggedIn = false;
-            $rootScope.isAdmin = false;
-            
+
             localStorage.remove(CONFIG.TOKEN_STORE_KEY);
+
         });
 
         // Login error event
@@ -77,15 +75,14 @@ bluStore.controller('userCtrl', ['$rootScope', '$http', 'authFactory', 'localSto
 
         $rootScope.$on(EVENTS.USER_REQUIRED, function (event) {
             // user logout
+            $rootScope.userInfo = null;
             that.firstName = '';
             that.lastName = '';
             that.fullName = '';
             that.userImage = '';
             that.isLoggedIn = false;
             that.isAdmin = false;
-            $rootScope.isLoggedIn = false;
-            $rootScope.isAdmin = false;
-            
+
             localStorage.remove(CONFIG.TOKEN_STORE_KEY);
         });
 

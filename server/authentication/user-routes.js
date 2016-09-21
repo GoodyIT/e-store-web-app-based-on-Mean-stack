@@ -80,7 +80,11 @@ router.post('/login', function (req, res, next) {
 
 	passport.authenticate('local', function (err, user, info) {
 		if (err) {
-			return next(err);
+			return res.status(401).json({
+				state: false,
+				error: err,
+				message: err.message
+			});
 		}
 		if (!user) {
 			if (info.name === 'IncorrectUsernameError') {
@@ -98,9 +102,11 @@ router.post('/login', function (req, res, next) {
                 });
             }
             else {
-                var error = new Error(info);
-                error.status = 401;
-                return next(error);
+                res.status(401).json({
+                    state: false,
+                    error: err,
+					message: info.message
+                });
             }
             return;
 		}

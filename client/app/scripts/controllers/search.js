@@ -1,5 +1,5 @@
-bluStore.controller('searchCtrl', ['$scope', '$stateParams', 'productsFactory', '$filter',
-	function ($scope, $stateParams, products, $filter) {
+bluStore.controller('searchCtrl', ['$rootScope', '$scope', '$stateParams', 'productsFactory', '$filter',
+	function ($rootScope, $scope, $stateParams, products, $filter) {
 		'use strict';
 
 		var ctr = this;
@@ -9,9 +9,11 @@ bluStore.controller('searchCtrl', ['$scope', '$stateParams', 'productsFactory', 
 			function (result) {
 				ctr.error = false;
 				ctr.products = $filter('productsGrid')(result.data, 3);
+				$rootScope.loadingState = 'none';
 			},
 			function (err) {
 				ctr.error = true;
+				$rootScope.loadingState = 'none';
 			}
 		);
 

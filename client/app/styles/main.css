@@ -1,5 +1,5 @@
 body {
-    margin-top: 51px;
+    padding-top: 51px;
 }
 
 .container {
@@ -34,20 +34,12 @@ body {
     width: 200px;
 }
 
-.carousel-control {
-    display: none;
-}
-
-#header-carousel:hover .carousel-control {
-    display: block;
-}
-
-.affix {
+blu-social-links.affix {
     top: 200px;
     right: 10px;
 }
 
-.affix-top {
+blu-social-links.affix-top {
     position: absolute;
     top: 400px;
     right: 10px;
@@ -236,7 +228,7 @@ blu-product-short:hover .product-actions {
     text-align: center;
 }
 
-.login-dropdown {
+.nav-dropdown {
     min-width: 250px;
     padding: 14px 14px 0;
     overflow: hidden;
@@ -256,7 +248,7 @@ blu-product-short:hover .product-actions {
     height: 300px;
 }
 
-.login-dropdown .bottom {
+.nav-dropdown .bottom {
     background-color: rgba(255, 255, 255, .8);
     border-top: 1px solid #ddd;
     clear: both;
@@ -264,7 +256,7 @@ blu-product-short:hover .product-actions {
     text-align: center;
 }
 
-.login-dropdown .row {
+.nav-dropdown .row {
     padding-bottom: 20px;
 }
 
@@ -390,6 +382,7 @@ blu-product-short:hover .product-actions {
 .product-full-actions {
     margin-top: 10px;
 }
+
 
 @media only screen and (min-width: 550px) {
     #navbar-search {

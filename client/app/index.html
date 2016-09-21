@@ -26,13 +26,13 @@
 
 <body ng-controller="mainCtrl as baseCtrl">
     <!-- loading screen -->
-    <div class="container loading logo" ng-show="$root.stateLoading.app">
+    <div class="container loading logo" ng-show="$root.loadingState === 'app'">
         <span class="fa fa-shopping-bag fa-2x"></span>
         <h2>BluStore</h2>
         <i class="fa fa-spinner fa-spin fa-2x"></i>
     </div>
 
-    <div ng-hide="$root.stateLoading.app">
+    <div ng-hide="$root.loadingState === 'app'">
         <div id="wrapper">
 
             <!-- Sidebar -->
@@ -88,7 +88,6 @@
             <!-- Page Content -->
             <div id="page-content-wrapper">
 
-
                 <blu-register id="register-modal"></blu-register>
                 <div ui-view="header"></div>
                 <div ui-view="content"></div>
@@ -115,6 +114,13 @@
     <!-- endbuild -->
     <!-- build:js scripts/main.js -->
     <script src="scripts/app.js"></script>
+    <!-- services -->
+    <script src="scripts/services/categories.js"></script>
+    <script src="scripts/services/products.js"></script>
+    <script src="scripts/services/cart.js"></script>
+    <script src="scripts/services/auth.js"></script>
+    <script src="scripts/services/local-storage.js"></script>
+    <script src="scripts/services/http-interceptor.js"></script>
     <!-- controllers -->
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/home.js"></script>
@@ -126,12 +132,6 @@
     <script src="scripts/controllers/admin-orders.js"></script>
     <script src="scripts/controllers/admin-categories.js"></script>
     <script src="scripts/controllers/admin-newproduct.js"></script>
-    <!-- services -->
-    <script src="scripts/services/categories.js"></script>
-    <script src="scripts/services/products.js"></script>
-    <script src="scripts/services/auth.js"></script>
-    <script src="scripts/services/local-storage.js"></script>
-    <script src="scripts/services/http-interceptor.js"></script>
     <!-- directives -->
     <script src="scripts/directives/navbar.js"></script>
     <script src="scripts/directives/header.js"></script>
@@ -139,6 +139,7 @@
     <script src="scripts/directives/product-short.js"></script>
     <script src="scripts/directives/social-links.js"></script>
     <script src="scripts/directives/user-dropdown.js"></script>
+    <script src="scripts/directives/cart-dropdown.js"></script>
     <script src="scripts/directives/register.js"></script>
     <script src="scripts/directives/rate.js"></script>
     <!-- filters -->

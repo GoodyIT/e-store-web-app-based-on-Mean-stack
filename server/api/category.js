@@ -36,7 +36,3 @@ exports.addNew = function (req, res) {
 	}
 
 };
-
-exports.getById = function (req, res) {
-	Category.findOne({ _id: req.params.id }, handler(res));
-};

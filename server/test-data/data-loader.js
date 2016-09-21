@@ -5,6 +5,10 @@ var categoriesData = testData.categories;
 var productsData = testData.products;
 var usersData = testData.users;
 var reviewsData = testData.reviews;
+var tools = require('../test/test-tools');
+var config = tools.config;
+var url = config.server.url;
+var superagent = require('superagent');
 
 exports.loadCategories = function (Category, data, cb) {
 
@@ -58,7 +62,8 @@ exports.loadReviews = function (Review, data, cb) {
 
 };
 
-exports.loadUsers = function (User, data, cb) {
+
+function loadUsers (User, data, cb) {
 
     // if no data provided then use local test data
     if (!data) {
@@ -73,43 +78,76 @@ exports.loadUsers = function (User, data, cb) {
 
     // returned users
     var users = [];
-    
-        // loop through users data
-        for (var i = 0; i < data.length; i++) {
-            var userInfo = data[i];
-    
-            // register this user
-            User.register(
-                new User({ _id: userInfo._id, username: userInfo.username }),
-                userInfo.password,
-                function (err, user) {
-                    if (err) {
-                        return cb(err);
-                    }
-    
-                    user.firstname = userInfo.firstname || '';
-                    user.lastname = userInfo.lastname || '';
-                    user.email = userInfo.email || '';
-    
-                    user.save(function (err, user) {
-                        if (err) {
-                            cb(err);
-                        }
 
-                        users.push(user);
-    
-                        // if all users registered than invoke the callback
-                        if (users.length === data.length) {
-                            cb(null, users);
-                        }
-    
-                    });
+    // loop through users data
+    for (var i = 0; i < data.length; i++) {
+        var userInfo = data[i];
+
+        // register this user
+        User.register(
+            new User({
+                _id: userInfo._id,
+                username: userInfo.username,
+                firstname: userInfo.firstname,
+                lastname: userInfo.lastname,
+                cart: userInfo.cart
+            }),
+            userInfo.password,
+            function (err, user) {
+                if (err) {
+                    return cb(err);
                 }
-            );
-        }
-    
+                users.push(user);
+
+                // if all users registered than invoke the callback
+                if (users.length === data.length) {
+                    cb(null, users);
+                }
+            }
+        );
+    }
+
 };
 
+function loginUser (User, cb) {
+    loadUsers(User, usersData[0], function (err) {
+        if (err) {
+            return cb(err);
+        }
+        // login this user to get the token
+		superagent.post(url + 'users/login')
+			.send({ username: usersData[0].username, password: usersData[0].password })
+			.end(function (err, res) {
+                if (err) {
+                    return cb(err);
+                }
+                usersData[0].token = res.body.token;
+
+                // return normal user
+                return cb(null, usersData[0]);
+			});
+    });
+};
+
+exports.loginAdmin = function (User, cb) {
+    // load and login normal user
+    loginUser(User, function (err, user) {
+        if (err) {
+            return cb(err);
+        }
+        // give this user admin permissions
+        User.update({ _id: user._id }, { $set: { admin: true } }).exec(function (err) {
+            if (err) {
+                return cb(err);
+            }
+            // return admin user with token
+            return cb(null, user);
+        });
+    });
+};
+
+exports.loadUsers = loadUsers;
+exports.loginUser = loginUser;
 
 exports.categoriesData = categoriesData;
 exports.productsData = productsData;

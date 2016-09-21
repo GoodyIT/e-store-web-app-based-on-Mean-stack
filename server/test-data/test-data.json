@@ -693,6 +693,7 @@
 			"category": "57a221554e24b7081cdd02a3"
 		},
 		{
+			"_id": "57e0f690d20d779c024ebad0",
 			"title": "The C++ Programming Language 4th",
 			"price": "100",
 			"stock": "50",
@@ -777,6 +778,23 @@
 			"password": "123",
 			"firstname": "Ahmed",
 			"lastname": "Ali"
+		},
+		{
+			"_id": "57e0f836fece06f81721beea",
+			"username": "cust@test.com",
+			"password": "123",
+			"firstname": "Saad",
+			"lastname": "Ali",
+			"cart": [
+				{
+					"product": "57db129b6681422c147bee5d",
+					"amount": 2
+				},
+				{
+					"product": "57e0f690d20d779c024ebad0",
+					"amount": 3
+				}
+			]
 		}
 	]
 }

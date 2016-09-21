@@ -86,14 +86,26 @@ exports.handleResponse = function (obj, validator, done) {
 			if (validator && validator.length > 0) {
 				for (var x = 0; x < res.body.data; x++) {
 					for (var i = 0; i < validator.length; i++) {
-						assert.equal(res.body.data[x][validator[i]], obj[x][validator[i]]);
+						if (Array.isArray(res.body.data[x][validator[i]])
+							&& Array.isArray(obj[x][validator[i]])){
+								assert.equal(res.body.data[x][validator[i]].length, 
+									obj[x][validator[i]].length);
+						}
+						else {
+							assert.equal(res.body.data[x][validator[i]], obj[x][validator[i]]);
+						}
 					}
 				}
 			}
 		}
 		else {
 			for (var i = 0; i < validator.length; i++) {
-				assert.equal(res.body.data[validator[i]], obj[validator[i]]);
+				if (Array.isArray(res.body.data[validator[i]]) && Array.isArray(obj[validator[i]])){
+					assert.equal(res.body.data[validator[i]].length, obj[validator[i]].length);
+				}
+				else {
+					assert.equal(res.body.data[validator[i]], obj[validator[i]]);
+				}
 			}
 		}
 		done(err, res);
@@ -125,7 +137,7 @@ exports.loadProducts = function (data, done) {
 		assert.isOk(products);
 		done(products);
 	});
-}
+};
 
 exports.loadCategories = function (data, done) {
 	dataLoader.loadCategories(Category, data, function (err, categories) {
@@ -133,7 +145,7 @@ exports.loadCategories = function (data, done) {
 		assert.isOk(categories);
 		done(categories);
 	});
-}
+};
 
 exports.loadUsers = function (data, done) {
 	dataLoader.loadUsers(User, data, function (err, users) {
@@ -141,7 +153,7 @@ exports.loadUsers = function (data, done) {
 		assert.isOk(users);
 		done(users);
 	});
-}
+};
 
 exports.loadReviews = function (data, done) {
 	dataLoader.loadReviews(Review, data, function (err, reviews) {
@@ -149,8 +161,7 @@ exports.loadReviews = function (data, done) {
 		assert.isOk(reviews);
 		done(reviews);
 	});
-}
-
+};
 
 // test config
 exports.config = {

@@ -7,6 +7,7 @@ var config = tools.config;
 var dataLoader = require('../../test-data/data-loader');
 
 var Category = tools.Category;
+var User = tools.User;
 var categoriesData = dataLoader.categoriesData;
 var handleResponse = tools.handleResponse;
 var loadCategories = dataLoader.loadCategories;
@@ -28,39 +29,34 @@ describe('Category API', function () {
 
 	});
 
-	it('can get category by id', function (done) {
-
-		var catObj = { name: "just another category 0909" };
-
-		// add category to db
-		Category.create(catObj, function (err, category) {
-			// get category by id
-			var url = config.server.url + 'api/blu-store/categories/' + category._id;
-			superagent.get(url).end(handleResponse(catObj, ['name'], done));
-		});
-
-	});
-
 	it('can add new category', function (done) {
 
-		var url = config.server.url + 'api/blu-store/categories';
+		dataLoader.loginAdmin(User, function (err, user) {
 
-		var catObj = {
-			name: "just another category 0909"
-		};
+			assert.isNotOk(err);
+			assert.isOk(user.token);
 
-		// add category without parent
-		superagent
-			.post(url)
-			.send(catObj)
-			.end(handleResponse(catObj, ['name'], function (err, res) {
-				// add category with parent 
-				var catObj2 = { name: 'cate object two', parent: catObj._id };
-				superagent
-					.post(url)
-					.send(catObj2)
-					.end(handleResponse(catObj2, ['parent'], done));
-			}));
+			var url = config.server.url + 'api/blu-store/categories';
+
+			var catObj = {
+				name: "just another category 0909"
+			};
+
+			// add category without parent
+			superagent
+				.post(url)
+				.set('x-access-token', user.token)
+				.send(catObj)
+				.end(handleResponse(catObj, ['name'], function (err, res) {
+					// add category with parent 
+					var catObj2 = { name: 'cate object two', parent: catObj._id };
+					superagent
+						.post(url)
+						.set('x-access-token', user.token)
+						.send(catObj2)
+						.end(handleResponse(catObj2, ['parent'], done));
+				}));
+		});
 
 	});
 

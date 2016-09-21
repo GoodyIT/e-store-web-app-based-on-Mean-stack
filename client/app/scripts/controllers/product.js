@@ -16,6 +16,9 @@ bluStore.controller('productCtrl', ['$scope', '$rootScope', 'productsFactory', '
 
 		products.getById($stateParams.id).get(function (result) {
 			ctr.product = result.data;
+
+			// stop loading screen 
+			$rootScope.loadingState = 'none';
 		});
 
 		$rootScope.$watch('userInfo', function (newValue) {

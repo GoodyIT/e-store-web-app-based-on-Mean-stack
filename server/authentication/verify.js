@@ -59,7 +59,7 @@ exports.admin = function (req, res, next) {
 		next();
 	}
 	else {
-		return res.status(401).json({
+		return res.status(403).json({
 			state: false,
 			error: 'not-admin'
 		});

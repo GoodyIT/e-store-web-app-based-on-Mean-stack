@@ -42,7 +42,15 @@
 </div>
 <!-- /.modal -->
 
-<div id="product-view" class="container">
+<!-- loading screen -->
+<div class="container loading logo" ng-show="$root.loadingState === 'app.product'">
+	<span class="fa fa-shopping-bag fa-2x"></span>
+	<h2>BluStore</h2>
+	<i class="fa fa-spinner fa-spin fa-2x"></i>
+</div>
+
+<!-- product view -->
+<div id="product-view" class="container" ng-hide="$root.loadingState === 'app.product'">
 
 	<div class="row">
 		<div class="col-xs-12 col-sm-4">

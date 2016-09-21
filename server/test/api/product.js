@@ -49,17 +49,23 @@ describe('Product API', function () {
 
 	it('can delete product by id', function (done) {
 
-		var url = config.server.url + 'api/blu-store/products/';
+		dataLoader.loginAdmin(User, function (err, user) {
+			
+			assert.isNotOk(err);
+			assert.isOk(user.token);
+			
+			var url = config.server.url + 'api/blu-store/products/';
 
-		tools.loadProducts(productsData[0], function (result) {
-			url += result._id;
-
-			superagent.del(url).end(function () {
-				// make sure this product is no longer in the db
-				Product.findOne({ _id: result._id }, function (err, prod) {
+			tools.loadProducts(productsData[0], function (result) {
+				url += result._id;
+				superagent.del(url).set('x-access-token', user.token).end(function (err) {
 					assert.isNotOk(err);
-					assert.isNotOk(prod);
-					done();
+					// make sure this product is no longer in the db
+					Product.findOne({ _id: result._id }, function (err, prod) {
+						assert.isNotOk(err);
+						assert.isNotOk(prod);
+						done();
+					});
 				});
 			});
 		});
@@ -68,47 +74,56 @@ describe('Product API', function () {
 
 	it('can update item by id', function (done) {
 
-		tools.loadProducts(productsData[0], function (result) {
-			var url = config.server.url + 'api/blu-store/products/';
-			url += result._id;
-			// create new title to update the product 
-			var newTitle = "new title test";
-			// edit product without saving to database
-			result.title = newTitle;
-			var validator = ['title'];
-			superagent.put(url).send(result).end(handleResponse(result, validator, done));
+		dataLoader.loginUser(User, function (err, user) {
+
+			assert.isNotOk(err);
+			assert.isOk(user.token);
+
+			tools.loadProducts(productsData[0], function (result) {
+				var url = config.server.url + 'api/blu-store/products/';
+				url += result._id;
+				// create new title to update the product 
+				var newTitle = "new title test";
+				// edit product without saving to database
+				result.title = newTitle;
+				var validator = ['title'];
+				superagent.put(url)
+					.set('x-access-token', user.token)
+					.send(result).end(handleResponse(result, validator, done));
+			});
+
 		});
 
 	});
 
 	it('can add review to product', function (done) {
-		// load product to db for testing
-		tools.loadProducts(productsData[0], function (product) {
-			// load user to db for testing
-			tools.loadUsers(usersData[0], function (user) {
+
+		dataLoader.loginUser(User, function (err, user) {
+
+			assert.isNotOk(err);
+			assert.isOk(user.token);
+
+			// load product to db for testing
+			tools.loadProducts(productsData[0], function (product) {
 				// send add review request
 				var url = config.server.url + 'api/blu-store/products/reviews/' + product._id;
 				var review = {
-					user: user[0]._id,
+					user: user._id,
 					comment: "this is a comment on this product",
 					rate: 5
 				};
-				superagent.post(url).send({ review: review }).end(handleResponse(function (err, res) {
-					assert.isNotOk(err);
-					assert.isOk(res.body.data);
-					assert.equal(res.body.data.rating.count, 1);
-					assert.equal(res.body.data.rating.value, 5);
-					// new review 
-					review.rate = 1;
-					superagent.post(url).send({ review: review }).end(handleResponse(function (err, res) {
-						assert.equal(res.body.data.rating.count, 2);
-						assert.equal(res.body.data.rating.value, 6);
-						assert.equal(res.body.data.rating.average, 3);	
+				superagent.post(url)
+					.set('x-access-token', user.token)
+					.send({ review: review }).end(handleResponse(function (err, res) {
+						assert.isNotOk(err);
+						assert.isOk(res.body.data);
+						assert.equal(res.body.data.rating.count, 1);
+						assert.equal(res.body.data.rating.value, 5);
 						done();
 					}));
-				}));
-			})
+			});
 		});
+
 	});
 
 	it('can search products by title', function (done) {
