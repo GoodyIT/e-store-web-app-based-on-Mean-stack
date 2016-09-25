@@ -385,6 +385,10 @@ blu-product-short:hover .product-actions {
     margin-top: 10px;
 }
 
+.cart-dropdown {
+	width: 350px;
+}
+
 #cart-dropdown-scroll {
     max-height: 150px;
     overflow-y: auto; 
@@ -394,6 +398,11 @@ blu-product-short:hover .product-actions {
 #sidebar-menu {
     max-height: 250px;
     overflow-y: auto; 
+}
+
+.cart-close-btn {
+    margin-right: 20px;
+    color: red;
 }
 
 @media only screen and (min-width: 550px) {
@@ -426,7 +435,7 @@ blu-product-short:hover .product-actions {
     }
 
     #cart-dropdown-scroll {
-        max-height: 200px;
+        max-height: 400px;
     }
 }
 

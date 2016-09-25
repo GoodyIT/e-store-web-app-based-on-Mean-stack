@@ -3,9 +3,9 @@
 		aria-expanded="false"><span class="fa fa-shopping-cart"></span> Cart <span class="badge" ng-show="cart.length > 0">{{ cart.length }}</span></a>
 	<ul class="dropdown-menu nav-dropdown cart-dropdown">
 		<form>
-			<div class="row">
+			<div class="row nav-dropdown-top">
 				<div class="col-xs-12">
-					<span class="label label-success">SHOPPING CART</span>
+					<h4><span class="label label-success label-lg">SHOPPING CART</span></h4>
 				</div>
 			</div>
 			<div id="cart-dropdown-scroll">
@@ -16,9 +16,10 @@
 				</div>
 				<div class="col-xs-9">
 					<p title=" {{ cartItem.product.title }}">
-						{{ cartItem.amount }} x {{ cartItem.product.title | descriptionMin: 20}}</p>
+						{{ cartItem.amount }} x {{ cartItem.product.title | descriptionMin: 20}}
+						<button type="button" class="pull-right cart-close-btn close" 
+						title="remove this product" ng-click="delOneFromCart(cartItem.product._id);">&times;</button></p>
 						<span class="badge">{{ cartItem.amount * cartItem.product.price | currency:'$':0 }}</span>
-						<a href="">remove</a>
 				</div>
 			</div>
 			</div>

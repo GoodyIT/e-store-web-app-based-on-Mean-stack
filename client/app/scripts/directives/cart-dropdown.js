@@ -12,6 +12,26 @@ bluStore.directive('bluCartDropdown', ['cartFactory', '$rootScope', 'EVENTS', 'C
 				// init local cart
 				scope.cart = [];
 
+				// prevent the menu from close on click
+				$('.cart-dropdown').on('click', function (event) {
+					event.preventDefault();
+					event.stopPropagation();
+				});
+
+				// delete one product from cart
+				scope.delOneFromCart = function (productId) {
+					var productIndex = scope.cart.indexOf(scope.cart.find(value => value.product._id == productId));
+					console.log(productIndex);
+					if (productIndex > -1) {
+						if (scope.cart[productIndex].amount > 1) {
+							scope.cart[productIndex].amount --;
+						}
+						else {
+							scope.cart.splice(productIndex, 1);
+						}
+					}
+				};
+
 				// on login or logout or user data changes 
 				$rootScope.$watch('userInfo', function (userInfo) {
 					if (userInfo) {
