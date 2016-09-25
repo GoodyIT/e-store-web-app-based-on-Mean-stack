@@ -60,19 +60,34 @@ userSchema.methods.addToCart = function (product, cb) {
 };
 
 userSchema.methods.updateCart = function (cart, cb) {
+    // user data
     var self = this;
+    var oldCart = self.cart;
+    
+    // add "old cart/product amount" to the new cart.
+    for (var i = 0; i < oldCart.length; i++) {
+        var sameProduct = cart.find(value => value.product == oldCart[i].product);
 
+        if (sameProduct) {
+            sameProduct.amount += oldCart[i].amount; // incress amount 
+            console.log(sameProduct);
+        }
+        else {
+            cart.push(oldCart[i]);
+        }
+    }
+
+    // save the new cart to the user and return it.
     self.model('User')
         .findByIdAndUpdate(
             self.id,
-            { $set: { cart: { $each: cart } } },
+            { $set: { cart: cart } },
             { safe: true, upsert: true, new: true }
         )
         .populate('cart.product')
         .exec(function (err, user) {
             cb(err, { cart: user.cart });
         });
-
 };
 
 userSchema.virtual('fullName').get(function () {
