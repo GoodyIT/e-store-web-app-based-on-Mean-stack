@@ -1,4 +1,4 @@
-var bluStore = angular.module('bluStore', ['ui.router', 'ngResource', 'ngFileUpload']);
+var bluStore = angular.module('bluStore', ['ui.router', 'ngResource', 'ngFileUpload', 'ngCookies']);
 
 bluStore.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
     "use strict";

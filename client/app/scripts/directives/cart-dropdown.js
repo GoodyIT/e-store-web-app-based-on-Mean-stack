@@ -1,5 +1,5 @@
-bluStore.directive('bluCartDropdown', ['cartFactory', '$rootScope', 'EVENTS',
-	function (cartFactory, $rootScope, EVENTS) {
+bluStore.directive('bluCartDropdown', ['cartFactory', '$rootScope', 'EVENTS', 'CONFIG', 'localStorageFactory',
+	function (cartFactory, $rootScope, EVENTS, CONFIG, localStorage) {
 		'use strict';
 
 		return {
@@ -9,15 +9,21 @@ bluStore.directive('bluCartDropdown', ['cartFactory', '$rootScope', 'EVENTS',
 			scope: {},
 			link: function (scope, element, attrs) {
 
+				// init local cart
 				scope.cart = [];
 
 				// on login or logout or user data changes 
 				$rootScope.$watch('userInfo', function (userInfo) {
-					if(userInfo) {
+					if (userInfo) {
 						scope.$broadcast(EVENTS.LOAD_CART);
 					}
 					else {
 						scope.cart = [];
+						// load saved cart from cookies
+						var localCart = localStorage.getObject(CONFIG.CART_STORE_KEY);
+						if (localCart && Array.isArray(localCart) && localCart.length > 0) {
+							scope.cart = localCart;
+						}
 					}
 				});
 
@@ -85,7 +91,9 @@ bluStore.directive('bluCartDropdown', ['cartFactory', '$rootScope', 'EVENTS',
 
 							scope.cart.push(cartItem);
 						}
-
+						// clear cookie and store the new data
+						localStorage.remove(CONFIG.CART_STORE_KEY);
+						localStorage.storeObject(CONFIG.CART_STORE_KEY, scope.cart);
 					}
 
 				});
@@ -104,6 +112,7 @@ bluStore.directive('bluCartDropdown', ['cartFactory', '$rootScope', 'EVENTS',
 
 						cartFactory.updateCart($rootScope.userInfo.id, simpleCart).then(
 							function (result) {
+								localStorage.remove(CONFIG.CART_STORE_KEY);
 								scope.cart = result.data.cart;
 							},
 							function (err) {
