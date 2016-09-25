@@ -25,6 +25,7 @@ exports.addToCart = function (req, res) {
 };
 
 exports.getCart = function (req, res) {
+	
 	var userId = req.params.id;
 
 	// find user by id and return user cart 
@@ -33,5 +34,25 @@ exports.getCart = function (req, res) {
 		.exec(function (err, user) {
 			handler(res)(err, user.cart);
 		});
+
+};
+
+exports.updateCart = function (req, res) {
+	var userId = req.params.id;
+	var cart = req.body.cart;
+
+	if (!userId || !cart) {
+		var err = new Error('API: params error - ');
+		return handler(res)(err);
+	}
+
+	// find user 
+	User.findOne({ _id: userId }, function (err, user) {
+		if (err) {
+			return handler(res)(err);
+		}
+		
+		user.updateCart(cart, handler(res));
+	});
 
 };

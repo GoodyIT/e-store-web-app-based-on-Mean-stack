@@ -1,13 +1,14 @@
 <li class="dropdown">
 	<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-		aria-expanded="false"><span class="fa fa-shopping-cart"></span> Cart <span class="badge">{{ cart.length }}</span></a>
-	<ul class="dropdown-menu nav-dropdown">
+		aria-expanded="false"><span class="fa fa-shopping-cart"></span> Cart <span class="badge" ng-show="cart.length > 0">{{ cart.length }}</span></a>
+	<ul class="dropdown-menu nav-dropdown cart-dropdown">
 		<form>
 			<div class="row">
 				<div class="col-xs-12">
 					<span class="label label-success">SHOPPING CART</span>
 				</div>
 			</div>
+			<div id="cart-dropdown-scroll">
 			<div class="row" ng-repeat="cartItem in cart" ng-show="cart.length > 0">
 				<div class="col-xs-3">
 					<img class="img-responsive" ng-src="{{ cartItem.product.imageUrl }}" 
@@ -20,7 +21,8 @@
 						<a href="">remove</a>
 				</div>
 			</div>
-			<div class="row bottom">
+			</div>
+			<div class="row nav-dropdown-bottom" ng-show="cart.length > 0">
 				<div class="col-xs-6">
 					<button class="btn btn-success btn-sm btn-custom">Check out</button>
 				</div>

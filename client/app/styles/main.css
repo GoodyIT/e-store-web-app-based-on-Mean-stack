@@ -248,7 +248,7 @@ blu-product-short:hover .product-actions {
     height: 300px;
 }
 
-.nav-dropdown .bottom {
+.nav-dropdown-bottom {
     background-color: rgba(255, 255, 255, .8);
     border-top: 1px solid #ddd;
     clear: both;
@@ -302,6 +302,8 @@ blu-product-short:hover .product-actions {
 	padding-top: 10px;
 	padding-bottom: 8px;
 }
+
+#user
 
 #np-options > .btn-default.active {
     color: #fff;
@@ -383,6 +385,16 @@ blu-product-short:hover .product-actions {
     margin-top: 10px;
 }
 
+#cart-dropdown-scroll {
+    max-height: 150px;
+    overflow-y: auto; 
+    overflow-x: hidden; 
+}
+
+#sidebar-menu {
+    max-height: 250px;
+    overflow-y: auto; 
+}
 
 @media only screen and (min-width: 550px) {
     #navbar-search {
@@ -411,6 +423,10 @@ blu-product-short:hover .product-actions {
 
     .product-full-actions {
         margin-top: 0;
+    }
+
+    #cart-dropdown-scroll {
+        max-height: 200px;
     }
 }
 

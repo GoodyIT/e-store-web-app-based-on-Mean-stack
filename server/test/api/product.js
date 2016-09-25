@@ -74,7 +74,7 @@ describe('Product API', function () {
 
 	it('can update item by id', function (done) {
 
-		dataLoader.loginUser(User, function (err, user) {
+		dataLoader.loginUser(User, null, function (err, user) {
 
 			assert.isNotOk(err);
 			assert.isOk(user.token);
@@ -98,7 +98,7 @@ describe('Product API', function () {
 
 	it('can add review to product', function (done) {
 
-		dataLoader.loginUser(User, function (err, user) {
+		dataLoader.loginUser(User, null, function (err, user) {
 
 			assert.isNotOk(err);
 			assert.isOk(user.token);

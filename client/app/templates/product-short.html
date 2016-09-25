@@ -1,6 +1,6 @@
 <div class="thumbnail">
     <div class="product-actions">
-        <a href="#" ng-if="!isAdmin" class="btn btn-success product-actions-btn btn-custom" 
+        <a type="button" ng-click="addToCart(productInfo)" ng-if="!isAdmin" class="btn btn-success product-actions-btn btn-custom" 
             role="button"><span class="fa fa-cart-plus"></span> Add To Cart</a>
         <a ui-sref="app.product({ id:productInfo.slug })" ng-if="!isAdmin" 
             class="btn btn-warning product-actions-btn btn-custom" role="button">

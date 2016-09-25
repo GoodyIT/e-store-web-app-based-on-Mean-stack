@@ -54,7 +54,7 @@
 					        </span>
 				        </div>
                     </form>
-                    <div id="sidebar-menu">
+                    <div id="sidebar-menu" class="scroll-pane">
                     <li><a 
                         ng-repeat="category in baseCtrl.categories | categoriesSearch: $root.categoriesList:baseCtrl.cateSearchTerm",
 						ng-class="{ 'active': baseCtrl.selectedCate === category.name }"

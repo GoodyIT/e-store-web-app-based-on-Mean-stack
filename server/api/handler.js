@@ -26,6 +26,7 @@ function handleResponse(res, doBefore) {
 			sendResponse(res, 500, response, doBefore);
 		}
 		else if (!data || data.length < 1) {
+			response.error = 'no-data';
 			response.message = 'Not found!';
 			sendResponse(res, 404, response, doBefore);
 		}

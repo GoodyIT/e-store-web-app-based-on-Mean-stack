@@ -51,6 +51,8 @@ router.route('/cart/:id')
 	// USER => get user cart by user id
 	.get(verify.user, cartApi.getCart)
 	// USER => add item to cart
-	.post(verify.user, cartApi.addToCart);	
+	.post(verify.user, cartApi.addToCart)
+	// USER => update user cart
+	.put(verify.user, cartApi.updateCart);
 
 module.exports = router;

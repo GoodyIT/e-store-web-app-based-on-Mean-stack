@@ -109,29 +109,32 @@ function loadUsers (User, data, cb) {
 
 };
 
-function loginUser (User, cb) {
-    loadUsers(User, usersData[0], function (err) {
+function loginUser (User, user, cb) {
+    
+    var userInfo = user || usersData[0];
+
+    loadUsers(User, userInfo, function (err) {
         if (err) {
             return cb(err);
         }
         // login this user to get the token
 		superagent.post(url + 'users/login')
-			.send({ username: usersData[0].username, password: usersData[0].password })
+			.send({ username: userInfo.username, password: userInfo.password })
 			.end(function (err, res) {
                 if (err) {
                     return cb(err);
                 }
-                usersData[0].token = res.body.token;
+                userInfo.token = res.body.token;
 
                 // return normal user
-                return cb(null, usersData[0]);
+                return cb(null, userInfo);
 			});
     });
 };
 
 exports.loginAdmin = function (User, cb) {
     // load and login normal user
-    loginUser(User, function (err, user) {
+    loginUser(User, null, function (err, user) {
         if (err) {
             return cb(err);
         }
@@ -145,6 +148,18 @@ exports.loginAdmin = function (User, cb) {
         });
     });
 };
+
+function loadCollection (Model, data) {
+    return new Promise(function (resolve, reject) {
+        Modle.create(data, function (err, result) {
+            if (err) {
+                return reject(err);
+            }
+            resolve(loadCollection, result);
+        });
+    });
+}
+
 
 exports.loadUsers = loadUsers;
 exports.loginUser = loginUser;
