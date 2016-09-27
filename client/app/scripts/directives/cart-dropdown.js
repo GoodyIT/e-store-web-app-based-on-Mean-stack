@@ -21,13 +21,32 @@ bluStore.directive('bluCartDropdown', ['cartFactory', '$rootScope', 'EVENTS', 'C
 				// delete one product from cart
 				scope.delOneFromCart = function (productId) {
 					var productIndex = scope.cart.indexOf(scope.cart.find(value => value.product._id == productId));
-					console.log(productIndex);
+
 					if (productIndex > -1) {
-						if (scope.cart[productIndex].amount > 1) {
-							scope.cart[productIndex].amount --;
+
+
+						// reflect cart update on server/local storage
+						if ($rootScope.userInfo) {
+							// update cart on server 
+							cartFactory.delOneFromCart(scope.cart[productIndex]._id).then(
+								function (result) {
+									scope.cart = result.data.cart;
+								},
+								function (err) {
+									console.log(err);
+								}
+							);
 						}
 						else {
-							scope.cart.splice(productIndex, 1);
+							// update cart 
+							if (scope.cart[productIndex].amount > 1) {
+								scope.cart[productIndex].amount--;
+							}
+							else {
+								scope.cart.splice(productIndex, 1);
+							}
+							// update local storage cart
+							localStorage.storeObject(CONFIG.CART_STORE_KEY, scope.cart);
 						}
 					}
 				};
@@ -68,7 +87,16 @@ bluStore.directive('bluCartDropdown', ['cartFactory', '$rootScope', 'EVENTS', 'C
 					// else if user logged in and local cart is not empty
 					else if (userInfo && scope.cart.length > 0) {
 						// update user cart on server and get the new cart data
-						scope.$broadcast(EVENTS.UPDATE_CART, scope.cart);
+						var simpleCart = scope.shortenCart(scope.cart);
+						cartFactory.addProduct(userInfo.id, simpleCart).then(
+							function (result) {
+								localStorage.remove(CONFIG.CART_STORE_KEY);
+								scope.cart = result.data.cart;
+							},
+							function (err) {
+								console.log(err);
+							}
+						);
 					}
 					// if user logged out or no user at all
 					else {
@@ -80,7 +108,6 @@ bluStore.directive('bluCartDropdown', ['cartFactory', '$rootScope', 'EVENTS', 'C
 				scope.$on(EVENTS.ADD_TO_CART, function (event, product) {
 					var cartItem = {};
 					
-				
 					// user and product exist => add product to user cart
 					if ($rootScope.userInfo && product) {
 						// user logged in 
@@ -122,14 +149,7 @@ bluStore.directive('bluCartDropdown', ['cartFactory', '$rootScope', 'EVENTS', 'C
 				scope.$on(EVENTS.UPDATE_CART, function (event, cart) {
 					// check user is exist 
 					if ($rootScope.userInfo) {
-						var simpleCart = [];
-						for (var i = 0; i < cart.length; i++) {
-							simpleCart.push({
-								product: cart[i].product._id,
-								amount: cart[i].amount
-							});
-						}
-
+						var simpleCart = scope.shortenCart(cart);
 						cartFactory.updateCart($rootScope.userInfo.id, simpleCart).then(
 							function (result) {
 								localStorage.remove(CONFIG.CART_STORE_KEY);
@@ -141,6 +161,26 @@ bluStore.directive('bluCartDropdown', ['cartFactory', '$rootScope', 'EVENTS', 'C
 						);
 					}
 				});
+
+				// remove any unnecessary data from the cart before send to the server
+				scope.shortenCart = function (cart) {
+					if (Array.isArray(cart)) {
+						var simpleCart = [];
+						for (var i = 0; i < cart.length; i++) {
+							simpleCart.push({
+								product: cart[i].product._id,
+								amount: cart[i].amount
+							});
+						}
+						return simpleCart;
+					}
+					else {
+						var simpleItem = {
+							product: cart.product._id,
+							amount: cart.amount
+						};
+					}
+				};
 
 			}
 		};

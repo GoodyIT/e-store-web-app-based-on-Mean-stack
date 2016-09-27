@@ -27,55 +27,67 @@ var userSchema = new Schema({
 
 userSchema.plugin(passportLocalMongoose);
 
-userSchema.methods.addToCart = function (product, cb) {
+userSchema.methods.addToCart = function (items, cb) {
     var self = this;
 
-    // check if this product already exist in the user cart
-    var cartItem = self.cart.find(value => value.product == product.product);
-    // if product exist than just incress amount
-    if (cartItem) {
-        self.model('User')
-            .findOneAndUpdate(
-                { _id: self.id, 'cart._id': cartItem._id },
-                { $set: { 'cart.$.amount': cartItem.amount + product.amount } },
-                { safe: true, upsert: true, new: true }
-            )
-            .populate('cart.product')
-            .exec(function (err, user) {
-                cb(err, { cart: user.cart });
-            });
+    // add give items to user cart
+    if (Array.isArray(items)) {
+        // handle products Array
+        for (var i = 0; i < items.length; i++) {
+            self.addProductToCart(items[i]); // add this item to user cart 
+        }
+
     }
     else {
-        self.model('User')
-            .findByIdAndUpdate(
-                self._id,
-                { $push: { cart: product } },
-                { safe: true, upsert: true, new: true }
-            )
-            .populate('cart.product')
-            .exec(function (err, user) {
-                cb(err, { cart: user.cart });
-            });
+        self.addProductToCart(items); // add this item to user cart 
     }
+
+    // update user cart and return new data
+    self.updateCart(self.cart, cb);
+
+};
+
+userSchema.methods.addProductToCart = function (item) {
+    
+    var cart = this.cart;
+    
+    if (!cart || !item) {
+        return null;
+    } 
+
+    var cartItem = cart.find(value => value.product == item.product);
+
+    if (cartItem) {
+        cartItem.amount += item.amount;
+    }
+    else {
+        cart.push(item);
+    }
+
+    return cart;
+
+};
+
+userSchema.methods.removeOneFromCart = function (cartItemId, cb) {
+    var self = this;
+
+    var cartItem = self.cart.id(cartItemId);
+
+    if (cartItem.amount > 1) {
+        cartItem.amount--;
+    }
+    else {
+        cartItem.remove();
+    }
+
+    // save changes and return new result
+    self.updateCart(self.cart, cb);
+
 };
 
 userSchema.methods.updateCart = function (cart, cb) {
     // user data
     var self = this;
-    var oldCart = self.cart;
-    
-    // add "old cart/product amount" to the new cart.
-    for (var i = 0; i < oldCart.length; i++) {
-        var sameProduct = cart.find(value => value.product == oldCart[i].product);
-
-        if (sameProduct) {
-            sameProduct.amount += oldCart[i].amount; // incress amount 
-            console.log(sameProduct);
-        }
-        else {
-            cart.push(oldCart[i]);
-        }
-    }
 
     // save the new cart to the user and return it.
     self.model('User')

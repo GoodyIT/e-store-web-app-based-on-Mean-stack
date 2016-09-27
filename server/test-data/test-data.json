@@ -675,6 +675,7 @@
 			"category": "57a221554e24b7081cdd02a2"
 		},
 		{
+			"_id": "57e9121eabc295cc048511f9",
 			"title": "Sony X3",
 			"price": "3400",
 			"stock": "7",
@@ -787,10 +788,12 @@
 			"lastname": "Ali",
 			"cart": [
 				{
+					"_id": "57e8f0ef0b020e240c630172",
 					"product": "57db129b6681422c147bee5d",
 					"amount": 2
 				},
 				{
+					"_id": "57e8f0ef0b020e240c630171",
 					"product": "57e0f690d20d779c024ebad0",
 					"amount": 3
 				}

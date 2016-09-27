@@ -48,11 +48,13 @@ router.route('/categories')
 
 /** CART API */
 router.route('/cart/:id')
-	// USER => get user cart by user id
+	// USER => get user cart by user id 
 	.get(verify.user, cartApi.getCart)
-	// USER => add item to cart
+	// USER => add item to cart 
 	.post(verify.user, cartApi.addToCart)
 	// USER => update user cart
-	.put(verify.user, cartApi.updateCart);
+	.put(verify.user, cartApi.updateCart)
+	// USER => delete one product from user cart (:id => product id)
+	.delete(verify.user, cartApi.removeOne);
 
 module.exports = router;

@@ -6,10 +6,10 @@ var handler = require('./handler');
 exports.addToCart = function (req, res) {
 	
 	var userId = req.params.id;
-	var product = req.body.product;
+	var cartItems = req.body.cartItems;
 	
 	// check user id
-	if (!userId || !product) {
+	if (!userId || !cartItems) {
 		var err = new Error('API: params error');
 		return handler(res)(err);
 	}
@@ -20,7 +20,7 @@ exports.addToCart = function (req, res) {
 			return handler(res)(err);
 		}
 		
-		user.addToCart(product, handler(res));
+		user.addToCart(cartItems, handler(res));
 	});
 };
 
@@ -55,4 +55,19 @@ exports.updateCart = function (req, res) {
 		user.updateCart(cart, handler(res));
 	});
 
+};
+
+exports.removeOne = function (req, res) {
+
+	var userId = req.userData._id;
+	var cartItemId = req.params.id;
+
+	// find user 
+	User.findOne({ _id: userId }, function (err, user) {
+		if (err) {
+			return handler(res)(err);
+		}
+		
+		user.removeOneFromCart(cartItemId, handler(res));
+	});
 };

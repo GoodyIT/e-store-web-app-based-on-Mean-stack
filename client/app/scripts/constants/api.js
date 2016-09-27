@@ -16,5 +16,6 @@ bluStore.constant('API', {
     'USER_REGISTER': 'users/register',
     'GET_CART': 'api/blu-store/cart/:id',
     'ADD_TO_CART': 'api/blu-store/cart/:id',
-    'UPDATE_CART': 'api/blu-store/cart/:id'
+    'UPDATE_CART': 'api/blu-store/cart/:id',
+    'DEL_ONE_FROM_CART': 'api/blu-store/cart/:id'
 });

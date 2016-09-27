@@ -59,14 +59,9 @@ beforeEach(function (done) {
 	tools.clearDb(done);
 });
 
-afterEach(function (done) {
-	// clear db
-	tools.clearDb(done);
-});
+require('./auth');
 
 describe('API tests', function () {
 	require('./api');  // api tests folder
 });
-
-require('./auth');
 

@@ -7,14 +7,18 @@ bluStore.factory('cartFactory', function ($resource, API) {
 			return $resource(API.GET_CART, { id: userId }).get().$promise;
 		},
 
-		addProduct: function (userId, product) {
+		addProduct: function (userId, cartItems) {
 			return $resource(API.ADD_TO_CART, { id: userId })
-				.save({}, { product: product }).$promise;
+				.save({}, { cartItems: cartItems }).$promise;
 		},
 
 		updateCart: function (userId, cart) {
 			return $resource(API.UPDATE_CART, { id: userId }, { 'update': { method: 'PUT' } })
 				.update(userId, { cart: cart }).$promise;
+		},
+
+		delOneFromCart: function (cartItemId) {
+			return $resource(API.DEL_ONE_FROM_CART, { id: cartItemId }).remove().$promise;
 		}
 
 	};
