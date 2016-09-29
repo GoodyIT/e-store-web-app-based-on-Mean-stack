@@ -1,5 +1,5 @@
-bluStore.controller('productCtrl', ['$scope', '$rootScope', 'productsFactory', '$stateParams', '$state',
-	function ($scope, $rootScope, products, $stateParams, $state) {
+bluStore.controller('productCtrl', ['$scope', '$rootScope', 'productsFactory', '$stateParams', '$state', 'EVENTS',
+	function ($scope, $rootScope, products, $stateParams, $state, EVENTS) {
 
 		var ctr = this;
 		var rvRate = 1;
@@ -216,6 +216,11 @@ bluStore.controller('productCtrl', ['$scope', '$rootScope', 'productsFactory', '
 			}
 			rvRate = 5;
 		});
+
+        ctr.addToCart = function () {
+            var amount = $('#product-amount').val() || 1;
+            $rootScope.$broadcast(EVENTS.ADD_TO_CART, ctr.product, amount);
+        };
 
 		$scope.productCtr = this;
 

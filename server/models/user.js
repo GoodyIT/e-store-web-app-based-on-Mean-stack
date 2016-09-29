@@ -58,7 +58,7 @@ userSchema.methods.addProductToCart = function (item) {
     var cartItem = cart.find(value => value.product == item.product);
 
     if (cartItem) {
-        cartItem.amount += item.amount;
+        cartItem.amount += parseInt(item.amount);
     }
     else {
         cart.push(item);

@@ -105,13 +105,13 @@ bluStore.directive('bluCartDropdown', ['cartFactory', '$rootScope', 'EVENTS', 'C
 				});
 
 				/** ON ADD TO CART EVENT */
-				scope.$on(EVENTS.ADD_TO_CART, function (event, product) {
+				scope.$on(EVENTS.ADD_TO_CART, function (event, product, amount) {
 					var cartItem = {};
 					
 					// user and product exist => add product to user cart
 					if ($rootScope.userInfo && product) {
 						// user logged in 
-						cartItem = { product: product._id, amount: 1 };
+						cartItem = { product: product._id, amount: amount || 1 };
 						cartFactory.addProduct($rootScope.userInfo.id, cartItem).then(
 							function (result) {
 								scope.cart = result.data.cart;
@@ -128,12 +128,12 @@ bluStore.directive('bluCartDropdown', ['cartFactory', '$rootScope', 'EVENTS', 'C
 						var cartExItem = scope.cart.find(value => value.product._id === product._id);
 
 						if (cartExItem) {
-							cartExItem.amount++;
+							cartExItem.amount = parseInt(cartExItem.amount) + parseInt(amount || 1);
 						}
 						else {
 							cartItem = {
 								product: product,
-								amount: 1
+								amount: amount || 1
 							};
 
 							scope.cart.push(cartItem);
