@@ -19,7 +19,15 @@ bluStore.factory('cartFactory', function ($resource, API) {
 
 		delOneFromCart: function (cartItemId) {
 			return $resource(API.DEL_ONE_FROM_CART, { id: cartItemId }).remove().$promise;
-		}
+		},
+
+		getTotalAmount: function (cart) {
+            return cart.map(value => value.amount).reduce((prev, curr) => prev + curr, 0);
+        },
+
+        getTotalPrice: function (cart) {
+            return cart.map(value => value.product.price * value.amount).reduce((prev, curr) => prev + curr, 0);
+        }
 
 	};
 

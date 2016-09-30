@@ -69,6 +69,17 @@ bluStore.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
             data: { auth: 'none' }
         })
 
+        .state('app.cart', {
+            url: 'cart/',
+            views: {
+                'content@': {
+                    templateUrl: "views/cart.html",
+                    controller: "cartCtrl"
+                }
+            },
+            data: { auth: 'none' }
+        })
+
         .state('app.admin', {
             url: 'admin/',
             views: {
