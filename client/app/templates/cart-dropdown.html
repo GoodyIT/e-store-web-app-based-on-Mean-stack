@@ -1,8 +1,8 @@
-<li class="dropdown" ng-controller="cartCtrl">
+<li id="navbar-cart" class="dropdown">
 	<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 		aria-expanded="false"><span class="fa fa-shopping-cart"></span> Cart <span class="badge" ng-show="cart.length > 0">{{ getTotalAmount(cart); }}</span></a>
 	<ul class="dropdown-menu nav-dropdown cart-dropdown">
-		<form>
+
 			<div class="row nav-dropdown-top">
 				<div class="col-xs-12">
 					<h4><span class="label label-success label-lg">SHOPPING CART</span></h4>
@@ -18,7 +18,7 @@
 					<p title=" {{ cartItem.product.title }}">
 						{{ cartItem.amount }} x {{ cartItem.product.title | descriptionMin: 20}}
 						<button type="button" class="pull-right cart-close-btn close" 
-						title="remove this product" ng-click="delOneFromCart(cartItem.product._id);">&times;</button></p>
+						title="remove this product" ng-click="removeOne(cartItem);">&times;</button></p>
 						<span class="badge">{{ cartItem.amount * cartItem.product.price | currency:'$':0 }}</span>
 				</div>
 			</div>
@@ -28,7 +28,7 @@
 					<button class="btn btn-success btn-sm btn-custom">Check out</button>
 				</div>
 				<div class="col-xs-6">
-					<button class="btn btn-warning btn-sm btn-custom" ui-sref="app.cart">View Cart</button>
+					<button id="btn-view-cart" class="btn btn-warning btn-sm btn-custom" ui-sref="app.cart">View Cart</button>
 				</div>
 			</div>
 
@@ -36,6 +36,6 @@
 			<div ng-hide="cart.length > 0">
 				<p>your cart is empty!</p>
 			</div>
-		</form>
+
 	</ul>
 </li>

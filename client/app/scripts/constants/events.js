@@ -6,5 +6,7 @@ bluStore.constant('EVENTS', {
     'ADMIN_REQUIRED': 'adminRequired',
     'ADD_TO_CART': 'addToCart',
     'UPDATE_CART': 'updateCart',
-    'LOAD_CART': 'loadCart'
+    'LOAD_CART': 'loadCart',
+    'CART_CHANGED': 'cartChanged',
+    'REMOVE_FROM_CART': 'removeFromCart'
 });
