@@ -14,8 +14,8 @@
 
         <div class="collapse navbar-collapse" id="menu-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <blu-user-dropdown></blu-user-dropdown>
-                <blu-cart-dropdown></blu-cart-dropdown>
+                <blu-user-dropdown ng-class="{ 'active': $root.activeState === 'app.login' }"></blu-user-dropdown>
+                <blu-cart-dropdown ng-class="{ 'active': $root.activeState === 'app.cart' }"></blu-cart-dropdown>
             </ul>
             <form class="navbar-form navbar-right">
                 <div class="form-group">
