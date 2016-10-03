@@ -5,26 +5,16 @@
 	<i class="fa fa-spinner fa-spin fa-2x"></i>
 </div>
 
-<div class="container" ng-hide="$root.loadingState === 'app.cart'">
-	<h1>CART</h1>
-	<section id="cart-list-full">
-		<!--
-				<div id="cart-item-full" class="media" ng-repeat="cartItem in cartCtrl.cart">
-					<div class="media-left">
-						<a ui-sref="app.product({ id: cartItem.product.slug })">
-							<img class="media-object img-responsive" ng-src="{{ cartItem.product.imageUrl }}" alt="product image">
-						</a>
-					</div>
-					<div class="media-body">
-						<h4 class="media-heading">{{ cartItem.product.title }}</h4>
-						<input class="amount-input" type="number" min="0" max="99" value="{{ cartItem.amount }}">
-						<span class="badge">{{ cartItem.product.price * cartItem.amount | currency:'$':0 }}</span>
-						<button type="button" class="pull-right cart-close-btn close" title="remove this product" ng-click="cartCtrl.removeOne(cartItem);">&times;</button>
-					</div>
-					<hr>
-				</div>
-				-->
+<!-- cart empty view -->
+<div class="container" ng-show="$root.loadingState !== 'app.cart' && cartCtrl.cart.length < 1">
+	<div class="alert alert-info" role="alert">your cart is currently empty!</div>
+</div>
 
+<!-- cart view -->
+<div class="container" ng-hide="$root.loadingState === 'app.cart' || cartCtrl.cart.length < 1">
+	<h1>CART</h1>
+	<form name="cartCtrl.cartForm">
+	<section id="cart-list-full">
 		<!-- list header -->
 		<div class="row cart-list-header">
 			<div class="col-xs-6">item</div>
@@ -32,7 +22,8 @@
 			<div class="col-xs-2">Unit Price</div>
 			<div class="col-xs-2">Subtotal</div>
 		</div>
-		
+
+			
 		<!-- list items -->
 		<div class="row cart-list-item" ng-repeat="cartItem in cartCtrl.cart">
 			<div class="col-xs-4 col-sm-2 item-image">
@@ -42,9 +33,10 @@
 			</div>
 			<div class="col-xs-8 col-sm-4 item-description">
 				<p>{{ cartItem.product.title }}</p>
+				<p class="label label-success">stock: {{ cartItem.product.stock }}</p>
 			</div>
 			<div class="col-xs-4 col-sm-2 item-quantity">
-				<input class="amount-input" type="number" min="0" max="99" value="{{ cartItem.amount }}">
+				<input class="amount-input" type="number" min="0" max="{{ cartItem.product.stock }}" ng-model="cartItem.amount">
 			</div>
 			<div class="col-xs-4 col-sm-2 item-price">
 				<p>{{ cartItem.product.price }}</p>
@@ -60,7 +52,7 @@
 	<section id="cart-bottom-full">
 		<div class="row">
 			<div class="col-xs-12 col-sm-4">
-				<button class="btn btn-success btn-custom">Update</button>
+				<button class="btn btn-success btn-custom" ng-click="cartCtrl.updateCart(cartCtrl.cart);">Update</button>
 			</div>
 			<div class="col-xs-12 col-sm-4">
 				<button class="btn btn-warning btn-custom">Continue To Checkout</button>
@@ -70,5 +62,5 @@
 			</div>
 		</div>
 	</section>
-
+	</form>
 </div>

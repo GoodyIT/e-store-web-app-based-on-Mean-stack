@@ -433,6 +433,10 @@ blu-product-short:hover .product-actions {
         margin-top: 30px;
     }
 
+    .item-description p {
+        margin-top: 10px;
+    }
+
     .item-quantity input {
         display: block;
         margin: 15px auto;

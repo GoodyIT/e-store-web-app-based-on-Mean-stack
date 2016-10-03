@@ -69,6 +69,17 @@ bluStore.directive('bluCartDropdown', ['cartFactory', '$rootScope', 'EVENTS', 'C
 
 				});
 
+				scope.$on(EVENTS.UPDATE_CART, function (event, cart) {
+					var userInfo = $rootScope.userInfo;
+
+					if (userInfo) {
+						cartFactory.userCart.update(cart);
+					}
+					else {
+						cartFactory.localCart.update(cart);
+					}
+				});
+
 				scope.removeOne = function (item) {
 					$rootScope.$broadcast(EVENTS.REMOVE_FROM_CART, item);
 				};

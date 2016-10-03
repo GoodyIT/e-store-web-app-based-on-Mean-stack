@@ -7,7 +7,7 @@ exports.getToken = function (user) {
 
 exports.auth = function (req, res, next) {
 
-	// check header or url parameters or post parameters for token
+	// check headers for token
 	var token = req.headers['x-access-token'];
 
 	if (token) {

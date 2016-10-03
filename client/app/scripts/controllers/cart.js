@@ -5,10 +5,12 @@ bluStore.controller('cartCtrl', ['$scope', '$rootScope', 'cartFactory', 'EVENTS'
         var ctr = this;
         ctr.cart = [];
 
-        // stop loading screen if exist
-        if ($rootScope.loadingState === 'app.cart') {
-            $rootScope.loadingState = 'none';
-        }
+        $scope.$on('$viewContentLoaded', function (event) {
+            // stop loading screen if exist
+            if ($rootScope.loadingState === 'app.cart') {
+                $rootScope.loadingState = 'none';
+            }
+        });
 
         // on any cart changes reflect that on this cart
         $scope.$on(EVENTS.CART_CHANGED, function (event, newCart) {
@@ -31,6 +33,13 @@ bluStore.controller('cartCtrl', ['$scope', '$rootScope', 'cartFactory', 'EVENTS'
 
         ctr.removeOne = function (item) {
             $rootScope.$broadcast(EVENTS.REMOVE_FROM_CART, item);
+        };
+
+        ctr.updateCart = function (cart) {
+            // remove items with 0 or null amount
+            cart = cart.filter(value => value.amount > 0);
+            // fire update event
+            $rootScope.$broadcast(EVENTS.UPDATE_CART, cart);
         };
 
         ctr.getTotalAmount = cartFactory.getTotalAmount;
