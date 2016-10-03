@@ -47,13 +47,15 @@ router.route('/categories')
 
 
 /** CART API */
-router.route('/cart/:id')
+router.route('/cart')
 	// USER => get user cart by user id 
 	.get(verify.user, cartApi.getCart)
 	// USER => add item to cart 
 	.post(verify.user, cartApi.addToCart)
 	// USER => update user cart
-	.put(verify.user, cartApi.updateCart)
+	.put(verify.user, cartApi.updateCart);
+
+router.route('/cart/:id')
 	// USER => delete one product from user cart (:id => product id)
 	.delete(verify.user, cartApi.removeOne);
 

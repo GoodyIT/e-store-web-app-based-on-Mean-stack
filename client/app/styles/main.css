@@ -374,7 +374,7 @@ blu-product-short:hover .product-actions {
     bottom: 3px;
 }
 
-.product-amount {
+.amount-input {
     margin-left: 70px;
     width: 60px;
     font-size: 2em;
@@ -405,14 +405,62 @@ blu-product-short:hover .product-actions {
     color: red;
 }
 
-#cart-item-full > .media-left {
-    width: 10%;
-}
+    .cart-list-header {
+        display: none;
+        background-color: #F5F5F5;
+        border: solid 1px #EAEAEA;
+        text-transform: uppercase;
+	    letter-spacing: 1px;
+	    font-weight: 700;
+        font-size: 1.3em;
+        line-height: 2;
+    }
 
-#cart-item-full .product-amount {
-    font-size: 1.2em;
-    margin: 20px 30px 0 0;
-}
+    .cart-list-item div {
+        border: solid 1px #EAEAEA;
+        height: 80px;
+    }
+
+    .item-image img {
+        height: 80%;
+        display: block;
+        margin: auto;
+        margin-top: 5px;
+    }
+
+    .cart-list-item p {
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .item-description p {
+        margin-top: 10px;
+    }
+
+    .item-quantity input {
+        display: block;
+        margin: 15px auto;
+    }
+
+    #cart-bottom-full > .row {
+        background-color: #F5F5F5;
+        border: solid 1px #EAEAEA;
+        height: 100px;
+    }
+
+    #cart-bottom-full > .row .btn, #cart-bottom-full > .row p {
+        text-align: center;
+        display: block;
+        margin: 35px auto;
+    }
+
+    #cart-bottom-full > .row p {
+        text-transform: uppercase;
+	    letter-spacing: 1px;
+	    font-weight: 700;
+        font-size: 1.3em;
+        line-height: 2;
+    }
 
 @media only screen and (min-width: 550px) {
     #navbar-search {
@@ -447,25 +495,9 @@ blu-product-short:hover .product-actions {
         max-height: 400px;
     }
 
-    #cart-list-full {
-        width: 70%;
-        margin: 0 20% 0 20%;
-        height: 500px;
-        overflow-y: auto;
-        overflow-x: hidden;  
-    }
-
-    #cart-aside {
-        text-align: center;
-        min-height: 500px;
-        background-color: #E9F0E9; 
-        padding: 5px 5px 10px 5px;
-    }
-
-    #cart-aside p {
-        padding: 10% 0 10% 0;
-    }
-
+     .cart-list-header {
+         display: block;
+     }
 }
 
 @media only screen and (min-width: 1280px) {

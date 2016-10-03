@@ -5,7 +5,7 @@ var handler = require('./handler');
 
 exports.addToCart = function (req, res) {
 	
-	var userId = req.params.id;
+	var userId = req.userData._id;
 	var cartItems = req.body.cartItems;
 	
 	// check user id
@@ -26,19 +26,20 @@ exports.addToCart = function (req, res) {
 
 exports.getCart = function (req, res) {
 	
-	var userId = req.params.id;
+	var userId = req.userData._id;
 
 	// find user by id and return user cart 
 	User.findOne({ _id: userId })
 		.populate('cart.product')
 		.exec(function (err, user) {
-			handler(res)(err, user.cart);
+			handler(res)(err, { cart: user.cart });
 		});
 
 };
 
 exports.updateCart = function (req, res) {
-	var userId = req.params.id;
+	
+	var userId = req.userData._id;
 	var cart = req.body.cart;
 
 	if (!userId || !cart) {

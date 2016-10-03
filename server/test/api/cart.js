@@ -18,7 +18,7 @@ describe('Cart API', function () {
 				assert.isNotOk(err);
 				assert.isOk(user.token);
 
-				var url = config.server.url + 'api/blu-store/cart/' + user._id;
+				var url = config.server.url + 'api/blu-store/cart';
 
 				// create item to add to user cart
 				var cartProduct = {
@@ -37,8 +37,8 @@ describe('Cart API', function () {
 							.end(handleResponse(function (err, res) {
 								assert.isNotOk(err);
 								assert.isOk(res.body.data);
-								assert.equal(res.body.data.length, 1);
-								assert.equal(res.body.data[0].product._id, cartProduct.product);
+								assert.equal(res.body.data.cart.length, 1);
+								assert.equal(res.body.data.cart[0].product._id, cartProduct.product);
 								done();
 							}));
 					});
@@ -55,7 +55,7 @@ describe('Cart API', function () {
 				assert.isNotOk(err);
 				assert.isOk(user.token);
 
-				var url = config.server.url + 'api/blu-store/cart/' + user._id;
+				var url = config.server.url + 'api/blu-store/cart';
 
 				// create item to add to user cart
 				var cartProduct = {
@@ -89,7 +89,7 @@ describe('Cart API', function () {
 				assert.isNotOk(err);
 				assert.isOk(user.token);
 
-				var url = config.server.url + 'api/blu-store/cart/' + user._id;
+				var url = config.server.url + 'api/blu-store/cart';
 				var cartItems = [
 					{
 						product: "57db129b6681422c147bee5d",
@@ -168,7 +168,7 @@ describe('Cart API', function () {
 				user.cart[0].amount = "3";
 				user.cart[1].amount = "30";
 
-				var url = config.server.url + 'api/blu-store/cart/' + user._id;
+				var url = config.server.url + 'api/blu-store/cart';
 
 				superagent
 					.put(url)
