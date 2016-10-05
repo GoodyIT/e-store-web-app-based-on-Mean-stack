@@ -164,8 +164,4 @@ exports.loadReviews = function (data, done) {
 };
 
 // test config
-exports.config = {
-	server: {
-		url: "http://localhost:4000/"
-	}
-};
+exports.config = require('../config');

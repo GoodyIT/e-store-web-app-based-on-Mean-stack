@@ -24,7 +24,7 @@ describe('Product API', function () {
 		// load all products from test data
 		tools.loadProducts(productsData, function (result) {
 
-			var url = config.server.url + 'api/blu-store/products';
+			var url = config.TEST.SERVER + 'api/blu-store/products';
 
 			var validator = ['title', 'price', 'description'];
 			superagent.get(url).end(handleResponse(result, validator, done));
@@ -37,7 +37,7 @@ describe('Product API', function () {
 
 	it('can get product by slug', function (done) {
 
-		var url = config.server.url + 'api/blu-store/products/';
+		var url = config.TEST.SERVER + 'api/blu-store/products/';
 
 		tools.loadProducts(productsData[0], function (result) {
 			url += result.slug;
@@ -54,7 +54,7 @@ describe('Product API', function () {
 			assert.isNotOk(err);
 			assert.isOk(user.token);
 			
-			var url = config.server.url + 'api/blu-store/products/';
+			var url = config.TEST.SERVER + 'api/blu-store/products/';
 
 			tools.loadProducts(productsData[0], function (result) {
 				url += result._id;
@@ -80,7 +80,7 @@ describe('Product API', function () {
 			assert.isOk(user.token);
 
 			tools.loadProducts(productsData[0], function (result) {
-				var url = config.server.url + 'api/blu-store/products/';
+				var url = config.TEST.SERVER + 'api/blu-store/products/';
 				url += result._id;
 				// create new title to update the product 
 				var newTitle = "new title test";
@@ -106,7 +106,7 @@ describe('Product API', function () {
 			// load product to db for testing
 			tools.loadProducts(productsData[0], function (product) {
 				// send add review request
-				var url = config.server.url + 'api/blu-store/products/reviews/' + product._id;
+				var url = config.TEST.SERVER + 'api/blu-store/products/reviews/' + product._id;
 				var review = {
 					user: user._id,
 					comment: "this is a comment on this product",
@@ -130,7 +130,7 @@ describe('Product API', function () {
 		// load products to db
 		tools.loadProducts(productsData, function(products) {
 			// search for iphone 
-			var url = config.server.url + 'api/blu-store/products/search/iphone';
+			var url = config.TEST.SERVER + 'api/blu-store/products/search/iphone';
 			superagent.get(url).end(function (err, result) {
 				assert.isNotOk(err);
 				assert.isOk(result.body.data);
@@ -147,7 +147,7 @@ describe('Product API', function () {
 			tools.loadProducts(productsData, function (products) {
 				var cateSearch = categories[0]._id;
 				// send search request
-				var url = config.server.url + 'api/blu-store/products/category/' + cateSearch;
+				var url = config.TEST.SERVER + 'api/blu-store/products/category/' + cateSearch;
 				superagent.get(url).end(function (err, result) {
 					assert.isNotOk(err);
 					assert.isOk(result.body.data);
@@ -166,7 +166,7 @@ describe('Product API', function () {
 				// load reviews
 				tools.loadReviews(reviewsData, function (reviews) {
 					var testProduct = productsData[5];
-					var url = config.server.url + 'api/blu-store/products/reviews/' + testProduct._id;
+					var url = config.TEST.SERVER + 'api/blu-store/products/reviews/' + testProduct._id;
 					superagent.get(url).end(function (err, result) {
 						assert.isNotOk(err);
 						assert.isOk(result.body.data);

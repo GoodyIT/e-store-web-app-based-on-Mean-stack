@@ -20,6 +20,8 @@ Use `gulp debug` to debug client code and check for errors.
 
 Use `gulp serve` to debug, build, create server, watch client & server files for any changes. 
 
+Use `gulp build` to create a new build, ready to publish on server. 
+
 
 ## Progress
 - [x] Create Node Server

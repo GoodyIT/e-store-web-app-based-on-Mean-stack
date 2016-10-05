@@ -7,7 +7,7 @@ var usersData = testData.users;
 var reviewsData = testData.reviews;
 var tools = require('../test/test-tools');
 var config = tools.config;
-var url = config.server.url;
+var url = config.TEST.SERVER;
 var superagent = require('superagent');
 
 exports.loadCategories = function (Category, data, cb) {
