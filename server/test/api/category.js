@@ -20,7 +20,7 @@ describe('Category API', function () {
 			
 			assert.equal(categories.length, categoriesData.length);
 
-			var url = config.server.url + 'api/blu-store/categories';
+			var url = config.TEST.SERVER + 'api/blu-store/categories';
 
 			// send get request to get all categories
 			superagent.get(url).end(handleResponse(categories, null, done));
@@ -36,7 +36,7 @@ describe('Category API', function () {
 			assert.isNotOk(err);
 			assert.isOk(user.token);
 
-			var url = config.server.url + 'api/blu-store/categories';
+			var url = config.TEST.SERVER + 'api/blu-store/categories';
 
 			var catObj = {
 				name: "just another category 0909"

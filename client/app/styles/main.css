@@ -462,6 +462,10 @@ blu-product-short:hover .product-actions {
         line-height: 2;
     }
 
+.cart-badge {
+    background-color: #D9534F;
+}
+
 @media only screen and (min-width: 550px) {
     #navbar-search {
         width: 400px;

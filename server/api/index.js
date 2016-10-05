@@ -59,4 +59,9 @@ router.route('/cart/:id')
 	// USER => delete one product from user cart (:id => product id)
 	.delete(verify.user, cartApi.removeOne);
 
+router.route('/cart/checkout')
+	// USER => checkout user cart
+	.post(verify.user, cartApi.checkout);
+
+
 module.exports = router;

@@ -6,7 +6,7 @@ var models = require('../../models');
 var dataLoader = require('../../test-data/data-loader');
 
 var config = tools.config;
-var url = config.server.url;
+var url = config.TEST.SERVER;
 var User = models.User;
 var userData = dataLoader.usersData;
 
