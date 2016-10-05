@@ -493,6 +493,7 @@ blu-product-short:hover .product-actions {
 
 #btn-ckout-submit {
     margin-top: 50px;
+    width: 200px; 
 }
 
 #btn-stripe-chkout {
