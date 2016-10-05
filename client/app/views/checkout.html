@@ -1,0 +1,179 @@
+<!-- loading screen -->
+<div class="container loading logo" ng-show="$root.loadingState === 'app.checkout'">
+    <span class="fa fa-shopping-bag fa-2x"></span>
+    <h2>BluStore</h2>
+    <i class="fa fa-spinner fa-spin fa-2x"></i>
+</div>
+
+<div class="container" ng-hide="$root.loadingState === 'app.checkout'">
+<form class="form-horizontal" role="form" name="frm">
+    <h1 class="view-header">checkout</h1>
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title" data-toggle="collapse" data-parent="#accordion" 
+                data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" ng-click="orderConfirm = false; paid = false;">
+                    <i class="fa" ng-class="{ 'fa-circle-thin': frm.$invalid, 'fa-check': frm.$valid }"></i> 1. Your address
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                    <!-- address form -->
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6">
+
+                            <div class="form-group has-feedback"
+                            	ng-class="{
+					            'has-success': frm.frmName.$valid,
+					            'has-error': frm.frmName.$invalid && frm.frmName.$dirty
+				                }">
+                                <label for="ckout-frm-name" class="control-label col-xs-12 col-sm-3">Full Name</label>
+                                <div class="col-xs-12 col-sm-9">
+                                    <input type="text" name="frmName" ng-model="frmName" id="ckout-frm-name" class="form-control" value="" required="required" pattern="" title="">
+                                    <span ng-show="frm.frmName.$valid" 
+                                        class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                                    <span ng-show="frm.frmName.$invalid && frm.frmName.$dirty" 
+                                        class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                                </div>
+                            </div>
+
+                            
+                            <div class="form-group has-feedback"
+                            	ng-class="{
+					            'has-success': frm.frmAddress.$valid,
+					            'has-error': frm.frmAddress.$invalid && frm.frmAddress.$dirty
+				                }">
+                                <label for="ckout-frm-address" class="control-label col-xs-12 col-sm-3">Address</label>
+                                <div class="col-xs-12 col-sm-9">
+                                    <input type="text" name="frmAddress" ng-model="frmAddress" id="ckout-frm-address" class="form-control" value="" required="required" pattern="" title="">
+                                    <span ng-show="frm.frmAddress.$valid" 
+                                        class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                                    <span ng-show="frm.frmAddress.$invalid && frm.frmAddress.$dirty" 
+                                        class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                                </div>
+                            </div>
+
+                            
+                            <div class="form-group has-feedback"
+                            	ng-class="{
+					            'has-success': frm.frmPhone.$valid,
+					            'has-error': frm.frmPhone.$invalid && frm.frmPhone.$dirty
+				                }">
+                                <label for="ckout-frm-phone" class="control-label col-xs-12 col-sm-3">Phone</label>
+                                <div class="col-xs-12 col-sm-9">
+                                    <input type="tel" name="frmPhone" ng-model="frmPhone" id="ckout-frm-phone" class="form-control" value="" required="required" pattern="" title="">
+                                    <span ng-show="frm.frmPhone.$valid" 
+                                        class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                                    <span ng-show="frm.frmPhone.$invalid && frm.frmPhone.$dirty" 
+                                        class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-xs-12 col-sm-4">
+                            <button type="button" id="ckout-address-btn" class="btn btn-warning btn-custom" data-toggle="collapse" 
+                            data-parent="#accordion" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"
+                            ng-disabled="frm.frmName.$invalid || frm.frmAddress.$invalid || frm.frmPhone.$invalid">
+                                Save and continue
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingTwo">
+                <h4 class="panel-title">
+                    <i id="order-summary" class="fa" ng-class="{ 'fa-circle-thin': !orderConfirm, 'fa-check': orderConfirm }"></i> 2. Order summary
+                </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="panel-body">
+                    
+                    <!-- order summery -->
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6">
+                            <h4>Delivery Note</h4>
+                            <p>Suspendisse ac risus orci. In hac habitasse platea dictumst.</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-4">
+                            <h4>subtotal: {{ 1321 | currency:'$':0 }}</h4>
+                            <h4>shipping amount: {{ 1321 | currency:'$':0 }}</h4>
+                            <h4>total: {{ 1321 | currency:'$':0 }}</h4>
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            <button type="button" id="order-confirm" class="btn btn-warning btn-custom" data-toggle="collapse" data-parent="#accordion" 
+                            data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" ng-click="orderConfirm = true">
+                            confirm</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingThree">
+                <h4 class="panel-title">
+                    <i class="fa" ng-class="{ 'fa-circle-thin': !paid, 'fa-check': paid }"></i> 3. Payment
+                </h4>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                <div class="panel-body">
+                    
+                    <!-- payment -->
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3">
+                        
+                            <div class="list-group">
+                                <a type="button" role="button" class="list-group-item" ng-class="{ 'active': paymentMethod === 'stripe' }" 
+                                ng-init="paymentMethod = 'stripe'" ng-click="paymentMethod = 'stripe'"><i class="fa fa-cc-stripe"></i> Stripe</a>
+                                <a type="button" role="button" class="list-group-item" ng-class="{ 'active': paymentMethod === 'paypal' }" 
+                                ng-click="paymentMethod = 'paypal'"><i class="fa fa-cc-paypal"></i> Paypal</a>
+                                <a type="button" role="button" class="list-group-item" ng-class="{ 'active': paymentMethod === 'cod' }" 
+                                ng-click="paymentMethod = 'cod'"><i class="fa fa-money"></i> Cash on delivery</a>
+                            </div>
+                        
+                        </div>
+                        <div class="col-xs-12 col-sm-5">
+
+                            <div ng-show="paymentMethod === 'stripe'">
+
+                                <button id="btn-stripe-chkout" class="btn btn-primary btn-custom"><i class="fa fa-cc-stripe"></i> Purchase</button>
+
+                            </div>
+
+                            <div ng-show="paymentMethod === 'paypal'">
+                                
+                                <!-- TODO: paypal payment method -->
+                                <div class="alert alert-warning">
+                                    <strong>Soon!</strong> this method will be available soon ...
+                                </div>
+                                
+                            </div>
+
+                            <div ng-show="paymentMethod === 'cod'">
+
+                                <!-- TODO: cod payment method -->
+                                <div class="alert alert-warning">
+                                    <strong>Soon!</strong> this method will be available soon ...
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="col-xs-12 col-sm-4">
+                            <button type="button" id="btn-ckout-submit" class="btn btn-success btn-custom" ng-disabled="!paid">submit your order</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</div>
+

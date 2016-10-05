@@ -466,6 +466,40 @@ blu-product-short:hover .product-actions {
     background-color: #D9534F;
 }
 
+#accordion h4 {
+        text-transform: uppercase;
+	    letter-spacing: 1px;
+	    font-weight: 700;
+        font-size: 1.3em;
+        color: #777777;
+}
+
+#ckout-address-btn {
+    display: block;
+    margin: 50px auto;
+}
+
+.view-header {
+    text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: 700;
+    font-size: 1.4em;
+    color: #777777;
+}
+
+#order-confirm {
+    margin-top: 35px;
+}
+
+#btn-ckout-submit {
+    margin-top: 50px;
+}
+
+#btn-stripe-chkout {
+    display: block;
+    margin: 50px auto;
+}
+
 @media only screen and (min-width: 550px) {
     #navbar-search {
         width: 400px;

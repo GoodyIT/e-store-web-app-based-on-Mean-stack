@@ -12,7 +12,7 @@
 
 <!-- cart view -->
 <div class="container" ng-hide="$root.loadingState === 'app.cart' || cartCtrl.cart.length < 1">
-	<h1>CART</h1>
+	<h1 class="view-header">cart</h1>
 	<form name="cartCtrl.cartForm">
 	<section id="cart-list-full">
 		<!-- list header -->
@@ -55,7 +55,7 @@
 				<button class="btn btn-success btn-custom" ng-click="cartCtrl.updateCart(cartCtrl.cart);">Update</button>
 			</div>
 			<div class="col-xs-12 col-sm-4">
-				<button class="btn btn-warning btn-custom">Continue To Checkout</button>
+				<button class="btn btn-warning btn-custom" ui-sref="app.checkout">Continue To Checkout</button>
 			</div>
 			<div class="col-xs-12 col-sm-4">
 				<p>Total: {{ cartCtrl.getTotalPrice(cartCtrl.cart) | currency:'$':0 }}</p>
