@@ -1,6 +1,6 @@
 bluStore.controller('userCtrl', ['$rootScope', '$http', 'authFactory', 'localStorageFactory',
-    'CONFIG', 'EVENTS', 'ERRORS', 'cartFactory',
-    function ($rootScope, $http, authFactory, localStorage, CONFIG, EVENTS, ERRORS, cartFactory) {
+    'CONFIG', 'EVENTS', 'ERRORS', 'cartFactory','$state',
+    function ($rootScope, $http, authFactory, localStorage, CONFIG, EVENTS, ERRORS, cartFactory, $state) {
         'use strict';
 
         var that = this;
@@ -43,6 +43,7 @@ bluStore.controller('userCtrl', ['$rootScope', '$http', 'authFactory', 'localSto
                 }, {});
             }
 
+            that.loginLoading = false;
         });
 
         // Logged out event
@@ -58,6 +59,8 @@ bluStore.controller('userCtrl', ['$rootScope', '$http', 'authFactory', 'localSto
 
             localStorage.remove(CONFIG.TOKEN_STORE_KEY);
 
+            $state.reload();
+
         });
 
         // Login error event
@@ -71,6 +74,7 @@ bluStore.controller('userCtrl', ['$rootScope', '$http', 'authFactory', 'localSto
                 that.emailErr = false;
                 that.passErr = true;
             }
+            that.loginLoading = false;
         });
 
         $rootScope.$on(EVENTS.USER_REQUIRED, function (event) {
@@ -107,6 +111,7 @@ bluStore.controller('userCtrl', ['$rootScope', '$http', 'authFactory', 'localSto
 
         // user login using form data
         this.login = function () {
+            that.loginLoading = true;
             authFactory.login(that.userEmail, that.password).then(
                 function (result) {
                     // fire "user logged in" event with user data & token

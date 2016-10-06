@@ -107,7 +107,7 @@ exports.checkout = function (req, res) {
         .then(function (chargeId) {
             orderData.transaction = chargeId;
             // add this order to db and clear user cart
-            return addOrderToUser;
+            return addOrderToUser(orderData);
         })
 
         .then(function() {
@@ -206,7 +206,7 @@ var addOrderToUser = bluebird.promisify(
                 transaction : orderData.transaction
             }
         };
-
+        
         Order.createAsync(newOrder)
             
             .then(function (order) {

@@ -8,5 +8,6 @@ bluStore.constant('EVENTS', {
     'UPDATE_CART': 'updateCart',
     'LOAD_CART': 'loadCart',
     'CART_CHANGED': 'cartChanged',
-    'REMOVE_FROM_CART': 'removeFromCart'
+    'REMOVE_FROM_CART': 'removeFromCart',
+    'STRIPE_TOKEN_RECEIVED': 'stripeTokenReceived'
 });

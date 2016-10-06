@@ -88,7 +88,7 @@ bluStore.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
                     controller: "checkoutCtrl"
                 }
             },
-            data: { auth: 'none' }
+            data: { auth: 'user' }
         })
 
         .state('app.admin', {
@@ -140,7 +140,7 @@ bluStore.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
 
 });
 
-bluStore.run(function ($rootScope) {
+bluStore.run(function ($rootScope, $state) {
     // global variables to track states 
     $rootScope.activeState = 'none';
     $rootScope.loadingState = 'none';
@@ -149,10 +149,12 @@ bluStore.run(function ($rootScope) {
         // pervent nav to user/admin pages without auth
         if (toState.data.auth === 'admin' && (!$rootScope.userInfo || !$rootScope.userInfo.isAdmin)) {
             event.preventDefault();
+            $state.go('app');
             return false;
         }
         else if (toState.data.auth === 'user' && !$rootScope.userInfo) {
             event.preventDefault();
+            $state.go('app');
             return false;
         }
 

@@ -130,6 +130,11 @@ bluStore.factory('cartFactory', ['$resource', 'API', 'localStorageFactory', 'CON
                                 cartChanged(result.data.cart);
                             }
                         );
+                },
+
+                checkout: function (orderData) {
+                    return $resource(API.CART_CHECKOUT)
+                        .save({}, { order: orderData }).$promise;
                 }
 
             },
