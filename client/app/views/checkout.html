@@ -120,9 +120,9 @@
                             <p>Suspendisse ac risus orci. In hac habitasse platea dictumst.</p>
                         </div>
                         <div class="col-xs-12 col-sm-4">
-                            <h4>subtotal: {{ 1321 | currency:'$':0 }}</h4>
-                            <h4>shipping amount: {{ 1321 | currency:'$':0 }}</h4>
-                            <h4>total: {{ totalPrice | currency:'$':0 }}</h4>
+                            <h4>subtotal: {{ totalPrice | currency:'$':0 }}</h4>
+                            <h4>shipping amount: {{ 10 | currency:'$':0 }}</h4>
+                            <h4>total: {{ totalPrice + 10 | currency:'$':0 }}</h4>
                         </div>
                         <div class="col-xs-12 col-sm-2">
                             <button type="button" id="order-confirm" class="btn btn-warning btn-custom" data-toggle="collapse" data-parent="#accordion" 
