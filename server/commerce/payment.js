@@ -8,7 +8,7 @@ var stripe = require('./stripe');
  * @argument {object} orderData given order data to charge for.
  * @return {Promise} return promise with either success result or error message.
  */
-function charge(orderData) {
+function charge (orderData) {
     return new Promise((resolve, reject) => {
 
         // validate given parameters.
@@ -21,11 +21,34 @@ function charge(orderData) {
         var chargeMethod = selectChargeMethod(orderData.payment.method);
 
         // assert that the payment method exist
-        if (!chargeMethod) return reject(new Error('payment method not found!'));
+        if (!chargeMethod) return reject(new Error('payment method not found while trying to charge!'));
 
         // proceed to charge.
-        chargeMethod(orderData)
+        chargeMethod.charge(orderData)
             .then((chargeId) => resolve(res))  // return charge id
+            .catch((err) => reject(err));
+
+    });
+}
+
+/**
+ * @description refund charges to client with selected payment method
+ * @argument {string} chargeId charging id
+ * @argument {string} method charging method
+ * @return {Promise} either error or resolve refund result
+ */
+function refund (chargeId, method) {
+    return new Promise((resolve, reject) => {
+
+        // select charging method
+        var chargeMethod = selectChargeMethod(method);
+
+        // assert that the payment method exist
+        if (!chargeMethod) return reject(new Error('payment method not found, while trying to refund customer!'));
+
+        // refund charges to user 
+        chargeMethod.refund(chargeId)
+            .then((refundInfo) => resolve(refundInfo))   // return refund process info.
             .catch((err) => reject(err));
 
     });
@@ -86,5 +109,10 @@ function selectChargeMethod (method) {
 
 // charging methods registery
 var chargeMethods = {
-    stripe: stripe.charge
+    stripe: stripe
+};
+
+module.exports = {
+    charge: charge,
+    refund: refund
 };

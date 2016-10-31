@@ -33,4 +33,28 @@ function charge(orderData) {
 
 }
 
-module.exports = charge;
+/**
+ * @description refund charges to client
+ * @argument {string} chargeId charging id
+ * @return {Promise} either error or resolve refund result
+ */
+function refund (chargeId) {
+
+    return new Promise((resolve, reject) => {
+
+        stripe.refunds.create(
+            { charge: chargeId },
+            function (err, refundInfo) {
+                if (err) return reject(err);
+                resolve(refundInfo);
+            }
+        );
+
+    });
+
+}
+
+module.exports = {
+    charge: charge,
+    refund: refund
+};

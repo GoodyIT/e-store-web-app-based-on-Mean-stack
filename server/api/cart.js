@@ -123,74 +123,6 @@ exports.checkout = function (req, res) {
 
 };
 
-
-/**
- * orderData = >
- * => cardToken (string): customer card token e.g from stripe api
- * => items (array): list of items to purchase 
- * => custName (string): customer name
- * => custPhone (string): customer phone
- * => custEmail (string): customer email
- * => custAddress (string): customer address
- * => payMethod (string): payment method to charge user  
- */
-var verifyOrderData = bluebird.promisify(
-    function (orderData, cb) {
-        // check givin data
-        if (!orderData.cardToken) return cb(new Error('stripe token not found!'));
-        if (!orderData.items && orderData.items.length > 0) return cb(new Error('no items to purchase in your cart!'));
-        if (!orderData.custName) return cb(new Error('customer name required!'));
-        if (!orderData.custPhone) return cb(new Error('customer phone required!'));
-        if (!orderData.custEmail) return cb(new Error('customer email required!'));
-        if (!orderData.custAddress) return cb(new Error('customer address required!'));
-        if (!orderData.payMethod) return cb(new Error('payment method not provided!'));
-        cb(null, true);
-    }
-);
-
-// return charge function that always takes orderData Object 
-var selectChargeMethod = bluebird.promisify(
-    function (method, cb) {
-        if (method === 'stripe') return cb(null, stripeCharge);
-        
-        /** 
-         * to add more methods in the future list em here and create 
-         * charge function e.g paypalCharge(orderData, cb); => 
-         * and returns charge token aka tranaction  
-         */
-
-        cb(new Error('payment method not supported!'));
-    }
-);
-
-// charge customer using stripe api
-var stripeCharge = bluebird.promisify(
-    function (orderData, cb) {
-        
-        var amount = getCartTotalPrice(orderData.items) * 100;
-        
-        stripe.charges.create(
-            {
-                amount: amount,
-                currency: 'usd',
-                source: orderData.cardToken,
-                description: 'Charge for ' + orderData.custEmail,
-                // The email address to send this charge's receipt to.
-                receipt_email: orderData.custEmail,
-                // string displayed on customer's credit card statement
-                statement_descriptor: 'BluStore statement'
-            },
-            function (err, charge) {
-                // return any error otherwise return charge id 
-                if (err) return cb(err);
-
-                cb(null, charge.id);
-            }
-        );
-
-    }
-);
-
 var addOrderToUser = bluebird.promisify(
     function (orderData, cb) {
 
@@ -233,28 +165,7 @@ var addOrderToUser = bluebird.promisify(
     }
 );
 
-function refundCharge (orderData, cb) {
-    var transaction = orderData.transaction;
-    if (!transaction) {
-        // no transactions yet
-        return cb();
-    }
 
-    if (orderData.payMethod === 'stripe') {
-        // stripe refund
-        stripe.refunds.create(
-            { charge: transaction },
-            function (err, refund) {
-                if (err) console.log(err);
-                cb();
-            }
-        );
-    }
-    else {
-        cb();
-    }
-
-}
 
 function getCartTotalPrice(items) {
     return items.map(value => value.amount * value.product.price).reduce((prev, curr) => prev + curr, 0);
