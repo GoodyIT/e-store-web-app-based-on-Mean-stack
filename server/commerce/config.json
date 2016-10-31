@@ -1,0 +1,43 @@
+{
+    "shipping": {
+        "addressFrom": {
+            "name":"Ms Hippo",
+            "company":"Shippo",
+            "street1":"215 Clayton St.",
+            "city":"San Francisco",
+            "state":"CA",
+            "zip":"94117",
+            "country":"US",
+            "phone":"+1 555 341 9393",
+            "email":"support@goshippo.com"
+        },
+        "addressTo": {
+            "name":"Ms Hippo",
+            "company":"Shippo",
+            "street1":"803 Clayton St.",
+            "city":"San Francisco",
+            "state":"CA",
+            "zip":"94117",
+            "country":"US",
+            "phone":"+1 555 341 9393",
+            "email":"support@goshippo.com"
+        },
+        "parcel": {
+            "length": "5",
+            "width": "5",
+            "height": "5",
+            "distance_unit": "in",
+            "weight": "2",
+            "mass_unit": "lb"
+        },
+        "parcel2": {
+            "length": "5",
+            "width": "5",
+            "height": "5",
+            "distance_unit": "in",
+            "weight": "2",
+            "mass_unit": "lb"
+        },
+        "shippoKey": "63f48c6363c98dab58a84568555d75e2ff23a318"
+    }
+}

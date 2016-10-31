@@ -3,7 +3,7 @@
 var config = require('../config');
 var bluebird = require('bluebird');
 var models = bluebird.promisifyAll(require('../models'));
-var stripe = bluebird.promisifyAll(require("stripe")(config.STRIPE_SEC_KEY));
+var stripe = bluebird.promisifyAll(require("stripe")(config.COMMERCE.STRIPE_SEC_KEY));
 var handler = require('./handler');
 var Order = models.Order;
 var User = models.User;
@@ -168,6 +168,7 @@ var stripeCharge = bluebird.promisify(
     function (orderData, cb) {
         
         var amount = getCartTotalPrice(orderData.items) * 100;
+        
         stripe.charges.create(
             {
                 amount: amount,
